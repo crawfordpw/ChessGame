@@ -4,22 +4,29 @@ using System.Text;
 
 namespace ChessModel.Pieces 
 {
-    class Pawn : IPiece
+    public class Pawn : IPiece
     {
-        public int Type { get; set; }
-        public int Color { get; set; }
+        public ChessPiece Type { get; set; }
+        public ChessColor Color { get; set; }
         public int PosCol { get; set; }
         public int PosRow { get; set; }
         public bool Alive { get; set; }
 
-        public void Remove()
+        public Pawn()
         {
-            throw new NotImplementedException();
+
+        }
+
+        public Pawn(ChessColor color)
+        {
+            Type = ChessPiece.Pawn;
+            Color = (color == ChessColor.Black) ? ChessColor.Black : ChessColor.White;
         }
 
         public void ValidMove()
         {
             throw new NotImplementedException();
         }
+
     }
 }

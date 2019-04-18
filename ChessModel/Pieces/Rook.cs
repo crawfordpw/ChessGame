@@ -4,18 +4,25 @@ using System.Text;
 
 namespace ChessModel.Pieces
 {
-    class Rook
+    public class Rook : IPiece
     {
-        public int Type { get; set; }
-        public int Color { get; set; }
+        public ChessPiece Type { get; set; }
+        public ChessColor Color { get; set; }
         public int PosCol { get; set; }
         public int PosRow { get; set; }
         public bool Alive { get; set; }
 
-        public void Remove()
+        public Rook()
         {
-            throw new NotImplementedException();
+
         }
+
+        public Rook(ChessColor color)
+        {
+            Type = ChessPiece.Rook;
+            Color = (color == ChessColor.Black) ? ChessColor.Black : ChessColor.White;
+        }
+
 
         public void ValidMove()
         {
