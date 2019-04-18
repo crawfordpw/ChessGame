@@ -22,11 +22,5 @@ namespace ChessModel.Pieces
             Type = ChessPiece.Pawn;
             Color = (color == ChessColor.Black) ? ChessColor.Black : ChessColor.White;
         }
-
-        public void ValidMove()
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }

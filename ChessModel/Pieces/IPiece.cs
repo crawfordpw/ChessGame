@@ -9,7 +9,5 @@ namespace ChessModel
         int PosCol { get; set; }
         int PosRow { get; set; }
         bool Alive { get; set; }
-        
-        void ValidMove();
     }
 }

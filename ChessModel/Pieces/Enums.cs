@@ -6,6 +6,7 @@ namespace ChessModel.Pieces
 {
     public enum ChessPiece
     {
+        None,
         Pawn,
         Knight,
         Bishop,
