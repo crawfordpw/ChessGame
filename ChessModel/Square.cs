@@ -10,7 +10,7 @@ namespace ChessModel
         public int ColID { get; set; }
         public int RowID { get; set; }
         public bool HasPiece { get; set; }
-        public ChessPiece Type { get; set; }
+        public IPiece piece { get; set; }
 
         public Square()
         {
@@ -19,8 +19,6 @@ namespace ChessModel
 
         public Square(int row, int col)
         {
-            Type = ChessPiece.None;
-            HasPiece = false;
             RowID = row;
             ColID = col;
         }

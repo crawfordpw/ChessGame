@@ -36,22 +36,25 @@ namespace ChessModel
                     if (row == 0 || row == 1)
                     {
                         color = ChessColor.White;
-                        AddPiece(row, col, color);
+                        squares[row, col].piece = AddPiece(row, col, color);
                     }
                     else if (row == XDim - 1 || row == XDim - 2)
                     {
                         color = ChessColor.Black;
-                        AddPiece(row, col, color);
+                        squares[row, col].piece = AddPiece(row, col, color);
                     }
                 }
             }
         }
 
-        public void AddPiece(int row, int col, ChessColor color)
+        public IPiece AddPiece(int row, int col, ChessColor color)
         {
             IPiece piece;
+
+            squares[row, col].HasPiece = true;
+
             // Adds piece to a List, 0/7 for non pawns, else it has to be a pawn
-            if(row == 0 || row == XDim - 1)
+            if (row == 0 || row == XDim - 1)
             {
                 if(col == 0 || col == YDim -1)
                     piece = new Rook(color);
@@ -66,13 +69,14 @@ namespace ChessModel
             }
             else
             {
-                piece = new Pawn(color); 
+                piece = new Pawn(color);
             }
             piece.Alive = true;
             piece.PosCol = col;
             piece.PosRow = row;
 
             pieces.Add(piece);
+            return piece;
         }
     }
 }

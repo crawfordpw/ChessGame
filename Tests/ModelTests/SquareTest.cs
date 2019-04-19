@@ -19,10 +19,6 @@ namespace Tests.ModelTests
             square.HasPiece = true;
             actualBool = square.HasPiece;
             Assert.AreNotEqual(expectedBool, actualBool);
-
-            var expectedType = ChessPiece.None;
-            var actualType = square.Type;
-            Assert.AreEqual(expectedType, actualType);
         }
     }
 }

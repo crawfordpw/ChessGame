@@ -239,5 +239,76 @@ namespace Tests.ModelTests
                 Assert.AreEqual(expected[i].PosRow, actual[i].PosRow);
             }
         }
+
+        [TestMethod]
+        public void StartingSquaresTest()
+        {
+            int size = 8;
+            GameBoard gameboard = new GameBoard(size, size);
+            gameboard.InitializeBoard();
+
+            Square[,] expected = new Square[8,8];
+
+            for (int row = 0; row < 8; row++)
+            {
+                for (int col = 0; col < 8; col++)
+                {
+                    expected[row, col] = new Square(row, col);
+                }
+            }
+            expected[0, 0].HasPiece = true; expected[0, 0].piece = new Rook(ChessColor.White);
+            expected[0, 1].HasPiece = true; expected[0, 1].piece = new Knight(ChessColor.White);
+            expected[0, 2].HasPiece = true; expected[0, 2].piece = new Bishop(ChessColor.White);
+            expected[0, 3].HasPiece = true; expected[0, 3].piece = new King(ChessColor.White);
+            expected[0, 4].HasPiece = true; expected[0, 4].piece = new Queen(ChessColor.White);
+            expected[0, 5].HasPiece = true; expected[0, 5].piece = new Bishop(ChessColor.White);
+            expected[0, 6].HasPiece = true; expected[0, 6].piece = new Knight(ChessColor.White);
+            expected[0, 7].HasPiece = true; expected[0, 7].piece = new Rook(ChessColor.White);
+            expected[1, 0].HasPiece = true; expected[1, 0].piece = new Pawn(ChessColor.White);
+            expected[1, 1].HasPiece = true; expected[1, 1].piece = new Pawn(ChessColor.White);
+            expected[1, 2].HasPiece = true; expected[1, 2].piece = new Pawn(ChessColor.White);
+            expected[1, 3].HasPiece = true; expected[1, 3].piece = new Pawn(ChessColor.White);
+            expected[1, 4].HasPiece = true; expected[1, 4].piece = new Pawn(ChessColor.White);
+            expected[1, 5].HasPiece = true; expected[1, 5].piece = new Pawn(ChessColor.White);
+            expected[1, 6].HasPiece = true; expected[1, 6].piece = new Pawn(ChessColor.White);
+            expected[1, 7].HasPiece = true; expected[1, 7].piece = new Pawn(ChessColor.White);
+
+            expected[7, 0].HasPiece = true; expected[7, 0].piece = new Rook(ChessColor.Black);
+            expected[7, 1].HasPiece = true; expected[7, 1].piece = new Knight(ChessColor.Black);
+            expected[7, 2].HasPiece = true; expected[7, 2].piece = new Bishop(ChessColor.Black);
+            expected[7, 3].HasPiece = true; expected[7, 3].piece = new King(ChessColor.Black);
+            expected[7, 4].HasPiece = true; expected[7, 4].piece = new Queen(ChessColor.Black);
+            expected[7, 5].HasPiece = true; expected[7, 5].piece = new Bishop(ChessColor.Black);
+            expected[7, 6].HasPiece = true; expected[7, 6].piece = new Knight(ChessColor.Black);
+            expected[7, 7].HasPiece = true; expected[7, 7].piece = new Rook(ChessColor.Black);
+            expected[6, 0].HasPiece = true; expected[6, 0].piece = new Pawn(ChessColor.Black);
+            expected[6, 1].HasPiece = true; expected[6, 1].piece = new Pawn(ChessColor.Black);
+            expected[6, 2].HasPiece = true; expected[6, 2].piece = new Pawn(ChessColor.Black);
+            expected[6, 3].HasPiece = true; expected[6, 3].piece = new Pawn(ChessColor.Black);
+            expected[6, 4].HasPiece = true; expected[6, 4].piece = new Pawn(ChessColor.Black);
+            expected[6, 5].HasPiece = true; expected[6, 5].piece = new Pawn(ChessColor.Black);
+            expected[6, 6].HasPiece = true; expected[6, 6].piece = new Pawn(ChessColor.Black);
+            expected[6, 7].HasPiece = true; expected[6, 7].piece = new Pawn(ChessColor.Black);
+
+            // both arrays are same length
+            Assert.AreEqual(expected.Length, gameboard.squares.Length);
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (expected[i, j].piece != null && gameboard.squares[i, j].piece != null)
+                    {
+                        Assert.AreEqual(expected[i, j].piece.Type, gameboard.squares[i, j].piece.Type);
+                        Assert.AreEqual(expected[i, j].HasPiece, gameboard.squares[i, j].HasPiece);
+                    }
+                    else
+                    {
+                        Assert.IsNull(expected[i, j].piece);
+                        Assert.IsNull(gameboard.squares[i, j].piece);
+                    }
+                }
+            }
+        }
     }
 }
