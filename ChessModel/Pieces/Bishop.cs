@@ -22,5 +22,11 @@ namespace ChessModel.Pieces
             Type = ChessPiece.Bishop;
             Color = (color == ChessColor.Black) ? ChessColor.Black : ChessColor.White;
         }
+
+        public void AddAtLocation(int row, int col)
+        {
+            PosRow = row;
+            PosCol = col;
+        }
     }
 }
