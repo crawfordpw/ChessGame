@@ -36,18 +36,18 @@ namespace ChessModel
                     if (row == 0 || row == 1)
                     {
                         color = ChessColor.White;
-                        squares[row, col].piece = AddPiece(row, col, color);
+                        squares[row, col].piece = AddStaringPiece(row, col, color);
                     }
                     else if (row == XDim - 1 || row == XDim - 2)
                     {
                         color = ChessColor.Black;
-                        squares[row, col].piece = AddPiece(row, col, color);
+                        squares[row, col].piece = AddStaringPiece(row, col, color);
                     }
                 }
             }
         }
 
-        public IPiece AddPiece(int row, int col, ChessColor color)
+        private IPiece AddStaringPiece(int row, int col, ChessColor color)
         {
             IPiece piece;
 
@@ -71,12 +71,35 @@ namespace ChessModel
             {
                 piece = new Pawn(color);
             }
-            piece.Alive = true;
             piece.PosCol = col;
             piece.PosRow = row;
 
             pieces.Add(piece);
             return piece;
+        }
+
+        public void PlacePiece(IPiece piece, Square square)
+        {
+            square.piece = piece;
+            square.MakeSameCord();
+            square.HasPiece = true;
+            pieces.Add(piece);
+        }
+
+        public void RemovePiece(Square square)
+        {
+            square.HasPiece = false;
+            pieces.Remove(square.piece);
+            square.piece = null;
+        }
+
+        public void MovePiece(Square fromSquare, Square toSquare)
+        {
+            toSquare.piece = fromSquare.piece;
+            toSquare.MakeSameCord();
+            toSquare.HasPiece = true;
+            fromSquare.piece = null;
+            fromSquare.HasPiece = false;
         }
     }
 }

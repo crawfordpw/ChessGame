@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ChessModel;
+﻿using ChessModel;
 using ChessModel.Pieces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
 namespace Tests.ModelTests
@@ -64,16 +63,16 @@ namespace Tests.ModelTests
             pawn7.AddAtLocation(1, 6);
             expected.Add(pawn7);
 
-            IPiece pawn8 = new Pawn(ChessColor.White);
-            pawn8.AddAtLocation(1, 7);
-            expected.Add(pawn8);
+            IPiece pawnsize = new Pawn(ChessColor.White);
+            pawnsize.AddAtLocation(1, 7);
+            expected.Add(pawnsize);
 
             List<IPiece> actual = gameboard.pieces.FindAll(e => e.Type == ChessPiece.Pawn && e.Color == ChessColor.White);
 
             // both arrays are same length
             Assert.AreEqual(expected.Count, actual.Count);
 
-            for(int i = 0; i < expected.Count; i++)
+            for (int i = 0; i < expected.Count; i++)
             {
                 Assert.AreEqual(expected[i].PosCol, actual[i].PosCol);
                 Assert.AreEqual(expected[i].PosRow, actual[i].PosRow);
@@ -118,9 +117,9 @@ namespace Tests.ModelTests
             pawn7.AddAtLocation(6, 6);
             expected.Add(pawn7);
 
-            IPiece pawn8 = new Pawn(ChessColor.Black);
-            pawn8.AddAtLocation(6, 7);
-            expected.Add(pawn8);
+            IPiece pawnsize = new Pawn(ChessColor.Black);
+            pawnsize.AddAtLocation(6, 7);
+            expected.Add(pawnsize);
 
             List<IPiece> actual = gameboard.pieces.FindAll(e => e.Type == ChessPiece.Pawn && e.Color == ChessColor.Black);
 
@@ -171,9 +170,9 @@ namespace Tests.ModelTests
             others7.AddAtLocation(0, 6);
             expected.Add(others7);
 
-            IPiece others8 = new Rook(ChessColor.White);
-            others8.AddAtLocation(0, 7);
-            expected.Add(others8);
+            IPiece otherssize = new Rook(ChessColor.White);
+            otherssize.AddAtLocation(0, 7);
+            expected.Add(otherssize);
 
             List<IPiece> actual = gameboard.pieces.FindAll(e => e.Type != ChessPiece.Pawn && e.Color == ChessColor.White);
 
@@ -224,9 +223,9 @@ namespace Tests.ModelTests
             others7.AddAtLocation(7, 6);
             expected.Add(others7);
 
-            IPiece others8 = new Rook(ChessColor.Black);
-            others8.AddAtLocation(7, 7);
-            expected.Add(others8);
+            IPiece otherssize = new Rook(ChessColor.Black);
+            otherssize.AddAtLocation(7, 7);
+            expected.Add(otherssize);
 
             List<IPiece> actual = gameboard.pieces.FindAll(e => e.Type != ChessPiece.Pawn && e.Color == ChessColor.Black);
 
@@ -247,11 +246,11 @@ namespace Tests.ModelTests
             GameBoard gameboard = new GameBoard(size, size);
             gameboard.InitializeBoard();
 
-            Square[,] expected = new Square[8,8];
+            Square[,] expected = new Square[size, size];
 
-            for (int row = 0; row < 8; row++)
+            for (int row = 0; row < size; row++)
             {
-                for (int col = 0; col < 8; col++)
+                for (int col = 0; col < size; col++)
                 {
                     expected[row, col] = new Square(row, col);
                 }
@@ -293,9 +292,9 @@ namespace Tests.ModelTests
             // both arrays are same length
             Assert.AreEqual(expected.Length, gameboard.squares.Length);
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int j = 0; j < 8; j++)
+                for (int j = 0; j < size; j++)
                 {
                     if (expected[i, j].piece != null && gameboard.squares[i, j].piece != null)
                     {
@@ -309,6 +308,68 @@ namespace Tests.ModelTests
                     }
                 }
             }
+        }
+
+        [TestMethod]
+        public void PlacePieceTest()
+        {
+            int size = 8;
+            GameBoard gameboard = new GameBoard(size, size);
+            gameboard.InitializeBoard();
+
+            IPiece piece = new Pawn(ChessColor.Black)
+            {
+                PosCol = 3,
+                PosRow = 3
+            };
+
+            gameboard.PlacePiece(piece, gameboard.squares[3, 4]);
+
+            Assert.AreEqual(piece.PosCol, gameboard.squares[3, 4].ColID);
+            Assert.AreEqual(piece.PosRow, gameboard.squares[3, 4].RowID);
+            Assert.AreEqual(gameboard.pieces[32].PosCol, gameboard.squares[3, 4].ColID);
+            Assert.AreEqual(gameboard.pieces[32].PosRow, gameboard.squares[3, 4].RowID);
+            Assert.AreEqual(true, gameboard.squares[3, 4].HasPiece);
+        }
+
+        [TestMethod]
+        public void RemovePieceTest()
+        {
+            int size = 8;
+            GameBoard gameboard = new GameBoard(size, size);
+            gameboard.InitializeBoard();
+
+            IPiece piece = new Pawn(ChessColor.Black)
+            {
+                PosCol = 3,
+                PosRow = 3
+            };
+            
+
+            gameboard.PlacePiece(piece, gameboard.squares[3, 4]);
+            gameboard.RemovePiece(gameboard.squares[3, 4]);
+
+            Assert.IsNull(gameboard.squares[3, 4].piece);
+            Assert.AreEqual(32, gameboard.pieces.Count);
+            Assert.AreEqual(false, gameboard.squares[3, 4].HasPiece);
+        }
+
+        [TestMethod]
+        public void MovePieceTest()
+        {
+            int size = 8;
+            GameBoard gameboard = new GameBoard(size, size);
+            gameboard.InitializeBoard();
+
+            gameboard.MovePiece(gameboard.squares[1, 0], gameboard.squares[2, 0]);
+
+            Assert.IsNull(gameboard.squares[1, 0].piece);
+            Assert.AreEqual(false, gameboard.squares[1, 0].HasPiece);
+            Assert.AreEqual(true, gameboard.squares[2, 0].HasPiece);
+            Assert.AreEqual(0, gameboard.squares[2, 0].ColID);
+            Assert.AreEqual(2, gameboard.squares[2, 0].RowID);
+            Assert.AreEqual(gameboard.pieces[8].PosCol, gameboard.squares[2, 0].ColID);
+            Assert.AreEqual(gameboard.pieces[8].PosRow, gameboard.squares[2, 0].RowID);
         }
     }
 }

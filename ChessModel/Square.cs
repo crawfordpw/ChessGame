@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ChessModel.Pieces;
-
-namespace ChessModel
+﻿namespace ChessModel
 {
     public class Square
     {
@@ -21,6 +16,12 @@ namespace ChessModel
         {
             RowID = row;
             ColID = col;
+        }
+
+        public void MakeSameCord()
+        {
+            piece.PosCol = ColID;
+            piece.PosRow = RowID;
         }
     }
 }

@@ -10,7 +10,6 @@ namespace ChessModel.Pieces
         public ChessColor Color { get; set; }
         public int PosCol { get; set; }
         public int PosRow { get; set; }
-        public bool Alive { get; set; }
 
         public Knight()
         {
