@@ -6,9 +6,10 @@ namespace ChessModel
     {
         ChessPiece Type { get; set; }
         ChessColor Color { get; set; }
-        int PosCol { get; set; }
-        int PosRow { get; set; }
+        int ColID { get; set; }
+        int RowID { get; set; }
 
         void AddAtLocation(int row, int col);
+        bool IsValidMove(GameBoard gameboard);
     }
 }

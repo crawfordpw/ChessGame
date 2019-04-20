@@ -52,6 +52,7 @@
     <Compile Include="ModelTests\IPieceTest.cs" />
     <Compile Include="ModelTests\SquareTest.cs" />
     <Compile Include="ModelTests\GameBoardTest.cs" />
+    <Compile Include="ModelTests\MoveValidatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

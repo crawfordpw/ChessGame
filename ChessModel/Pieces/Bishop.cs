@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ChessModel.Pieces
+﻿namespace ChessModel.Pieces
 {
     public class Bishop : IPiece
     {
         public ChessPiece Type { get; set; }
         public ChessColor Color { get; set; }
-        public int PosCol { get; set; }
-        public int PosRow { get; set; }
+        public int ColID { get; set; }
+        public int RowID { get; set; }
 
         public Bishop()
         {
@@ -24,8 +20,13 @@ namespace ChessModel.Pieces
 
         public void AddAtLocation(int row, int col)
         {
-            PosRow = row;
-            PosCol = col;
+            RowID = row;
+            ColID = col;
+        }
+
+        public bool IsValidMove(GameBoard gameboard)
+        {
+            return false;
         }
     }
 }

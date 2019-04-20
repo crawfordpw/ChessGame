@@ -20,8 +20,8 @@
 
         public void MakeSameCord()
         {
-            piece.PosCol = ColID;
-            piece.PosRow = RowID;
+            piece.ColID = ColID;
+            piece.RowID = RowID;
         }
     }
 }

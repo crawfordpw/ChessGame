@@ -74,8 +74,8 @@ namespace Tests.ModelTests
 
             for (int i = 0; i < expected.Count; i++)
             {
-                Assert.AreEqual(expected[i].PosCol, actual[i].PosCol);
-                Assert.AreEqual(expected[i].PosRow, actual[i].PosRow);
+                Assert.AreEqual(expected[i].ColID, actual[i].ColID);
+                Assert.AreEqual(expected[i].RowID, actual[i].RowID);
             }
 
         }
@@ -128,8 +128,8 @@ namespace Tests.ModelTests
 
             for (int i = 0; i < expected.Count; i++)
             {
-                Assert.AreEqual(expected[i].PosCol, actual[i].PosCol);
-                Assert.AreEqual(expected[i].PosRow, actual[i].PosRow);
+                Assert.AreEqual(expected[i].ColID, actual[i].ColID);
+                Assert.AreEqual(expected[i].RowID, actual[i].RowID);
             }
         }
 
@@ -181,8 +181,8 @@ namespace Tests.ModelTests
 
             for (int i = 0; i < expected.Count; i++)
             {
-                Assert.AreEqual(expected[i].PosCol, actual[i].PosCol);
-                Assert.AreEqual(expected[i].PosRow, actual[i].PosRow);
+                Assert.AreEqual(expected[i].ColID, actual[i].ColID);
+                Assert.AreEqual(expected[i].RowID, actual[i].RowID);
             }
         }
 
@@ -234,8 +234,8 @@ namespace Tests.ModelTests
 
             for (int i = 0; i < expected.Count; i++)
             {
-                Assert.AreEqual(expected[i].PosCol, actual[i].PosCol);
-                Assert.AreEqual(expected[i].PosRow, actual[i].PosRow);
+                Assert.AreEqual(expected[i].ColID, actual[i].ColID);
+                Assert.AreEqual(expected[i].RowID, actual[i].RowID);
             }
         }
 
@@ -319,16 +319,16 @@ namespace Tests.ModelTests
 
             IPiece piece = new Pawn(ChessColor.Black)
             {
-                PosCol = 3,
-                PosRow = 3
+                ColID = 3,
+                RowID = 3
             };
 
             gameboard.PlacePiece(piece, gameboard.squares[3, 4]);
 
-            Assert.AreEqual(piece.PosCol, gameboard.squares[3, 4].ColID);
-            Assert.AreEqual(piece.PosRow, gameboard.squares[3, 4].RowID);
-            Assert.AreEqual(gameboard.pieces[32].PosCol, gameboard.squares[3, 4].ColID);
-            Assert.AreEqual(gameboard.pieces[32].PosRow, gameboard.squares[3, 4].RowID);
+            Assert.AreEqual(piece.ColID, gameboard.squares[3, 4].ColID);
+            Assert.AreEqual(piece.RowID, gameboard.squares[3, 4].RowID);
+            Assert.AreEqual(gameboard.pieces[32].ColID, gameboard.squares[3, 4].ColID);
+            Assert.AreEqual(gameboard.pieces[32].RowID, gameboard.squares[3, 4].RowID);
             Assert.AreEqual(true, gameboard.squares[3, 4].HasPiece);
         }
 
@@ -341,8 +341,8 @@ namespace Tests.ModelTests
 
             IPiece piece = new Pawn(ChessColor.Black)
             {
-                PosCol = 3,
-                PosRow = 3
+                ColID = 3,
+                RowID = 3
             };
             
 
@@ -368,8 +368,8 @@ namespace Tests.ModelTests
             Assert.AreEqual(true, gameboard.squares[2, 0].HasPiece);
             Assert.AreEqual(0, gameboard.squares[2, 0].ColID);
             Assert.AreEqual(2, gameboard.squares[2, 0].RowID);
-            Assert.AreEqual(gameboard.pieces[8].PosCol, gameboard.squares[2, 0].ColID);
-            Assert.AreEqual(gameboard.pieces[8].PosRow, gameboard.squares[2, 0].RowID);
+            Assert.AreEqual(gameboard.pieces[8].ColID, gameboard.squares[2, 0].ColID);
+            Assert.AreEqual(gameboard.pieces[8].RowID, gameboard.squares[2, 0].RowID);
         }
     }
 }

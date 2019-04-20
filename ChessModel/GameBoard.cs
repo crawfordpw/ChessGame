@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using ChessModel.Pieces;
 
 namespace ChessModel
 {
     public class GameBoard
     {
-        public int XDim { get; set; }
-        public int YDim{ get; set; }
+        public static int XDim { get; set; }
+        public static int YDim{ get; set; }
         public Square[,] squares;
         public List<IPiece> pieces;
 
@@ -36,18 +34,18 @@ namespace ChessModel
                     if (row == 0 || row == 1)
                     {
                         color = ChessColor.White;
-                        squares[row, col].piece = AddStaringPiece(row, col, color);
+                        squares[row, col].piece = AddStartingPiece(row, col, color);
                     }
                     else if (row == XDim - 1 || row == XDim - 2)
                     {
                         color = ChessColor.Black;
-                        squares[row, col].piece = AddStaringPiece(row, col, color);
+                        squares[row, col].piece = AddStartingPiece(row, col, color);
                     }
                 }
             }
         }
 
-        private IPiece AddStaringPiece(int row, int col, ChessColor color)
+        private IPiece AddStartingPiece(int row, int col, ChessColor color)
         {
             IPiece piece;
 
@@ -71,8 +69,8 @@ namespace ChessModel
             {
                 piece = new Pawn(color);
             }
-            piece.PosCol = col;
-            piece.PosRow = row;
+            piece.ColID = col;
+            piece.RowID = row;
 
             pieces.Add(piece);
             return piece;
