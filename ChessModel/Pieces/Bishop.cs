@@ -24,8 +24,15 @@
             ColID = col;
         }
 
-        public bool IsValidMove(GameBoard gameboard)
+        public bool IsValidMove(GameBoard gameboard, Square fromSquare, Square toSquare)
         {
+            int fromRow = fromSquare.RowID;
+            int fromCol = fromSquare.ColID;
+            int toRow = toSquare.RowID;
+            int toCol = toSquare.ColID;
+            bool isOccupied = MoveValidator.IsOccupied(toSquare);
+            bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);
+
             return false;
         }
     }

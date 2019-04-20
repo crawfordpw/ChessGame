@@ -1,5 +1,4 @@
 ﻿using ChessModel;
-using ChessModel.Pieces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.ModelTests

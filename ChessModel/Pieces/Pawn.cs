@@ -24,9 +24,40 @@
             ColID = col;
         }
 
-        public bool IsValidMove(GameBoard gameboard)
+        public bool IsValidMove(GameBoard gameboard, Square fromSquare, Square toSquare)
         {
-            return false;
+            int fromRow = fromSquare.RowID;
+            int fromCol = fromSquare.ColID;
+            int toRow = toSquare.RowID;
+            int toCol = toSquare.ColID;
+            bool isOccupied = MoveValidator.IsOccupied(toSquare);
+            bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);
+
+            if(fromSquare.piece == null)
+                return false;
+
+            if (fromSquare.piece.Color == ChessColor.White)
+            {
+                if (toRow == fromRow + 1 && fromCol == toCol && !isOccupied)
+                    return true;
+                else if (toRow == fromRow + 1 && toCol == fromCol + 1 && isEnemy)
+                    return true;
+                else if (toRow == fromRow + 1 && toCol == fromCol - 1 && isEnemy)
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                if (toRow == fromRow - 1 && fromCol == toCol && !isOccupied)
+                    return true;
+                else if (toRow == fromRow - 1 && toCol == fromCol + 1 && isEnemy)
+                    return true;
+                else if (toRow == fromRow - 1 && toCol == fromCol - 1 && isEnemy)
+                    return true;
+                else
+                    return false;
+            }
         }
     }
 }

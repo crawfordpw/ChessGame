@@ -23,7 +23,7 @@ namespace Tests.ModelTests
             var expectedRow = row;
 
             Assert.AreEqual(expectedCol, actualCol);
-            Assert.AreEqual(expectedRow, expectedRow);
+            Assert.AreEqual(expectedRow, actualRow);
         }
 
         [TestMethod]

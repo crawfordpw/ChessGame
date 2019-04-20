@@ -12,10 +12,15 @@
 
         public static bool IsEnemy(Square fromSquare, Square toSquare)
         {
-            if (fromSquare.piece.Color == toSquare.piece.Color)
-                return false;
+            if (IsOccupied(toSquare))
+            {
+                if (fromSquare.piece.Color == toSquare.piece.Color)
+                    return false;
+                else
+                    return true;
+            }
             else
-                return true;
+                return false;
         }
     }
 }

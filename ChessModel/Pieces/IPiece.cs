@@ -10,6 +10,6 @@ namespace ChessModel
         int RowID { get; set; }
 
         void AddAtLocation(int row, int col);
-        bool IsValidMove(GameBoard gameboard);
+        bool IsValidMove(GameBoard gameboard, Square fromSquare, Square toSquare);
     }
 }
