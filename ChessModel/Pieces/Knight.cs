@@ -33,7 +33,27 @@
             bool isOccupied = MoveValidator.IsOccupied(toSquare);
             bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);
 
-            return false;
+            if (fromSquare.piece == null)
+                return false;
+
+            if (toRow == fromRow + 1 && fromCol == toCol + 2 && (!isOccupied || isEnemy))
+                return true;
+            else if (toRow == fromRow + 1 && fromCol == toCol - 2 && (!isOccupied || isEnemy))
+                return true;
+            else if (toRow == fromRow - 1 && fromCol == toCol + 2 && (!isOccupied || isEnemy))
+                return true;
+            else if (toRow == fromRow - 1 && fromCol == toCol - 2 && (!isOccupied || isEnemy))
+                return true;
+            else if (toRow == fromRow + 2 && fromCol == toCol + 1 && (!isOccupied || isEnemy))
+                return true;
+            else if (toRow == fromRow - 2 && fromCol == toCol + 1 && (!isOccupied || isEnemy))
+                return true;
+            else if (toRow == fromRow + 2 && fromCol == toCol - 1 && (!isOccupied || isEnemy))
+                return true;
+            else if (toRow == fromRow - 2 && fromCol == toCol - 1 && (!isOccupied || isEnemy))
+                return true;
+            else
+                return false;
         }
     }
 }
