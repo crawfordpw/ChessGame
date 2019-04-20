@@ -55,6 +55,7 @@
     <Compile Include="ModelTests\MoveValidatorTest.cs" />
     <Compile Include="ModelTests\PawnValidMoveTest.cs" />
     <Compile Include="ModelTests\KnightValidMoveTest.cs" />
+    <Compile Include="ModelTests\RookValidMove.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

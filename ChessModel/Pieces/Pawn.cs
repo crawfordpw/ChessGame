@@ -33,7 +33,7 @@
             bool isOccupied = MoveValidator.IsOccupied(toSquare);
             bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);
 
-            if(fromSquare.piece == null)
+            if(fromSquare.piece == null || fromSquare.piece == toSquare.piece)
                 return false;
 
             if (fromSquare.piece.Color == ChessColor.White)
