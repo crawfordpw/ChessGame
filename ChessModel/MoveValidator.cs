@@ -1,6 +1,8 @@
-﻿namespace ChessModel
+﻿using System;
+
+namespace ChessModel
 {
-   public class MoveValidator
+   public static class MoveValidator
     {
         public static bool IsOccupied(Square toSquare)
         {
@@ -21,6 +23,90 @@
             }
             else
                 return false;
+        }
+
+        public static bool RookMove(GameBoard gameboard, Square fromSquare, Square toSquare)
+        {
+            int fromRow = fromSquare.RowID;
+            int fromCol = fromSquare.ColID;
+            int toRow = toSquare.RowID;
+            int toCol = toSquare.ColID;
+            bool isOccupied = MoveValidator.IsOccupied(toSquare);
+            bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);
+            int rowDiff = toRow - fromRow;
+            int colDiff = toCol - fromCol;
+
+            int signRow = rowDiff > 0 ? 1 : -1;
+            int signCol = colDiff > 0 ? 1 : -1;
+
+            if (fromSquare.piece == null || (rowDiff == 0 && colDiff == 0))
+                return false;
+
+            // if the move is vertical
+            if (colDiff == 0)
+            {
+                // loop to square right before target
+                for (int i = 1; i < Math.Abs(rowDiff); i++)
+                {
+                    if (!MoveValidator.IsOccupied(gameboard.squares[fromRow + (i * signRow), fromCol]))
+                        continue;
+                    else
+                        return false;
+                }
+                // target space can either be empty or contain an enemy piece
+                if (!isOccupied || isEnemy)
+                    return true;
+            }
+
+            //if the move is horizontal
+            else if (rowDiff == 0)
+            {
+                for (int i = 1; i < Math.Abs(colDiff); i++)
+                {
+                    if (!MoveValidator.IsOccupied(gameboard.squares[fromRow, fromCol + (i * signCol)]))
+                        continue;
+                    else
+                        return false;
+                }
+                if (!isOccupied || isEnemy)
+                    return true;
+            }
+            return false;
+        }
+
+        public static bool BishopMove(GameBoard gameboard, Square fromSquare, Square toSquare)
+        {
+            int fromRow = fromSquare.RowID;
+            int fromCol = fromSquare.ColID;
+            int toRow = toSquare.RowID;
+            int toCol = toSquare.ColID;
+            bool isOccupied = MoveValidator.IsOccupied(toSquare);
+            bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);
+            int rowDiff = toRow - fromRow;
+            int colDiff = toCol - fromCol;
+
+            int signRow = rowDiff > 0 ? 1 : -1;
+            int signCol = colDiff > 0 ? 1 : -1;
+
+            if (fromSquare.piece == null || Math.Abs(rowDiff) != Math.Abs(colDiff))
+                return false;
+
+            for (int i = 1; i < Math.Abs(rowDiff); i++)
+            {
+                for (int j = 1; j < Math.Abs(colDiff); j++)
+                {
+                    if (!MoveValidator.IsOccupied(gameboard.squares[fromRow + (i * signRow), fromCol + (i * signCol)]))
+                        continue;
+                    else
+                        return false;
+                }
+            }
+
+            // target space can either be empty or contain an enemy piece
+            if (!isOccupied || isEnemy)
+                return true;
+
+            return false;
         }
     }
 }

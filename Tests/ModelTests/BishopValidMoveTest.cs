@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests.ModelTests
 {
     [TestClass]
-    public class BishopValidMove
+    public class BishopValidMoveTest
     {
         [TestMethod]
         public void BishopMoveToEmpty()

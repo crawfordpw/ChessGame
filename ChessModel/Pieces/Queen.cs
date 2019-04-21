@@ -26,12 +26,11 @@
 
         public bool IsValidMove(GameBoard gameboard, Square fromSquare, Square toSquare)
         {
-            int fromRow = fromSquare.RowID;
-            int fromCol = fromSquare.ColID;
-            int toRow = toSquare.RowID;
-            int toCol = toSquare.ColID;
-            bool isOccupied = MoveValidator.IsOccupied(toSquare);
-            bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);
+            bool rookValid = MoveValidator.RookMove(gameboard, fromSquare, toSquare);
+            bool bishopValid = MoveValidator.BishopMove(gameboard, fromSquare, toSquare);
+
+            if (rookValid || bishopValid)
+                return true;
 
             return false;
         }

@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests.ModelTests
 {
     [TestClass]
-    public class RookValidMove
+    public class RookValidMoveTest
     {
         [TestMethod]
         public void RookMoveToEmpty()

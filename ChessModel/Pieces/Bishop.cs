@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ChessModel.Pieces
+﻿namespace ChessModel.Pieces
 {
     public class Bishop : IPiece
     {
@@ -28,37 +26,7 @@ namespace ChessModel.Pieces
 
         public bool IsValidMove(GameBoard gameboard, Square fromSquare, Square toSquare)
         {
-            int fromRow = fromSquare.RowID;
-            int fromCol = fromSquare.ColID;
-            int toRow = toSquare.RowID;
-            int toCol = toSquare.ColID;
-            bool isOccupied = MoveValidator.IsOccupied(toSquare);
-            bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);
-            int rowDiff = toRow - fromRow;
-            int colDiff = toCol - fromCol;
-
-            int signRow = rowDiff > 0 ? 1 : -1;
-            int signCol = colDiff > 0 ? 1 : -1;
-
-            if (fromSquare.piece == null || Math.Abs(rowDiff) != Math.Abs(colDiff))
-                return false;
-
-            for (int i = 1; i < Math.Abs(rowDiff); i++)
-            {
-                for( int j = 1; j < Math.Abs(colDiff); j++)
-                {
-                    if (!MoveValidator.IsOccupied(gameboard.squares[fromRow + (i * signRow), fromCol + (i * signCol)]))
-                        continue;
-                    else
-                        return false;
-                }
-            }
-
-            // target space can either be empty or contain an enemy piece
-            if (!isOccupied || isEnemy)
-                return true;
-
-            return false;
+            return MoveValidator.BishopMove(gameboard, fromSquare, toSquare);
         }
     }
 }
