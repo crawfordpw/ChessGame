@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace ChessModel.Pieces
 {
     public class Rook : IPiece
@@ -37,36 +36,23 @@ namespace ChessModel.Pieces
             int rowDiff = toRow - fromRow;
             int colDiff = toCol- fromCol;
 
+            int signRow = rowDiff > 0 ? 1 : -1;
+            int signCol = colDiff > 0 ? 1 : -1;
+
             if (fromSquare.piece == null || (rowDiff == 0 && colDiff == 0)) 
                 return false;
 
             // if the move is vertical
             if (colDiff == 0)
             {
-                // if move upwards
-                if (rowDiff > 0)
+                // loop to square right before target
+                for (int i = 1; i < Math.Abs(rowDiff); i++)
                 {
-                    // loop to square right before target and check if empty
-                    for (int i = 1; i < rowDiff; i++)
-                    {
-                        if (!MoveValidator.IsOccupied(gameboard.squares[fromRow + i, fromCol]))
-                            continue;
-                        else
-                            return false;
-                    }
+                    if (!MoveValidator.IsOccupied(gameboard.squares[fromRow + (i*signRow), fromCol]))
+                        continue;
+                    else
+                        return false;
                 }
-                // otherwise its downwards
-                else
-                {
-                    for (int i = -1; i > rowDiff; i--)
-                    {
-                        if (!MoveValidator.IsOccupied(gameboard.squares[fromRow + i, fromCol]))
-                            continue;
-                        else
-                            return false;
-                    }
-                }
-
                 // target space can either be empty or contain an enemy piece
                 if (!isOccupied || isEnemy)
                     return true;
@@ -75,27 +61,12 @@ namespace ChessModel.Pieces
             //if the move is horizontal
             else if (rowDiff == 0)
             {
-                // if move its towards the right
-                if (colDiff > 0)
+                for (int i = 1; i < Math.Abs(colDiff); i++)
                 {
-                    for (int i = 1; i < colDiff; i++)
-                    {
-                        if (!MoveValidator.IsOccupied(gameboard.squares[fromRow, fromCol + i]))
-                            continue;
-                        else
-                            return false;
-                    }
-                }
-                // otherwise its to the left
-                else
-                {
-                    for (int i = -1; i > colDiff; i--)
-                    {
-                        if (!MoveValidator.IsOccupied(gameboard.squares[fromRow, fromCol + i]))
-                            continue;
-                        else
-                            return false;
-                    }
+                    if (!MoveValidator.IsOccupied(gameboard.squares[fromRow, fromCol + (i*signCol)]))
+                        continue;
+                    else
+                        return false;
                 }
                 if (!isOccupied || isEnemy)
                     return true;
