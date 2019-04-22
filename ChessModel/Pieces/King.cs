@@ -6,6 +6,7 @@
         public ChessColor Color { get; set; }
         public int ColID { get; set; }
         public int RowID { get; set; }
+        public int MoveCount { get; set; }
 
         public King()
         {
@@ -16,6 +17,7 @@
         {
             Type = ChessPiece.King;
             Color = (color == ChessColor.Black) ? ChessColor.Black : ChessColor.White;
+            MoveCount = 0;
         }
 
         public void AddAtLocation(int row, int col)

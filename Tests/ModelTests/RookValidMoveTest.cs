@@ -10,7 +10,6 @@ namespace Tests.ModelTests
         public void RookMoveToEmpty()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[1, 0]);
             gb.RemovePiece(gb.squares[6, 0]);
@@ -71,7 +70,6 @@ namespace Tests.ModelTests
         public void RookMoveToOccupied()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[1, 0]);
             gb.RemovePiece(gb.squares[6, 0]);
@@ -115,7 +113,6 @@ namespace Tests.ModelTests
         public void RookMoveToEnemy()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[1, 0]);
             gb.RemovePiece(gb.squares[6, 0]);
@@ -157,7 +154,6 @@ namespace Tests.ModelTests
         public void RookMoveInTheWay()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             var piece = gb.squares[0, 0].piece;
 

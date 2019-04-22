@@ -10,7 +10,6 @@ namespace Tests.ModelTests
         public void IsOccupiedTest()
         {
             GameBoard gameboard = new GameBoard(8, 8);
-            gameboard.InitializeBoard();
 
             bool actual = MoveValidator.IsOccupied(gameboard.squares[1, 0]);
             Assert.AreEqual(true, actual);
@@ -23,7 +22,6 @@ namespace Tests.ModelTests
         public void IsEnemyTest()
         {
             GameBoard gameboard = new GameBoard(8, 8);
-            gameboard.InitializeBoard();
 
             bool actual = MoveValidator.IsEnemy(gameboard.squares[6, 0], gameboard.squares[1, 0]);
             Assert.AreEqual(true, actual);

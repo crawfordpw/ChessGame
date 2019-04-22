@@ -10,7 +10,6 @@ namespace Tests.ModelTests
         public void BishopMoveToEmpty()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[0, 0]);
             gb.RemovePiece(gb.squares[1, 1]);
@@ -80,7 +79,6 @@ namespace Tests.ModelTests
         public void BishopMoveToOccupied()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             var piece = gb.squares[0, 2].piece;
 
@@ -109,7 +107,6 @@ namespace Tests.ModelTests
         public void BishopMoveToEnemy()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[1, 3]);
             gb.RemovePiece(gb.squares[1, 1]);
@@ -149,7 +146,6 @@ namespace Tests.ModelTests
         public void BishopMoveInTheWay()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             var piece = gb.squares[0, 2].piece;
 

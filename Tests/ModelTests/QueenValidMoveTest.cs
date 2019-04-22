@@ -10,7 +10,6 @@ namespace Tests.ModelTests
         public void QueenMoveToEmptyRook()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[1, 0]);
             gb.RemovePiece(gb.squares[6, 0]);
@@ -74,7 +73,6 @@ namespace Tests.ModelTests
         public void QueenMoveToOccupiedRook()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[1, 0]);
             gb.RemovePiece(gb.squares[6, 0]);
@@ -120,7 +118,6 @@ namespace Tests.ModelTests
         public void QueenMoveToEnemyRook()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[1, 0]);
             gb.RemovePiece(gb.squares[6, 0]);
@@ -164,7 +161,6 @@ namespace Tests.ModelTests
         public void QueenMoveToInTheWayRook()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[0, 0]);
             gb.MovePiece(gb.squares[0, 4], gb.squares[0, 0]);
@@ -205,7 +201,6 @@ namespace Tests.ModelTests
         public void QueenMoveToEmptyBishop()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[0, 0]);
             gb.RemovePiece(gb.squares[1, 1]);
@@ -275,7 +270,6 @@ namespace Tests.ModelTests
         public void QueenMoveToOccupiedBishop()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[0, 2]);
             gb.MovePiece(gb.squares[0, 4], gb.squares[0, 2]);
@@ -309,7 +303,6 @@ namespace Tests.ModelTests
         public void QueenMoveToEnemyBishop()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[1, 3]);
             gb.RemovePiece(gb.squares[1, 1]);
@@ -353,7 +346,6 @@ namespace Tests.ModelTests
         public void QueenMoveToInTheWayBishop()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[0, 2]);
             gb.MovePiece(gb.squares[0, 4], gb.squares[0, 2]);

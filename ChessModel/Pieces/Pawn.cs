@@ -6,6 +6,7 @@
         public ChessColor Color { get; set; }
         public int ColID { get; set; }
         public int RowID { get; set; }
+        public int MoveCount { get; set; }
 
         public Pawn()
         {
@@ -16,6 +17,7 @@
         {
             Type = ChessPiece.Pawn;
             Color = (color == ChessColor.Black) ? ChessColor.Black : ChessColor.White;
+            MoveCount = 0;
         }
 
         public void AddAtLocation(int row, int col)
@@ -36,28 +38,27 @@
             if(fromSquare.piece == null || fromSquare.piece == toSquare.piece)
                 return false;
 
-            if (fromSquare.piece.Color == ChessColor.White)
+
+            bool enPassant = MoveValidator.IsEnPassant(fromSquare, toSquare);
+            int sign = fromSquare.piece.Color == ChessColor.White ? 1 : -1;
+
+            if (MoveCount == 0)
             {
-                if (toRow == fromRow + 1 && fromCol == toCol && !isOccupied)
+                if ((toRow == fromRow + (2 * sign) && fromCol == toCol && (!isOccupied || isEnemy))
+                    && (!MoveValidator.IsOccupied(gameboard.squares[fromRow + (1 * sign), fromCol])))
+                {
                     return true;
-                else if (toRow == fromRow + 1 && toCol == fromCol + 1 && isEnemy)
-                    return true;
-                else if (toRow == fromRow + 1 && toCol == fromCol - 1 && isEnemy)
-                    return true;
-                else
-                    return false;
+                }
             }
+
+            if (toRow == fromRow + (1 * sign) && fromCol == toCol && !isOccupied)
+                return true;
+            else if (toRow == fromRow + (1 * sign) && toCol == fromCol + 1 && (isEnemy || enPassant))
+                return true;
+            else if (toRow == fromRow + (1 * sign) && toCol == fromCol - 1 && (isEnemy || enPassant))
+                return true;
             else
-            {
-                if (toRow == fromRow - 1 && fromCol == toCol && !isOccupied)
-                    return true;
-                else if (toRow == fromRow - 1 && toCol == fromCol + 1 && isEnemy)
-                    return true;
-                else if (toRow == fromRow - 1 && toCol == fromCol - 1 && isEnemy)
-                    return true;
-                else
-                    return false;
-            }
+                return false;
         }
     }
 }

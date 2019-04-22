@@ -1,4 +1,5 @@
 ﻿using System;
+using ChessModel.Pieces;
 
 namespace ChessModel
 {
@@ -104,6 +105,31 @@ namespace ChessModel
 
             // target space can either be empty or contain an enemy piece
             if (!isOccupied || isEnemy)
+                return true;
+
+            return false;
+        }
+
+        public static bool IsEnPassant(Square fromSquare, Square toSquare)
+        {
+            bool enPassant = EnPassantHelper(fromSquare, toSquare);
+            if (enPassant)
+            {
+                int sign = fromSquare.piece.Color == ChessColor.White ? 1 : -1;
+
+                if (fromSquare.piece.Type == ChessPiece.Pawn && toSquare.RowID == GameLogic.lastMove[1].RowID + sign)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static bool EnPassantHelper(Square fromSquare, Square toSquare)
+        {
+            //var lastMove = GameLogic.lastMove;
+
+            if (Math.Abs(GameLogic.lastMove[0].RowID - GameLogic.lastMove[1].RowID) == 2 && GameLogic.lastMove[1].piece.Type == ChessPiece.Pawn && IsEnemy(GameLogic.lastMove[1], fromSquare))
                 return true;
 
             return false;

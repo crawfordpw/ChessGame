@@ -4,13 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests.ModelTests
 {
     [TestClass]
-    public class KingMoveTest
+    public class KingValidMoveTest
     {
         [TestMethod]
         public void KingMoveToEmpty()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.MovePiece(gb.squares[0, 3], gb.squares[3, 3]);
             var piece = gb.squares[3, 3].piece;
@@ -40,7 +39,6 @@ namespace Tests.ModelTests
         public void KingMoveToOccupied()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.MovePiece(gb.squares[0, 3], gb.squares[3, 3]);
             gb.MovePiece(gb.squares[0, 0], gb.squares[4, 3]);
@@ -56,7 +54,6 @@ namespace Tests.ModelTests
         public void KingMoveToEnemy()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.MovePiece(gb.squares[0, 3], gb.squares[3, 3]);
             gb.MovePiece(gb.squares[7, 0], gb.squares[4, 3]);

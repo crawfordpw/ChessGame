@@ -15,15 +15,16 @@ namespace ChessModel
 
         }
 
-        public GameBoard(int x, int y)
+        public GameBoard(int x, int y, int clear = 0)
         {
             XDim = x;
             YDim = y;
             squares = new Square[XDim, YDim];
             pieces = new List<IPiece>();
+            InitializeBoard(clear);
         }
 
-        // if clear is > 0, initilize board without any pieces
+        // if clear is != 0, initilize board without any pieces
         public void InitializeBoard(int clear = 0)
         {
             ChessColor color;
@@ -100,6 +101,7 @@ namespace ChessModel
             toSquare.piece = fromSquare.piece;
             toSquare.MakeSameCord();
             toSquare.HasPiece = true;
+            toSquare.piece.MoveCount += 1;
             fromSquare.piece = null;
             fromSquare.HasPiece = false;
         }

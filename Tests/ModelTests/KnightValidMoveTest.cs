@@ -10,7 +10,6 @@ namespace Tests.ModelTests
         public void KnightMoveToEmpty()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.RemovePiece(gb.squares[1, 2]);
             gb.RemovePiece(gb.squares[1, 4]);
@@ -52,7 +51,6 @@ namespace Tests.ModelTests
         public void KnightMoveToOccupied()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.MovePiece(gb.squares[0, 7], gb.squares[3, 3]);
             var piece = gb.squares[3, 3].piece;
@@ -70,7 +68,6 @@ namespace Tests.ModelTests
         public void KnightMoveToEnemy()
         {
             GameBoard gb = new GameBoard(8, 8);
-            gb.InitializeBoard();
 
             gb.MovePiece(gb.squares[7, 1], gb.squares[3, 3]);
             var piece = gb.squares[3, 3].piece;
