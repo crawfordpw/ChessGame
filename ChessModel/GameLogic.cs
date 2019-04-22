@@ -55,7 +55,7 @@ namespace ChessModel
             gameBoard.MovePiece(fromSquare, toSquare);
         }
 
-        public void EnPassant(Square fromSquare, Square toSquare)
+        private void EnPassant(Square fromSquare, Square toSquare)
         {
             gameBoard.RemovePiece(lastMove[1]);
             gameBoard.MovePiece(fromSquare, toSquare);

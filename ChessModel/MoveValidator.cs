@@ -117,7 +117,8 @@ namespace ChessModel
             {
                 int sign = fromSquare.piece.Color == ChessColor.White ? 1 : -1;
 
-                if (fromSquare.piece.Type == ChessPiece.Pawn && toSquare.RowID == GameLogic.lastMove[1].RowID + sign)
+                if (fromSquare.piece.Type == ChessPiece.Pawn && toSquare.RowID == GameLogic.lastMove[1].RowID + sign 
+                    && toSquare.ColID == GameLogic.lastMove[1].ColID)
                 {
                     return true;
                 }
@@ -127,9 +128,9 @@ namespace ChessModel
 
         private static bool EnPassantHelper(Square fromSquare, Square toSquare)
         {
-            //var lastMove = GameLogic.lastMove;
+            var lastMove = GameLogic.lastMove;
 
-            if (Math.Abs(GameLogic.lastMove[0].RowID - GameLogic.lastMove[1].RowID) == 2 && GameLogic.lastMove[1].piece.Type == ChessPiece.Pawn && IsEnemy(GameLogic.lastMove[1], fromSquare))
+            if (Math.Abs(lastMove[0].RowID - lastMove[1].RowID) == 2 && lastMove[1].piece.Type == ChessPiece.Pawn && IsEnemy(lastMove[1], fromSquare))
                 return true;
 
             return false;
