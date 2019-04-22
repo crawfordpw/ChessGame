@@ -12,10 +12,10 @@ namespace Tests.ModelTests
         {
             GameLogic gameLogic = new GameLogic();
 
-            var actual = gameLogic.HasGameEnded(GameState.Check);
+            var actual = gameLogic.HasGameEnded(State.Check);
             Assert.AreEqual(false, actual);
 
-            actual = gameLogic.HasGameEnded(GameState.CheckMate);
+            actual = gameLogic.HasGameEnded(State.CheckMate);
             Assert.AreEqual(true, actual);
         }
 

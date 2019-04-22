@@ -17,7 +17,7 @@
         White
     }
 
-    public enum GameState
+    public enum State
     {
         InPlay,
         Check, 

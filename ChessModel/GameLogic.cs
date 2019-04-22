@@ -16,9 +16,9 @@ namespace ChessModel
             this.gameBoard = gameBoard;
         }
 
-        public bool HasGameEnded(GameState gameState)
+        public bool HasGameEnded(State State)
         {
-            if(gameState ==  GameState.CheckMate || gameState == GameState.StaleMate)
+            if(State ==  State.CheckMate || State == State.StaleMate)
                 return true;
             return false;
         }
