@@ -11,10 +11,9 @@ namespace Tests.ModelTests
         [TestMethod]
         public void InitializeGameboardRowColTest()
         {
-            int size = 8;
             int row = 7;
             int col = 4;
-            GameBoard gameboard = new GameBoard(size, size);
+            GameBoard gameboard = new GameBoard(8, 8);
 
             var actualCol = gameboard.squares[row, col].ColID;
             var expectedCol = col;
@@ -28,13 +27,11 @@ namespace Tests.ModelTests
         [TestMethod]
         public void InitializeClearGameboardRowColTest()
         {
-            int size = 8;
+            GameBoard gameboard = new GameBoard(8, 8, 1);
 
-            GameBoard gameboard = new GameBoard(size, size, 1);
-
-            for (int row = 0; row < size; row++)
+            for (int row = 0; row < 8; row++)
             {
-                for (int col = 0; col < size; col++)
+                for (int col = 0; col < 8; col++)
                 {
                     Assert.IsNull(gameboard.squares[row, col].piece);
                 }
@@ -44,8 +41,7 @@ namespace Tests.ModelTests
         [TestMethod]
         public void StartingWhitePawnsTest()
         {
-            int size = 8;
-            GameBoard gameboard = new GameBoard(size, size);
+            GameBoard gameboard = new GameBoard(8, 8);
 
             List<IPiece> expected = new List<IPiece>();
 
@@ -97,8 +93,7 @@ namespace Tests.ModelTests
         [TestMethod]
         public void StartingBlackPawnsTest()
         {
-            int size = 8;
-            GameBoard gameboard = new GameBoard(size, size);
+            GameBoard gameboard = new GameBoard(8, 8);
 
             List<IPiece> expected = new List<IPiece>();
 
@@ -149,8 +144,7 @@ namespace Tests.ModelTests
         [TestMethod]
         public void StartingWhiteOthersTest()
         {
-            int size = 8;
-            GameBoard gameboard = new GameBoard(size, size);
+            GameBoard gameboard = new GameBoard(8, 8);
 
             List<IPiece> expected = new List<IPiece>();
 
@@ -201,8 +195,7 @@ namespace Tests.ModelTests
         [TestMethod]
         public void StartingBlackOthersTest()
         {
-            int size = 8;
-            GameBoard gameboard = new GameBoard(size, size);
+            GameBoard gameboard = new GameBoard(8, 8);
 
             List<IPiece> expected = new List<IPiece>();
 
@@ -253,14 +246,13 @@ namespace Tests.ModelTests
         [TestMethod]
         public void StartingSquaresTest()
         {
-            int size = 8;
-            GameBoard gameboard = new GameBoard(size, size);
+            GameBoard gameboard = new GameBoard(8, 8);
 
-            Square[,] expected = new Square[size, size];
+            Square[,] expected = new Square[8, 8];
 
-            for (int row = 0; row < size; row++)
+            for (int row = 0; row < 8; row++)
             {
-                for (int col = 0; col < size; col++)
+                for (int col = 0; col < 8; col++)
                 {
                     expected[row, col] = new Square(row, col);
                 }
@@ -302,9 +294,9 @@ namespace Tests.ModelTests
             // both arrays are same length
             Assert.AreEqual(expected.Length, gameboard.squares.Length);
 
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < 8; i++)
             {
-                for (int j = 0; j < size; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     if (expected[i, j].piece != null && gameboard.squares[i, j].piece != null)
                     {
@@ -323,8 +315,7 @@ namespace Tests.ModelTests
         [TestMethod]
         public void PlacePieceTest()
         {
-            int size = 8;
-            GameBoard gameboard = new GameBoard(size, size);
+            GameBoard gameboard = new GameBoard(8, 8);
 
             IPiece piece = new Pawn(ChessColor.Black)
             {
@@ -344,8 +335,7 @@ namespace Tests.ModelTests
         [TestMethod]
         public void RemovePieceTest()
         {
-            int size = 8;
-            GameBoard gameboard = new GameBoard(size, size);
+            GameBoard gameboard = new GameBoard(8, 8);
 
             IPiece piece = new Pawn(ChessColor.Black)
             {
@@ -365,8 +355,7 @@ namespace Tests.ModelTests
         [TestMethod]
         public void MovePieceTest()
         {
-            int size = 8;
-            GameBoard gameboard = new GameBoard(size, size);
+            GameBoard gameboard = new GameBoard(8, 8);
 
             gameboard.MovePiece(gameboard.squares[1, 0], gameboard.squares[2, 0]);
 
@@ -382,15 +371,14 @@ namespace Tests.ModelTests
         [TestMethod]
         public void ClearBoardTest()
         {
-            int size = 8;
-            GameBoard gameboard = new GameBoard(size, size);
+            GameBoard gameboard = new GameBoard(8, 8);
             gameboard.ClearBoard();
 
             Assert.AreEqual(0, gameboard.pieces.Count);
 
-            for (int row = 0; row < size; row++)
+            for (int row = 0; row < 8; row++)
             {
-                for (int col = 0; col < size; col++)
+                for (int col = 0; col < 8; col++)
                 {
                     Assert.IsNull(gameboard.squares[row, col].piece);
                 }

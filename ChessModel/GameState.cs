@@ -1,5 +1,7 @@
 ﻿using ChessModel.Pieces;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace ChessModel
 {
@@ -30,8 +32,43 @@ namespace ChessModel
 
         public bool Check()
         {
-            // for all opposite color pieces
-            // check if valid move to king
+            bool check;
+            IEnumerable<Square> whiteKing =
+                from Square square in gameBoard.squares
+                where square.piece != null && square.piece.Type == ChessPiece.King && square.piece.Color == ChessColor.White
+                select square;
+            IEnumerable<Square> blackKing =
+                from Square square in gameBoard.squares
+                where square.piece != null && square.piece.Type == ChessPiece.King && square.piece.Color == ChessColor.Black
+                select square;
+            IEnumerable<Square> whitePieces =
+                from Square square in gameBoard.squares
+                where square.piece != null  && square.piece.Color == ChessColor.White
+                select square;
+            IEnumerable<Square> blackPieces =
+                from Square square in gameBoard.squares
+                where square.piece != null  && square.piece.Color == ChessColor.Black
+                select square;
+
+            if (check = CheckHelper(whiteKing, blackPieces))
+                return true;
+            else if (check = CheckHelper(blackKing, whitePieces))
+                return true;
+
+            return false;
+        }
+
+        private bool CheckHelper(IEnumerable<Square> king, IEnumerable<Square> pieces)
+        {
+            List<Square> toSquare = king.ToList();
+
+            foreach (var item in pieces)
+            {
+                if (item.piece.IsValidMove(gameBoard, item, toSquare[0]))
+                {
+                    return true;
+                }
+            }
             return false;
         }
 
