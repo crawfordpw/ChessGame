@@ -23,7 +23,8 @@ namespace ChessModel
             pieces = new List<IPiece>();
         }
 
-        public void InitializeBoard()
+        // if clear is > 0, initilize board without any pieces
+        public void InitializeBoard(int clear = 0)
         {
             ChessColor color;
             for(int row = 0; row < XDim; row++)
@@ -31,15 +32,18 @@ namespace ChessModel
                 for(int col = 0; col < YDim; col++)
                 {
                     squares[row, col] = new Square(row, col);
-                    if (row == 0 || row == 1)
+                    if (clear == 0)
                     {
-                        color = ChessColor.White;
-                        squares[row, col].piece = AddStartingPiece(row, col, color);
-                    }
-                    else if (row == XDim - 1 || row == XDim - 2)
-                    {
-                        color = ChessColor.Black;
-                        squares[row, col].piece = AddStartingPiece(row, col, color);
+                        if (row == 0 || row == 1)
+                        {
+                            color = ChessColor.White;
+                            squares[row, col].piece = AddStartingPiece(row, col, color);
+                        }
+                        else if (row == XDim - 1 || row == XDim - 2)
+                        {
+                            color = ChessColor.Black;
+                            squares[row, col].piece = AddStartingPiece(row, col, color);
+                        }
                     }
                 }
             }
@@ -98,6 +102,18 @@ namespace ChessModel
             toSquare.HasPiece = true;
             fromSquare.piece = null;
             fromSquare.HasPiece = false;
+        }
+        
+        public void ClearBoard()
+        {
+            for (int row = 0; row < XDim; row++)
+            {
+                for (int col = 0; col < YDim; col++)
+                {
+                    squares[row, col].piece = null;
+                }
+            }
+            pieces.Clear();
         }
     }
 }

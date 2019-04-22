@@ -27,6 +27,23 @@ namespace Tests.ModelTests
         }
 
         [TestMethod]
+        public void InitializeClearGameboardRowColTest()
+        {
+            int size = 8;
+
+            GameBoard gameboard = new GameBoard(size, size);
+            gameboard.InitializeBoard(1);
+
+            for (int row = 0; row < size; row++)
+            {
+                for (int col = 0; col < size; col++)
+                {
+                    Assert.IsNull(gameboard.squares[row, col].piece);
+                }
+            }
+        }
+
+        [TestMethod]
         public void StartingWhitePawnsTest()
         {
             int size = 8;
@@ -371,5 +388,25 @@ namespace Tests.ModelTests
             Assert.AreEqual(gameboard.pieces[8].ColID, gameboard.squares[2, 0].ColID);
             Assert.AreEqual(gameboard.pieces[8].RowID, gameboard.squares[2, 0].RowID);
         }
+
+        [TestMethod]
+        public void ClearBoardTest()
+        {
+            int size = 8;
+            GameBoard gameboard = new GameBoard(size, size);
+            gameboard.InitializeBoard();
+            gameboard.ClearBoard();
+
+            Assert.AreEqual(0, gameboard.pieces.Count);
+
+            for (int row = 0; row < size; row++)
+            {
+                for (int col = 0; col < size; col++)
+                {
+                    Assert.IsNull(gameboard.squares[row, col].piece);
+                }
+            }
+        }
+
     }
 }
