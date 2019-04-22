@@ -16,4 +16,12 @@
         Black,
         White
     }
+
+    public enum GameState
+    {
+        InPlay,
+        Check, 
+        CheckMate,
+        StaleMate
+    }
 }
