@@ -15,7 +15,7 @@ namespace Tests.ModelTests
             gb.RemovePiece(gb.squares[6, 0]);
             gb.RemovePiece(gb.squares[7, 0]);
             gb.RemovePiece(gb.squares[0, 0]);
-            gb.MovePiece(gb.squares[0, 4], gb.squares[0, 0]);
+            gb.MovePiece(gb.squares[0, 3], gb.squares[0, 0]);
             var piece = gb.squares[0, 0].piece;
 
             // Move up
@@ -78,7 +78,7 @@ namespace Tests.ModelTests
             gb.RemovePiece(gb.squares[6, 0]);
             gb.RemovePiece(gb.squares[7, 0]);
             gb.RemovePiece(gb.squares[0, 0]);
-            gb.MovePiece(gb.squares[0, 4], gb.squares[0, 0]);
+            gb.MovePiece(gb.squares[0, 3], gb.squares[0, 0]);
             var piece = gb.squares[0, 0].piece;
 
             // Move up
@@ -122,7 +122,7 @@ namespace Tests.ModelTests
             gb.RemovePiece(gb.squares[1, 0]);
             gb.RemovePiece(gb.squares[6, 0]);
             gb.RemovePiece(gb.squares[0, 0]);
-            gb.MovePiece(gb.squares[0, 4], gb.squares[0, 0]);
+            gb.MovePiece(gb.squares[0, 3], gb.squares[0, 0]);
             var piece = gb.squares[0, 0].piece;
 
             // Move up
@@ -163,7 +163,7 @@ namespace Tests.ModelTests
             GameBoard gb = new GameBoard(8, 8);
 
             gb.RemovePiece(gb.squares[0, 0]);
-            gb.MovePiece(gb.squares[0, 4], gb.squares[0, 0]);
+            gb.MovePiece(gb.squares[0, 3], gb.squares[0, 0]);
             var piece = gb.squares[0, 0].piece;
 
             // Move up
@@ -206,7 +206,7 @@ namespace Tests.ModelTests
             gb.RemovePiece(gb.squares[1, 1]);
             gb.RemovePiece(gb.squares[6, 6]);
             gb.RemovePiece(gb.squares[7, 7]);
-            gb.MovePiece(gb.squares[0, 4], gb.squares[0, 0]);
+            gb.MovePiece(gb.squares[0, 3], gb.squares[0, 0]);
             var piece = gb.squares[0, 0].piece;
 
             gb.RemovePiece(gb.squares[0, 7]);
@@ -239,7 +239,7 @@ namespace Tests.ModelTests
             // Move down and right
             gb.RemovePiece(gb.squares[0, 0]);
             gb.RemovePiece(gb.squares[0, 7]);
-            gb.MovePiece(gb.squares[7, 4], gb.squares[7, 0]);
+            gb.MovePiece(gb.squares[7, 3], gb.squares[7, 0]);
             piece = gb.squares[7, 0].piece;
             actual = piece.IsValidMove(gb, gb.squares[7, 0], gb.squares[0, 7]);
             Assert.AreEqual(true, actual);
@@ -250,7 +250,7 @@ namespace Tests.ModelTests
             actual = piece.IsValidMove(gb, gb.squares[7, 0], gb.squares[7, 2]);
             Assert.AreEqual(false, actual);
 
-            // Move down and left
+            //Move down and left
             gb.MovePiece(gb.squares[7, 0], gb.squares[7, 7]);
             piece = gb.squares[7, 7].piece;
             actual = piece.IsValidMove(gb, gb.squares[7, 7], gb.squares[0, 0]);
@@ -272,7 +272,7 @@ namespace Tests.ModelTests
             GameBoard gb = new GameBoard(8, 8);
 
             gb.RemovePiece(gb.squares[0, 2]);
-            gb.MovePiece(gb.squares[0, 4], gb.squares[0, 2]);
+            gb.MovePiece(gb.squares[0, 3], gb.squares[0, 2]);
             var piece = gb.squares[0, 2].piece;
 
             // Move up and right
@@ -314,7 +314,7 @@ namespace Tests.ModelTests
             gb.MovePiece(gb.squares[0, 6], gb.squares[5, 0]);
 
             gb.RemovePiece(gb.squares[0, 2]);
-            gb.MovePiece(gb.squares[0, 4], gb.squares[0, 2]);
+            gb.MovePiece(gb.squares[0, 3], gb.squares[0, 2]);
             var piece = gb.squares[0, 2].piece;
 
             // Move up and right           
@@ -327,7 +327,7 @@ namespace Tests.ModelTests
 
             // Move down and right
             gb.RemovePiece(gb.squares[7, 2]);
-            gb.MovePiece(gb.squares[7, 4], gb.squares[7, 2]);
+            gb.MovePiece(gb.squares[7, 3], gb.squares[7, 2]);
             piece = gb.squares[7, 2].piece;
             actual = piece.IsValidMove(gb, gb.squares[7, 2], gb.squares[5, 4]);
             Assert.AreEqual(true, actual);
@@ -348,7 +348,7 @@ namespace Tests.ModelTests
             GameBoard gb = new GameBoard(8, 8);
 
             gb.RemovePiece(gb.squares[0, 2]);
-            gb.MovePiece(gb.squares[0, 4], gb.squares[0, 2]);
+            gb.MovePiece(gb.squares[0, 3], gb.squares[0, 2]);
             var piece = gb.squares[0, 2].piece;
 
             // Move up and right

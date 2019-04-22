@@ -33,10 +33,14 @@
             int toRow = toSquare.RowID;
             int toCol = toSquare.ColID;
             bool isOccupied = MoveValidator.IsOccupied(toSquare);
-            bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);
+            bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);           
 
             if (fromSquare.piece == null || fromSquare.piece == toSquare.piece)
                 return false;
+
+            bool isCastle = MoveValidator.IsCastle(gameboard, fromSquare, toSquare);
+            if (isCastle)
+                return true;
 
             if (((toRow == fromRow + 1 && toCol == fromCol) || (toCol == fromCol + 1 && toRow == fromRow)
                 || (toRow == fromRow - 1 && toCol == fromCol) || (toCol == fromCol - 1 && toRow == fromRow)

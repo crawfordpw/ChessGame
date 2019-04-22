@@ -34,6 +34,8 @@ namespace ChessModel
                 {
                     if (MoveValidator.IsEnPassant(fromSquare, toSquare))
                         EnPassant(fromSquare, toSquare);
+                    else if (MoveValidator.IsCastle(gameBoard, fromSquare, toSquare))
+                        Castle(fromSquare, toSquare);
                     else
                         gameBoard.MovePiece(fromSquare, toSquare);
                 }
@@ -59,6 +61,21 @@ namespace ChessModel
         {
             gameBoard.RemovePiece(lastMove[1]);
             gameBoard.MovePiece(fromSquare, toSquare);
+        }
+
+        private void Castle(Square fromSquare, Square toSquare)
+        {
+            int fromRow = fromSquare.RowID;
+            if(toSquare.ColID == 2)
+            {
+                gameBoard.MovePiece(fromSquare, toSquare);
+                gameBoard.MovePiece(gameBoard.squares[fromRow, 0], gameBoard.squares[fromRow, 3]);
+            }
+            else
+            {
+                gameBoard.MovePiece(fromSquare, toSquare);
+                gameBoard.MovePiece(gameBoard.squares[fromRow, 7], gameBoard.squares[fromRow, 5]);
+            }
         }
     }
 }

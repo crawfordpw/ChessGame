@@ -66,9 +66,9 @@ namespace ChessModel
                 else if (col == 2 || col == YDim - 3)
                     piece = new Bishop(color);
                 else if (col == 3)
-                    piece = new King(color);
-                else
                     piece = new Queen(color);
+                else
+                    piece = new King(color);
             }
             else
             {

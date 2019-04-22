@@ -268,8 +268,8 @@ namespace Tests.ModelTests
             expected[0, 0].HasPiece = true; expected[0, 0].piece = new Rook(ChessColor.White);
             expected[0, 1].HasPiece = true; expected[0, 1].piece = new Knight(ChessColor.White);
             expected[0, 2].HasPiece = true; expected[0, 2].piece = new Bishop(ChessColor.White);
-            expected[0, 3].HasPiece = true; expected[0, 3].piece = new King(ChessColor.White);
-            expected[0, 4].HasPiece = true; expected[0, 4].piece = new Queen(ChessColor.White);
+            expected[0, 4].HasPiece = true; expected[0, 3].piece = new Queen(ChessColor.White);
+            expected[0, 3].HasPiece = true; expected[0, 4].piece = new King(ChessColor.White);
             expected[0, 5].HasPiece = true; expected[0, 5].piece = new Bishop(ChessColor.White);
             expected[0, 6].HasPiece = true; expected[0, 6].piece = new Knight(ChessColor.White);
             expected[0, 7].HasPiece = true; expected[0, 7].piece = new Rook(ChessColor.White);
@@ -285,8 +285,8 @@ namespace Tests.ModelTests
             expected[7, 0].HasPiece = true; expected[7, 0].piece = new Rook(ChessColor.Black);
             expected[7, 1].HasPiece = true; expected[7, 1].piece = new Knight(ChessColor.Black);
             expected[7, 2].HasPiece = true; expected[7, 2].piece = new Bishop(ChessColor.Black);
-            expected[7, 3].HasPiece = true; expected[7, 3].piece = new King(ChessColor.Black);
-            expected[7, 4].HasPiece = true; expected[7, 4].piece = new Queen(ChessColor.Black);
+            expected[7, 4].HasPiece = true; expected[7, 3].piece = new Queen(ChessColor.Black);
+            expected[7, 3].HasPiece = true; expected[7, 4].piece = new King(ChessColor.Black);
             expected[7, 5].HasPiece = true; expected[7, 5].piece = new Bishop(ChessColor.Black);
             expected[7, 6].HasPiece = true; expected[7, 6].piece = new Knight(ChessColor.Black);
             expected[7, 7].HasPiece = true; expected[7, 7].piece = new Rook(ChessColor.Black);

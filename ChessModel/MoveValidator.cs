@@ -32,8 +32,8 @@ namespace ChessModel
             int fromCol = fromSquare.ColID;
             int toRow = toSquare.RowID;
             int toCol = toSquare.ColID;
-            bool isOccupied = MoveValidator.IsOccupied(toSquare);
-            bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);
+            bool isOccupied = IsOccupied(toSquare);
+            bool isEnemy = IsEnemy(fromSquare, toSquare);
             int rowDiff = toRow - fromRow;
             int colDiff = toCol - fromCol;
 
@@ -49,7 +49,7 @@ namespace ChessModel
                 // loop to square right before target
                 for (int i = 1; i < Math.Abs(rowDiff); i++)
                 {
-                    if (!MoveValidator.IsOccupied(gameboard.squares[fromRow + (i * signRow), fromCol]))
+                    if (!IsOccupied(gameboard.squares[fromRow + (i * signRow), fromCol]))
                         continue;
                     else
                         return false;
@@ -64,7 +64,7 @@ namespace ChessModel
             {
                 for (int i = 1; i < Math.Abs(colDiff); i++)
                 {
-                    if (!MoveValidator.IsOccupied(gameboard.squares[fromRow, fromCol + (i * signCol)]))
+                    if (!IsOccupied(gameboard.squares[fromRow, fromCol + (i * signCol)]))
                         continue;
                     else
                         return false;
@@ -81,8 +81,8 @@ namespace ChessModel
             int fromCol = fromSquare.ColID;
             int toRow = toSquare.RowID;
             int toCol = toSquare.ColID;
-            bool isOccupied = MoveValidator.IsOccupied(toSquare);
-            bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);
+            bool isOccupied = IsOccupied(toSquare);
+            bool isEnemy = IsEnemy(fromSquare, toSquare);
             int rowDiff = toRow - fromRow;
             int colDiff = toCol - fromCol;
 
@@ -96,7 +96,7 @@ namespace ChessModel
             {
                 for (int j = 1; j < Math.Abs(colDiff); j++)
                 {
-                    if (!MoveValidator.IsOccupied(gameboard.squares[fromRow + (i * signRow), fromCol + (i * signCol)]))
+                    if (!IsOccupied(gameboard.squares[fromRow + (i * signRow), fromCol + (i * signCol)]))
                         continue;
                     else
                         return false;
@@ -112,7 +112,7 @@ namespace ChessModel
 
         public static bool IsEnPassant(Square fromSquare, Square toSquare)
         {
-            bool enPassant = EnPassantHelper(fromSquare, toSquare);
+            bool enPassant = EnPassantHelper(fromSquare);
             if (enPassant)
             {
                 int sign = fromSquare.piece.Color == ChessColor.White ? 1 : -1;
@@ -126,13 +126,40 @@ namespace ChessModel
             return false;
         }
 
-        private static bool EnPassantHelper(Square fromSquare, Square toSquare)
+        private static bool EnPassantHelper(Square fromSquare)
         {
             var lastMove = GameLogic.lastMove;
 
             if (Math.Abs(lastMove[0].RowID - lastMove[1].RowID) == 2 && lastMove[1].piece.Type == ChessPiece.Pawn && IsEnemy(lastMove[1], fromSquare))
                 return true;
 
+            return false;
+        }
+
+        public static bool IsCastle(GameBoard gameBoard, Square fromSquare, Square toSquare)
+        {
+            int fromRow = fromSquare.RowID;
+            int toRow = toSquare.RowID;
+            bool isOccupied = IsOccupied(toSquare);
+
+            if (fromRow - toRow != 0 || fromSquare.piece.MoveCount != 0 || isOccupied)
+                return false;
+
+
+            if(toSquare.ColID == 2)
+            {
+                if (gameBoard.squares[fromRow, 1].piece == null && gameBoard.squares[fromRow, 3].piece == null && gameBoard.squares[fromRow, 0].piece.MoveCount == 0)
+                {
+                    return true;
+                }
+            }
+            else if (toSquare.ColID == 6)
+            {
+                if (gameBoard.squares[fromRow, 5].piece == null && gameBoard.squares[fromRow, 7].piece.MoveCount == 0)
+                {
+                    return true;
+                }                
+            }
             return false;
         }
     }

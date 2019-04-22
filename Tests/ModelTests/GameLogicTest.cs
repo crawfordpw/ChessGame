@@ -164,5 +164,146 @@ namespace Tests.ModelTests
             Assert.AreEqual(ChessColor.Black, gb.squares[4, 6].piece.Color);
             Assert.AreEqual(ChessColor.Black, gb.squares[4, 0].piece.Color);
         }
+
+        [TestMethod]
+        public void WhiteCastleLeftTest()
+        {
+            GameBoard gb = new GameBoard(8, 8);
+            GameLogic gameLogic = new GameLogic(gb);
+
+            gameLogic.MovePiece(gb.squares[0, 4], gb.squares[0, 2]);
+            Assert.AreEqual(ChessPiece.King, gb.squares[0, 4].piece.Type);
+            Assert.AreEqual(ChessPiece.Bishop, gb.squares[0, 2].piece.Type);
+
+            gb.RemovePiece(gb.squares[0, 2]);
+            gameLogic.MovePiece(gb.squares[0, 4], gb.squares[0, 2]);
+            Assert.AreEqual(ChessPiece.King, gb.squares[0, 4].piece.Type);
+            Assert.IsNull(gb.squares[0, 2].piece);
+
+            gb.RemovePiece(gb.squares[0, 1]);
+            gameLogic.MovePiece(gb.squares[0, 4], gb.squares[0, 2]);
+            Assert.AreEqual(ChessPiece.King, gb.squares[0, 4].piece.Type);
+            Assert.IsNull(gb.squares[0, 2].piece);
+
+            gb.RemovePiece(gb.squares[0, 3]);
+            gameLogic.MovePiece(gb.squares[0, 4], gb.squares[0, 2]);
+            Assert.IsNull(gb.squares[0, 4].piece);
+            Assert.AreEqual(ChessPiece.King, gb.squares[0, 2].piece.Type);
+            Assert.AreEqual(ChessPiece.Rook, gb.squares[0, 3].piece.Type);
+        }
+
+        [TestMethod]
+        public void WhiteCastleRightTest()
+        {
+            GameBoard gb = new GameBoard(8, 8);
+            GameLogic gameLogic = new GameLogic(gb);
+
+            gameLogic.MovePiece(gb.squares[0, 4], gb.squares[0, 6]);
+            Assert.AreEqual(ChessPiece.King, gb.squares[0, 4].piece.Type);
+            Assert.AreEqual(ChessPiece.Knight, gb.squares[0, 6].piece.Type);
+
+            gb.RemovePiece(gb.squares[0, 6]);
+            gameLogic.MovePiece(gb.squares[0, 4], gb.squares[0, 6]);
+            Assert.AreEqual(ChessPiece.King, gb.squares[0, 4].piece.Type);
+            Assert.IsNull(gb.squares[0, 6].piece);
+
+            gb.RemovePiece(gb.squares[0, 5]);
+            gameLogic.MovePiece(gb.squares[0, 4], gb.squares[0, 6]);
+            Assert.IsNull(gb.squares[0, 4].piece);
+            Assert.AreEqual(ChessPiece.King, gb.squares[0, 6].piece.Type);
+            Assert.AreEqual(ChessPiece.Rook, gb.squares[0, 5].piece.Type);
+        }
+
+        [TestMethod]
+        public void BlackCastleLeftTest()
+        {
+            GameBoard gb = new GameBoard(8, 8);
+            GameLogic gameLogic = new GameLogic(gb);
+
+            gameLogic.MovePiece(gb.squares[7, 4], gb.squares[7, 2]);
+            Assert.AreEqual(ChessPiece.King, gb.squares[7, 4].piece.Type);
+            Assert.AreEqual(ChessPiece.Bishop, gb.squares[7, 2].piece.Type);
+
+            gb.RemovePiece(gb.squares[7, 2]);
+            gameLogic.MovePiece(gb.squares[7, 4], gb.squares[7, 2]);
+            Assert.AreEqual(ChessPiece.King, gb.squares[0, 4].piece.Type);
+            Assert.IsNull(gb.squares[7, 2].piece);
+
+            gb.RemovePiece(gb.squares[7, 1]);
+            gameLogic.MovePiece(gb.squares[7, 4], gb.squares[7, 2]);
+            Assert.AreEqual(ChessPiece.King, gb.squares[7, 4].piece.Type);
+            Assert.IsNull(gb.squares[7, 2].piece);
+
+            gb.RemovePiece(gb.squares[7, 3]);
+            gameLogic.MovePiece(gb.squares[7, 4], gb.squares[7, 2]);
+            Assert.IsNull(gb.squares[7, 4].piece);
+            Assert.AreEqual(ChessPiece.King, gb.squares[7, 2].piece.Type);
+            Assert.AreEqual(ChessPiece.Rook, gb.squares[7, 3].piece.Type);
+        }
+
+        [TestMethod]
+        public void BlackCastleRightTest()
+        {
+            GameBoard gb = new GameBoard(8, 8);
+            GameLogic gameLogic = new GameLogic(gb);
+
+            gameLogic.MovePiece(gb.squares[7, 4], gb.squares[7, 6]);
+            Assert.AreEqual(ChessPiece.King, gb.squares[7, 4].piece.Type);
+            Assert.AreEqual(ChessPiece.Knight, gb.squares[7, 6].piece.Type);
+
+            gb.RemovePiece(gb.squares[7, 6]);
+            gameLogic.MovePiece(gb.squares[7, 4], gb.squares[7, 6]);
+            Assert.AreEqual(ChessPiece.King, gb.squares[7, 4].piece.Type);
+            Assert.IsNull(gb.squares[7, 6].piece);
+
+            gb.RemovePiece(gb.squares[7, 5]);
+            gameLogic.MovePiece(gb.squares[7, 4], gb.squares[7, 6]);
+            Assert.IsNull(gb.squares[7, 4].piece);
+            Assert.AreEqual(ChessPiece.King, gb.squares[7, 6].piece.Type);
+            Assert.AreEqual(ChessPiece.Rook, gb.squares[7, 5].piece.Type);
+        }
+
+        [TestMethod]
+        public void CastleFailTest()
+        {
+            GameBoard gb = new GameBoard(8, 8);
+            GameLogic gameLogic = new GameLogic(gb);
+
+            gb.RemovePiece(gb.squares[0, 1]);
+            gb.RemovePiece(gb.squares[0, 2]);
+            gb.RemovePiece(gb.squares[0, 3]);
+            gb.RemovePiece(gb.squares[0, 5]);
+            gb.RemovePiece(gb.squares[0, 6]);
+            gb.RemovePiece(gb.squares[7, 1]);
+            gb.RemovePiece(gb.squares[7, 2]);
+            gb.RemovePiece(gb.squares[7, 3]);
+            gb.RemovePiece(gb.squares[7, 5]);
+            gb.RemovePiece(gb.squares[7, 6]);
+
+            gameLogic.MovePiece(gb.squares[7, 0], gb.squares[7, 1]);
+            gameLogic.MovePiece(gb.squares[7, 1], gb.squares[7, 0]);
+            gameLogic.MovePiece(gb.squares[7, 4], gb.squares[7, 2]);
+            Assert.IsNull(gb.squares[7, 2].piece);
+            Assert.AreEqual(ChessPiece.King, gb.squares[7, 4].piece.Type);
+            Assert.AreEqual(ChessPiece.Rook, gb.squares[7, 0].piece.Type);
+
+            gameLogic.MovePiece(gb.squares[7, 4], gb.squares[7, 5]);
+            gameLogic.MovePiece(gb.squares[7, 5], gb.squares[7, 4]);
+            gameLogic.MovePiece(gb.squares[7, 4], gb.squares[7, 2]);
+            Assert.IsNull(gb.squares[7, 2].piece);
+            Assert.AreEqual(ChessPiece.King, gb.squares[7, 4].piece.Type);
+            Assert.AreEqual(ChessPiece.Rook, gb.squares[7, 0].piece.Type);
+
+            gameLogic.MovePiece(gb.squares[0, 4], gb.squares[7, 2]);
+            Assert.IsNull(gb.squares[7, 2].piece);
+            Assert.AreEqual(ChessPiece.King, gb.squares[0, 4].piece.Type);
+            Assert.AreEqual(ChessPiece.Rook, gb.squares[7, 0].piece.Type);
+            Assert.AreEqual(ChessPiece.Rook, gb.squares[0, 0].piece.Type);
+
+            gameLogic.MovePiece(gb.squares[0, 4], gb.squares[0, 2]);
+            Assert.IsNull(gb.squares[0, 4].piece);
+            Assert.AreEqual(ChessPiece.King, gb.squares[0, 2].piece.Type);
+            Assert.AreEqual(ChessPiece.Rook, gb.squares[0, 3].piece.Type);
+        }
     }
 }
