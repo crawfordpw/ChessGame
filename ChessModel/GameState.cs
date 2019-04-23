@@ -19,7 +19,7 @@ namespace ChessModel
             return true;
         }
 
-       public bool Check(GameBoard gameBoard, bool isCastle = false)
+       public bool Check(GameBoard gameBoard, ChessColor color, bool isCastle = false, bool both = false)
         {
             bool check;
             IEnumerable<Square> whiteKing =
@@ -39,10 +39,16 @@ namespace ChessModel
                 where square.piece != null  && square.piece.Color == ChessColor.Black
                 select square;
 
-            if (check = CheckHelper(gameBoard, whiteKing, blackPieces, isCastle))
-                return true;
-            else if (check = CheckHelper(gameBoard, blackKing, whitePieces, isCastle))
-                return true;
+            if (color == ChessColor.White || both)
+            {
+                if (check = CheckHelper(gameBoard, whiteKing, blackPieces, isCastle))
+                    return true;
+            }
+            if (color == ChessColor.Black || both)
+            {
+                if (check = CheckHelper(gameBoard, blackKing, whitePieces, isCastle))
+                    return true;
+            }
 
             return false;
         }

@@ -29,6 +29,7 @@ namespace ChessModel
         {
             if(State ==  State.CheckMate || State == State.StaleMate)
                 return true;
+
             return false;
         }
 
@@ -52,10 +53,15 @@ namespace ChessModel
                 lastMove[0] = fromSquare;
                 lastMove[1] = toSquare;
 
-                if (gs.Check(gameBoard, isCastle))
+                if (gs.Check(gameBoard, toSquare.piece.Color, isCastle))
                 {
                     Undo();
                     return false;
+                }
+
+                if (isCapture)
+                {
+                    gameBoard.pieces.Remove(toSquare.piece);
                 }
 
                 if (!Debug)
