@@ -21,6 +21,7 @@ namespace ChessModel
 
         public bool InPlay()
         {
+            //bool check = Check();
             bool checkmate = CheckMate();
             bool stalemate = StaleMate();
 
@@ -30,7 +31,7 @@ namespace ChessModel
             return true;
         }
 
-        public bool Check()
+       public bool Check(GameBoard gameBoard)
         {
             bool check;
             IEnumerable<Square> whiteKing =

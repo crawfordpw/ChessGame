@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ChessModel.Pieces;
 
 namespace ChessModel
 {
     public class GameBoard
     {
-        public static int XDim { get; set; }
-        public static int YDim{ get; set; }
+        public int XDim { get; set; }
+        public int YDim { get; set; }
         public Square[,] squares;
         public List<IPiece> pieces;
+        public GameState gs;
 
         public GameBoard()
         {
@@ -22,6 +24,7 @@ namespace ChessModel
             squares = new Square[XDim, YDim];
             pieces = new List<IPiece>();
             InitializeBoard(clear);
+            gs = new GameState();
         }
 
         // if clear is != 0, initilize board without any pieces
@@ -87,6 +90,12 @@ namespace ChessModel
             square.MakeSameCord();
             square.HasPiece = true;
             pieces.Add(piece);
+        }
+
+        public void RemovePieceTemp(Square square)
+        {
+            square.HasPiece = false;
+            square.piece = null;
         }
 
         public void RemovePiece(Square square)
