@@ -11,7 +11,7 @@ namespace Tests.ModelTests
         public void CheckTest()
         {
             GameBoard gameboard = new GameBoard(8, 8);
-            GameState gs = new GameState(gameboard);
+            GameState gs = new GameState();
 
             Assert.AreEqual(false, gs.Check(gameboard));
 

@@ -7,18 +7,6 @@ namespace ChessModel
 {
     public class GameState
     {
-        readonly GameBoard gameBoard;
-
-        public GameState()
-        {
-
-        }
-
-        public GameState(GameBoard gameBoard)
-        {
-            this.gameBoard = gameBoard;
-        }
-
         public bool InPlay()
         {
             //bool check = Check();
@@ -31,7 +19,7 @@ namespace ChessModel
             return true;
         }
 
-       public bool Check(GameBoard gameBoard)
+       public bool Check(GameBoard gameBoard, bool isCastle = false)
         {
             bool check;
             IEnumerable<Square> whiteKing =
@@ -51,15 +39,15 @@ namespace ChessModel
                 where square.piece != null  && square.piece.Color == ChessColor.Black
                 select square;
 
-            if (check = CheckHelper(whiteKing, blackPieces))
+            if (check = CheckHelper(gameBoard, whiteKing, blackPieces, isCastle))
                 return true;
-            else if (check = CheckHelper(blackKing, whitePieces))
+            else if (check = CheckHelper(gameBoard, blackKing, whitePieces, isCastle))
                 return true;
 
             return false;
         }
 
-        private bool CheckHelper(IEnumerable<Square> king, IEnumerable<Square> pieces)
+        private bool CheckHelper(GameBoard gameBoard, IEnumerable<Square> king, IEnumerable<Square> pieces, bool isCastle)
         {
             List<Square> toSquare = king.ToList();
 
@@ -68,6 +56,23 @@ namespace ChessModel
                 if (item.piece.IsValidMove(gameBoard, item, toSquare[0]))
                 {
                     return true;
+                }
+                else if (isCastle)
+                {
+                    if (toSquare[0].ColID == 2 && toSquare[0].RowID == GameLogic.lastMove[3].RowID)
+                    {
+                        if (item.piece.IsValidMove(gameBoard, item, gameBoard.squares[toSquare[0].RowID, 3]))
+                        {
+                            return true;
+                        }
+                    }
+                    else if (toSquare[0].ColID == 6 && toSquare[0].RowID == GameLogic.lastMove[3].RowID)
+                    {
+                        if (item.piece.IsValidMove(gameBoard, item, gameBoard.squares[toSquare[0].RowID, 5]))
+                        {
+                            return true;
+                        }
+                    }
                 }
             }
             return false;
