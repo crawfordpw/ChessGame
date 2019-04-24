@@ -25,14 +25,6 @@ namespace ChessModel
             lastMove[1] = gameBoard.squares[4, 4];
         }
 
-        public bool HasGameEnded(State State)
-        {
-            if(State ==  State.CheckMate || State == State.StaleMate)
-                return true;
-
-            return false;
-        }
-
         public bool MovePiece(Square fromSquare, Square toSquare)
         {
             if (fromSquare.Piece.IsValidMove(gameBoard, fromSquare, toSquare))

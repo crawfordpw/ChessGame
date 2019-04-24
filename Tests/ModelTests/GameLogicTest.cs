@@ -8,18 +8,6 @@ namespace Tests.ModelTests
     public class GameLogicTest
     {
         [TestMethod]
-        public void HasGameEndedTest()
-        {
-            GameLogic gameLogic = new GameLogic();
-
-            var actual = gameLogic.HasGameEnded(State.Check);
-            Assert.AreEqual(false, actual);
-
-            actual = gameLogic.HasGameEnded(State.CheckMate);
-            Assert.AreEqual(true, actual);
-        }
-
-        [TestMethod]
         public void MovePieceTest()
         {
             GameBoard gb = new GameBoard(8, 8);
