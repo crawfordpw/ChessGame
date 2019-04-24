@@ -24,4 +24,12 @@
         CheckMate,
         StaleMate
     }
+
+    public enum Promotion
+    {
+        Queen,
+        Knight,
+        Rook,
+        Bishop
+    }
 }

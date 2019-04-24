@@ -145,5 +145,48 @@ namespace ChessModel
                 fromMove.HasPiece = true;
             }
         }
+
+        public bool IsPromotion(Square square)
+        {
+            if (square.Piece.Type != ChessPiece.Pawn)
+            {
+                return false;
+            }
+            else if (square.Piece.Color == ChessColor.White && square.RowID == 7)
+            {
+                return true;
+            }
+            else if (square.Piece.Color == ChessColor.Black && square.RowID == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void Promote(Square square, Promotion selection)
+        {
+            IPiece piece;
+            ChessColor color = square.Piece.Color;
+
+            if (selection == Promotion.Queen)
+            {
+                piece = new Queen(color);                
+            }
+            else if (selection == Promotion.Knight)
+            {
+                piece = new Knight(color);
+            }
+            else if (selection == Promotion.Rook)
+            {
+                piece = new Rook(color);
+            }
+            else
+            {
+                piece = new Bishop(color);
+            }
+
+            gameBoard.RemovePiece(square);
+            gameBoard.PlacePiece(piece, square);
+        }
     }
 }

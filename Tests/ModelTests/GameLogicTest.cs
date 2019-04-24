@@ -531,5 +531,45 @@ namespace Tests.ModelTests
             Assert.AreEqual(true, gameLogic.MovePiece(gb.squares[1, 1], gb.squares[3, 1]));
             Assert.AreEqual(false, gameLogic.MovePiece(gb.squares[2, 0], gb.squares[4, 0]));
         }
+
+        [TestMethod]
+        public void IsPromotionTest()
+        {
+            GameBoard gb = new GameBoard(8, 8);
+            GameLogic gameLogic = new GameLogic(gb);
+
+            Assert.AreEqual(false, gameLogic.IsPromotion(gb.squares[1, 0]));
+            Assert.AreEqual(false, gameLogic.IsPromotion(gb.squares[6, 0]));
+
+            gb.RemovePiece(gb.squares[7, 0]);
+            gb.MovePiece(gb.squares[1, 0], gb.squares[7, 0]);
+            Assert.AreEqual(true, gameLogic.IsPromotion(gb.squares[7, 0]));
+
+            gb.RemovePiece(gb.squares[0, 0]);
+            gb.MovePiece(gb.squares[6, 0], gb.squares[0, 0]);
+            Assert.AreEqual(true, gameLogic.IsPromotion(gb.squares[0, 0]));
+        }
+
+        [TestMethod]
+        public void PromoteTest()
+        {
+            GameBoard gb = new GameBoard(8, 8);
+            GameLogic gameLogic = new GameLogic(gb);
+
+            gameLogic.Promote(gb.squares[0, 0], Promotion.Queen);
+            Assert.AreEqual(ChessPiece.Queen, gb.squares[0, 0].Piece.Type);
+
+            gameLogic.Promote(gb.squares[0, 0], Promotion.Knight);
+            Assert.AreEqual(ChessPiece.Knight, gb.squares[0, 0].Piece.Type);
+
+            gameLogic.Promote(gb.squares[0, 0], Promotion.Rook);
+            Assert.AreEqual(ChessPiece.Rook, gb.squares[0, 0].Piece.Type);
+
+            gameLogic.Promote(gb.squares[0, 0], Promotion.Bishop);
+            Assert.AreEqual(ChessPiece.Bishop, gb.squares[0, 0].Piece.Type);
+
+            gameLogic.Promote(gb.squares[0, 0], Promotion.Bishop);
+            Assert.AreNotEqual(ChessPiece.Queen, gb.squares[0, 0].Piece.Type);
+        }
     }
 }
