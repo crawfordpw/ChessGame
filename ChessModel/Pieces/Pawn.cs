@@ -44,7 +44,7 @@
 
             if (MoveCount == 0)
             {
-                if ((toRow == fromRow + (2 * sign) && fromCol == toCol && (!isOccupied || isEnemy))
+                if ((toRow == fromRow + (2 * sign) && fromCol == toCol && !isOccupied)
                     && (!MoveValidator.IsOccupied(gameboard.squares[fromRow + (1 * sign), fromCol])))
                 {
                     return true;

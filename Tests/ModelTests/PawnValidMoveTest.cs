@@ -87,7 +87,7 @@ namespace Tests.ModelTests
 
             gb.MovePiece(gb.squares[7, 2], gb.squares[3, 7]);
             actual = piece.IsValidMove(gb, gb.squares[1, 7], gb.squares[3, 7]);
-            Assert.AreEqual(true, actual);
+            Assert.AreEqual(false, actual);
         }
 
         [TestMethod]
@@ -188,7 +188,7 @@ namespace Tests.ModelTests
 
             gb.MovePiece(gb.squares[0, 2], gb.squares[4, 7]);
             actual = piece.IsValidMove(gb, gb.squares[6, 7], gb.squares[4, 7]);
-            Assert.AreEqual(true, actual);
+            Assert.AreEqual(false, actual);
         }
 
         [TestMethod]

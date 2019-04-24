@@ -312,7 +312,7 @@ namespace Tests.ModelTests
             GameBoard gb = new GameBoard(8, 8);
             GameLogic gameLogic = new GameLogic(gb);
 
-            gameLogic.MovePiece(gb.squares[1, 0], gb.squares[2, 0], true);    
+            gameLogic.MovePiece(gb.squares[1, 0], gb.squares[2, 0]);    
             Assert.AreEqual(ChessPiece.Pawn, gb.squares[2, 0].piece.Type);
             Assert.IsNull(gb.squares[1, 0].piece);
             Assert.AreEqual(1, gb.squares[2, 0].piece.MoveCount);
@@ -330,7 +330,7 @@ namespace Tests.ModelTests
             GameLogic gameLogic = new GameLogic(gb);
 
             gb.MovePiece(gb.squares[6, 0], gb.squares[2, 1]);
-            gameLogic.MovePiece(gb.squares[1, 0], gb.squares[2, 1], true);
+            gameLogic.MovePiece(gb.squares[1, 0], gb.squares[2, 1]);
             Assert.AreEqual(ChessPiece.Pawn, gb.squares[2, 1].piece.Type);
             Assert.AreEqual(ChessColor.White, gb.squares[2, 1].piece.Color);
             Assert.IsNull(gb.squares[1, 0].piece);
@@ -352,8 +352,8 @@ namespace Tests.ModelTests
             GameLogic gameLogic = new GameLogic(gb);
 
             gb.MovePiece(gb.squares[6, 1], gb.squares[3, 1]);
-            gameLogic.MovePiece(gb.squares[1, 0], gb.squares[3, 0], true);
-            gameLogic.MovePiece(gb.squares[3, 1], gb.squares[2, 0], true);
+            gameLogic.MovePiece(gb.squares[1, 0], gb.squares[3, 0]);
+            gameLogic.MovePiece(gb.squares[3, 1], gb.squares[2, 0]);
             Assert.AreEqual(ChessPiece.Pawn, gb.squares[2, 0].piece.Type);
             Assert.AreEqual(ChessColor.Black, gb.squares[2, 0].piece.Color);
             Assert.IsNull(gb.squares[3, 0].piece);
@@ -381,7 +381,7 @@ namespace Tests.ModelTests
             gb.RemovePiece(gb.squares[7, 5]);
             gb.RemovePiece(gb.squares[7, 6]);
 
-            gameLogic.MovePiece(gb.squares[0, 4], gb.squares[0, 2], true);
+            gameLogic.MovePiece(gb.squares[0, 4], gb.squares[0, 2]);
             Assert.AreEqual(ChessPiece.King, gb.squares[0, 2].piece.Type);
             Assert.AreEqual(ChessColor.White, gb.squares[0, 2].piece.Color);
             Assert.AreEqual(ChessPiece.Rook, gb.squares[0, 3].piece.Type);
@@ -401,7 +401,7 @@ namespace Tests.ModelTests
             Assert.AreEqual(0, gb.squares[0, 0].piece.MoveCount);
             Assert.AreEqual(0, gb.squares[0, 4].piece.MoveCount);
 
-            gameLogic.MovePiece(gb.squares[7, 4], gb.squares[7, 6], true);
+            gameLogic.MovePiece(gb.squares[7, 4], gb.squares[7, 6]);
             Assert.AreEqual(ChessPiece.King, gb.squares[7, 6].piece.Type);
             Assert.AreEqual(ChessColor.Black, gb.squares[7, 6].piece.Color);
             Assert.AreEqual(ChessPiece.Rook, gb.squares[7, 5].piece.Type);

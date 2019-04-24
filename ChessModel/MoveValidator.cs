@@ -129,6 +129,8 @@ namespace ChessModel
         private static bool EnPassantHelper(Square fromSquare)
         {
             var lastMove = GameLogic.lastMove;
+            if (lastMove[1].piece == null)
+                return false;
 
             if (Math.Abs(lastMove[0].RowID - lastMove[1].RowID) == 2 && lastMove[1].piece.Type == ChessPiece.Pawn && IsEnemy(lastMove[1], fromSquare))
                 return true;
@@ -148,6 +150,10 @@ namespace ChessModel
 
             if(toSquare.ColID == 2)
             {
+                if (gameBoard.squares[fromRow, 0].piece == null)
+                {
+                    return false;
+                }
                 if (gameBoard.squares[fromRow, 1].piece == null && gameBoard.squares[fromRow, 3].piece == null && gameBoard.squares[fromRow, 0].piece.MoveCount == 0)
                 {
                     return true;
@@ -155,6 +161,9 @@ namespace ChessModel
             }
             else if (toSquare.ColID == 6)
             {
+                if(gameBoard.squares[fromRow, 7].piece == null){
+                    return false;
+                }
                 if (gameBoard.squares[fromRow, 5].piece == null && gameBoard.squares[fromRow, 7].piece.MoveCount == 0)
                 {
                     return true;

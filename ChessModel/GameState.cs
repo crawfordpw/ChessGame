@@ -1,4 +1,5 @@
 ﻿using ChessModel.Pieces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,10 +8,20 @@ namespace ChessModel
 {
     public class GameState
     {
-        public bool InPlay()
+        GameLogic gameLogic;
+        private IEnumerable<Square> whiteKing;
+        private IEnumerable<Square> blackKing;
+        private IEnumerable<Square> whitePieces;
+        private IEnumerable<Square> blackPieces;
+
+        public GameState(GameLogic gameLogic)
         {
-            //bool check = Check();
-            bool checkmate = CheckMate();
+            this.gameLogic = gameLogic;
+        }
+
+        public bool InPlay(GameBoard gameboard)
+        {
+            bool checkmate = CheckMate(gameboard, ChessColor.Black);
             bool stalemate = StaleMate();
 
             if(checkmate || stalemate)
@@ -22,19 +33,19 @@ namespace ChessModel
        public bool Check(GameBoard gameBoard, ChessColor color, bool isCastle = false, bool both = false)
         {
             bool check;
-            IEnumerable<Square> whiteKing =
+            whiteKing =
                 from Square square in gameBoard.squares
                 where square.piece != null && square.piece.Type == ChessPiece.King && square.piece.Color == ChessColor.White
                 select square;
-            IEnumerable<Square> blackKing =
+            blackKing =
                 from Square square in gameBoard.squares
                 where square.piece != null && square.piece.Type == ChessPiece.King && square.piece.Color == ChessColor.Black
                 select square;
-            IEnumerable<Square> whitePieces =
+            whitePieces =
                 from Square square in gameBoard.squares
                 where square.piece != null  && square.piece.Color == ChessColor.White
                 select square;
-            IEnumerable<Square> blackPieces =
+            blackPieces =
                 from Square square in gameBoard.squares
                 where square.piece != null  && square.piece.Color == ChessColor.Black
                 select square;
@@ -84,11 +95,48 @@ namespace ChessModel
             return false;
         }
 
-        public bool CheckMate()
+        public bool CheckMate(GameBoard gameboard, ChessColor color)
         {
             // king is in check
-            // moving places in check
+            // moving own pieces still in check
 
+            if(Check(gameboard, color))
+            {
+                var findColor = whiteKing.ToList();
+                IEnumerable<Square> pieces = findColor[0].piece.Color == color ? whitePieces : blackPieces;
+
+                foreach (var item in pieces)
+                {
+                    if (GetAllPossibleMoves(gameboard, item, color))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
+        private bool GetAllPossibleMoves(GameBoard gameboard, Square fromSquare, ChessColor color)
+        {
+            for (int row = 0; row < GameBoard.XDim; row++)
+            {
+                for (int col = 0; col < GameBoard.YDim; col++)
+                {
+                    if (gameLogic.MovePiece(fromSquare, gameboard.squares[row, col]))
+                    {
+                        if(!Check(gameboard, color))
+                        {
+                            gameLogic.Undo();
+                            return true;
+                        }
+                        else
+                        {
+                            gameLogic.Undo();
+                        }
+                    }
+                }
+            }
             return false;
         }
 

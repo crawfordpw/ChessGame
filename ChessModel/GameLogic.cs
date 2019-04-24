@@ -19,7 +19,7 @@ namespace ChessModel
 
         public GameLogic(GameBoard gameBoard)
         {
-            gs = new GameState();
+            gs = new GameState(this);
             this.gameBoard = gameBoard;
             lastMove[0] = gameBoard.squares[4, 4];
             lastMove[1] = gameBoard.squares[4, 4];
@@ -33,10 +33,14 @@ namespace ChessModel
             return false;
         }
 
-        public bool MovePiece(Square fromSquare, Square toSquare, bool Debug = false)
+        public bool MovePiece(Square fromSquare, Square toSquare)
         {
             if (fromSquare.piece.IsValidMove(gameBoard, fromSquare, toSquare))
             {
+                isEnPassant = false;
+                isCastle = false;
+                isCapture = false;
+
                 if (!MoveValidator.IsEnemy(fromSquare, toSquare))
                 {
                     if (MoveValidator.IsEnPassant(fromSquare, toSquare))
@@ -64,12 +68,6 @@ namespace ChessModel
                     gameBoard.pieces.Remove(toSquare.piece);
                 }
 
-                if (!Debug)
-                {
-                    isEnPassant = false;
-                    isCastle = false;
-                    isCapture = false;
-                }
                 return true;
             }
             return false;
