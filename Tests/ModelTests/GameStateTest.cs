@@ -11,7 +11,7 @@ namespace Tests.ModelTests
         public void CheckTest()
         {
             GameBoard gameboard = new GameBoard(8, 8);
-            GameLogic gl = new GameLogic();
+            GameLogic gl = new GameLogic(gameboard);
             GameState gs = new GameState(gl);
 
             Assert.AreEqual(false, gs.Check(gameboard, ChessColor.White, false,  true));

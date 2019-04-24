@@ -1,20 +1,22 @@
-﻿namespace ChessModel
+﻿using System;
+
+namespace ChessModel
 {
     public abstract class Player
     {
         public ChessColor Color { get; set; }
-        public int Timer { get; set; }
+        public PlayerClock Clock { get; set; }
         public int MoveCount { get; set; }
-        public bool Turn { get; set; }
 
-        public Player() : this(ChessColor.White, 30)
+        public Player() : this(ChessColor.White, new PlayerClock())
         {
         }
 
-        public Player(ChessColor color, int timer)
+        public Player(ChessColor color, PlayerClock clock)
         {
             this.Color = color;
-            this.Timer = timer;
+            this.Clock = clock;
+            this.MoveCount = 0;
         }
 
         public abstract void Move(GameLogic gameLogic, Square fromSquare, Square toSquare);

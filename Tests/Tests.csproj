@@ -61,6 +61,7 @@
     <Compile Include="ModelTests\KingValidMoveTest.cs" />
     <Compile Include="ModelTests\GameLogicTest.cs" />
     <Compile Include="ModelTests\GameStateTest.cs" />
+    <Compile Include="ModelTests\PlayerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
