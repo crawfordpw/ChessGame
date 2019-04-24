@@ -257,39 +257,39 @@ namespace Tests.ModelTests
                     expected[row, col] = new Square(row, col);
                 }
             }
-            expected[0, 0].HasPiece = true; expected[0, 0].Piece = new Rook(ChessColor.White);
-            expected[0, 1].HasPiece = true; expected[0, 1].Piece = new Knight(ChessColor.White);
-            expected[0, 2].HasPiece = true; expected[0, 2].Piece = new Bishop(ChessColor.White);
-            expected[0, 4].HasPiece = true; expected[0, 3].Piece = new Queen(ChessColor.White);
-            expected[0, 3].HasPiece = true; expected[0, 4].Piece = new King(ChessColor.White);
-            expected[0, 5].HasPiece = true; expected[0, 5].Piece = new Bishop(ChessColor.White);
-            expected[0, 6].HasPiece = true; expected[0, 6].Piece = new Knight(ChessColor.White);
-            expected[0, 7].HasPiece = true; expected[0, 7].Piece = new Rook(ChessColor.White);
-            expected[1, 0].HasPiece = true; expected[1, 0].Piece = new Pawn(ChessColor.White);
-            expected[1, 1].HasPiece = true; expected[1, 1].Piece = new Pawn(ChessColor.White);
-            expected[1, 2].HasPiece = true; expected[1, 2].Piece = new Pawn(ChessColor.White);
-            expected[1, 3].HasPiece = true; expected[1, 3].Piece = new Pawn(ChessColor.White);
-            expected[1, 4].HasPiece = true; expected[1, 4].Piece = new Pawn(ChessColor.White);
-            expected[1, 5].HasPiece = true; expected[1, 5].Piece = new Pawn(ChessColor.White);
-            expected[1, 6].HasPiece = true; expected[1, 6].Piece = new Pawn(ChessColor.White);
-            expected[1, 7].HasPiece = true; expected[1, 7].Piece = new Pawn(ChessColor.White);
+            expected[0, 0].Piece = new Rook(ChessColor.White);
+            expected[0, 1].Piece = new Knight(ChessColor.White);
+            expected[0, 2].Piece = new Bishop(ChessColor.White);
+            expected[0, 3].Piece = new Queen(ChessColor.White);
+            expected[0, 4].Piece = new King(ChessColor.White);
+            expected[0, 5].Piece = new Bishop(ChessColor.White);
+            expected[0, 6].Piece = new Knight(ChessColor.White);
+            expected[0, 7].Piece = new Rook(ChessColor.White);
+            expected[1, 0].Piece = new Pawn(ChessColor.White);
+            expected[1, 1].Piece = new Pawn(ChessColor.White);
+            expected[1, 2].Piece = new Pawn(ChessColor.White);
+            expected[1, 3].Piece = new Pawn(ChessColor.White);
+            expected[1, 4].Piece = new Pawn(ChessColor.White);
+            expected[1, 5].Piece = new Pawn(ChessColor.White);
+            expected[1, 6].Piece = new Pawn(ChessColor.White);
+            expected[1, 7].Piece = new Pawn(ChessColor.White);
 
-            expected[7, 0].HasPiece = true; expected[7, 0].Piece = new Rook(ChessColor.Black);
-            expected[7, 1].HasPiece = true; expected[7, 1].Piece = new Knight(ChessColor.Black);
-            expected[7, 2].HasPiece = true; expected[7, 2].Piece = new Bishop(ChessColor.Black);
-            expected[7, 4].HasPiece = true; expected[7, 3].Piece = new Queen(ChessColor.Black);
-            expected[7, 3].HasPiece = true; expected[7, 4].Piece = new King(ChessColor.Black);
-            expected[7, 5].HasPiece = true; expected[7, 5].Piece = new Bishop(ChessColor.Black);
-            expected[7, 6].HasPiece = true; expected[7, 6].Piece = new Knight(ChessColor.Black);
-            expected[7, 7].HasPiece = true; expected[7, 7].Piece = new Rook(ChessColor.Black);
-            expected[6, 0].HasPiece = true; expected[6, 0].Piece = new Pawn(ChessColor.Black);
-            expected[6, 1].HasPiece = true; expected[6, 1].Piece = new Pawn(ChessColor.Black);
-            expected[6, 2].HasPiece = true; expected[6, 2].Piece = new Pawn(ChessColor.Black);
-            expected[6, 3].HasPiece = true; expected[6, 3].Piece = new Pawn(ChessColor.Black);
-            expected[6, 4].HasPiece = true; expected[6, 4].Piece = new Pawn(ChessColor.Black);
-            expected[6, 5].HasPiece = true; expected[6, 5].Piece = new Pawn(ChessColor.Black);
-            expected[6, 6].HasPiece = true; expected[6, 6].Piece = new Pawn(ChessColor.Black);
-            expected[6, 7].HasPiece = true; expected[6, 7].Piece = new Pawn(ChessColor.Black);
+            expected[7, 0].Piece = new Rook(ChessColor.Black);
+            expected[7, 1].Piece = new Knight(ChessColor.Black);
+            expected[7, 2].Piece = new Bishop(ChessColor.Black);
+            expected[7, 3].Piece = new Queen(ChessColor.Black);
+            expected[7, 4].Piece = new King(ChessColor.Black);
+            expected[7, 5].Piece = new Bishop(ChessColor.Black);
+            expected[7, 6].Piece = new Knight(ChessColor.Black);
+            expected[7, 7].Piece = new Rook(ChessColor.Black);
+            expected[6, 0].Piece = new Pawn(ChessColor.Black);
+            expected[6, 1].Piece = new Pawn(ChessColor.Black);
+            expected[6, 2].Piece = new Pawn(ChessColor.Black);
+            expected[6, 3].Piece = new Pawn(ChessColor.Black);
+            expected[6, 4].Piece = new Pawn(ChessColor.Black);
+            expected[6, 5].Piece = new Pawn(ChessColor.Black);
+            expected[6, 6].Piece = new Pawn(ChessColor.Black);
+            expected[6, 7].Piece = new Pawn(ChessColor.Black);
 
             // both arrays are same length
             Assert.AreEqual(expected.Length, gameboard.squares.Length);
@@ -301,7 +301,6 @@ namespace Tests.ModelTests
                     if (expected[i, j].Piece != null && gameboard.squares[i, j].Piece != null)
                     {
                         Assert.AreEqual(expected[i, j].Piece.Type, gameboard.squares[i, j].Piece.Type);
-                        Assert.AreEqual(expected[i, j].HasPiece, gameboard.squares[i, j].HasPiece);
                     }
                     else
                     {
@@ -329,7 +328,6 @@ namespace Tests.ModelTests
             Assert.AreEqual(piece.RowID, gameboard.squares[3, 4].RowID);
             Assert.AreEqual(gameboard.pieces[32].ColID, gameboard.squares[3, 4].ColID);
             Assert.AreEqual(gameboard.pieces[32].RowID, gameboard.squares[3, 4].RowID);
-            Assert.AreEqual(true, gameboard.squares[3, 4].HasPiece);
         }
 
         [TestMethod]
@@ -349,7 +347,6 @@ namespace Tests.ModelTests
 
             Assert.IsNull(gameboard.squares[3, 4].Piece);
             Assert.AreEqual(32, gameboard.pieces.Count);
-            Assert.AreEqual(false, gameboard.squares[3, 4].HasPiece);
         }
 
         [TestMethod]
@@ -360,8 +357,6 @@ namespace Tests.ModelTests
             gameboard.MovePiece(gameboard.squares[1, 0], gameboard.squares[2, 0]);
 
             Assert.IsNull(gameboard.squares[1, 0].Piece);
-            Assert.AreEqual(false, gameboard.squares[1, 0].HasPiece);
-            Assert.AreEqual(true, gameboard.squares[2, 0].HasPiece);
             Assert.AreEqual(0, gameboard.squares[2, 0].ColID);
             Assert.AreEqual(2, gameboard.squares[2, 0].RowID);
             Assert.AreEqual(gameboard.pieces[8].ColID, gameboard.squares[2, 0].ColID);
@@ -384,6 +379,5 @@ namespace Tests.ModelTests
                 }
             }
         }
-
     }
 }

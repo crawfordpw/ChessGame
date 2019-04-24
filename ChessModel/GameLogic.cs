@@ -104,14 +104,11 @@ namespace ChessModel
             Square toMove = gameBoard.squares[lastMove[0].RowID, lastMove[0].ColID];
             gameBoard.MovePiece(fromMove, toMove);
             toMove.Piece.MoveCount -= 2;
-            fromMove.HasPiece = false;
-            toMove.HasPiece = true;
 
             if (isEnPassant)
             {
                 var capturedPiece = gameBoard.pieces.Find(e => e.ColID == lastMove[2].ColID && e.RowID == lastMove[2].RowID);
                 gameBoard.squares[capturedPiece.RowID, capturedPiece.ColID].Piece = capturedPiece;
-                gameBoard.squares[capturedPiece.RowID, capturedPiece.ColID].HasPiece = true;
                 isEnPassant = false;
             }
             else if (isCastle)
@@ -126,7 +123,6 @@ namespace ChessModel
                 }
                 gameBoard.MovePiece(fromMove, toMove);
                 toMove.Piece.MoveCount -= 2;
-                toMove.HasPiece = true;
                 isCastle = false;
             }
             else if(isCapture)
@@ -134,7 +130,6 @@ namespace ChessModel
                 var capturedPiece = gameBoard.pieces.Find(e => e.ColID == fromMove.ColID && e.RowID == fromMove.RowID && e != lastMove[1].Piece);
                 gameBoard.squares[capturedPiece.RowID, capturedPiece.ColID].Piece = capturedPiece;
                 isCapture = false;
-                fromMove.HasPiece = true;
             }
         }
 

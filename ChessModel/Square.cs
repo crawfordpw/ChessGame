@@ -4,7 +4,6 @@
     {
         public int ColID { get; set; }
         public int RowID { get; set; }
-        public bool HasPiece { get; set; }
         public IPiece Piece { get; set; }
 
         public Square()

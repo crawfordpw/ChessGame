@@ -56,8 +56,6 @@ namespace ChessModel
         {
             IPiece piece;
 
-            squares[row, col].HasPiece = true;
-
             // Adds piece to a List, 0/7 for non pawns, else it has to be a pawn
             if (row == 0 || row == XDim - 1)
             {
@@ -87,19 +85,16 @@ namespace ChessModel
         {
             square.Piece = piece;
             square.MakeSameCord();
-            square.HasPiece = true;
             pieces.Add(piece);
         }
 
         public void RemovePieceTemp(Square square)
         {
-            square.HasPiece = false;
             square.Piece = null;
         }
 
         public void RemovePiece(Square square)
         {
-            square.HasPiece = false;
             pieces.Remove(square.Piece);
             square.Piece = null;
         }
@@ -108,10 +103,8 @@ namespace ChessModel
         {
             toSquare.Piece = fromSquare.Piece;
             toSquare.MakeSameCord();
-            toSquare.HasPiece = true;
             toSquare.Piece.MoveCount += 1;
             fromSquare.Piece = null;
-            fromSquare.HasPiece = false;
         }
         
         public void ClearBoard()
@@ -121,7 +114,6 @@ namespace ChessModel
                 for (int col = 0; col < YDim; col++)
                 {
                     squares[row, col].Piece = null;
-                    squares[row, col].HasPiece = false;
                 }
             }
             pieces.Clear();
