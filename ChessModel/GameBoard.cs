@@ -11,7 +11,7 @@ namespace ChessModel
         public Square[,] squares;
         public List<IPiece> pieces;
 
-        public GameBoard()
+        public GameBoard() : this(8, 8)
         {
 
         }

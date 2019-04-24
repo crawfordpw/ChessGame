@@ -8,7 +8,7 @@
         public int RowID { get; set; }
         public int MoveCount { get; set; }
 
-        public Pawn()
+        public Pawn() : this(ChessColor.White)
         {
 
         }

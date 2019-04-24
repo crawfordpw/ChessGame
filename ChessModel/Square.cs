@@ -6,7 +6,7 @@
         public int RowID { get; set; }
         public IPiece Piece { get; set; }
 
-        public Square()
+        public Square() : this(0, 0)
         {
 
         }

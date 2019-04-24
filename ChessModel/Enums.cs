@@ -1,4 +1,4 @@
-﻿namespace ChessModel.Pieces
+﻿namespace ChessModel
 {
     public enum ChessPiece
     {

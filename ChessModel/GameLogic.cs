@@ -12,11 +12,6 @@ namespace ChessModel
         private bool isCastle;
         private bool isCapture;
 
-        public GameLogic()
-        {
-
-        }
-
         public GameLogic(GameBoard gameBoard)
         {
             gs = new GameState(this);
