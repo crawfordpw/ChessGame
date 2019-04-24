@@ -35,12 +35,12 @@
             bool isOccupied = MoveValidator.IsOccupied(toSquare);
             bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);
 
-            if(fromSquare.piece == null || fromSquare.piece == toSquare.piece)
+            if(fromSquare.Piece == null || fromSquare.Piece == toSquare.Piece)
                 return false;
 
 
             bool enPassant = MoveValidator.IsEnPassant(fromSquare, toSquare);
-            int sign = fromSquare.piece.Color == ChessColor.White ? 1 : -1;
+            int sign = fromSquare.Piece.Color == ChessColor.White ? 1 : -1;
 
             if (MoveCount == 0)
             {

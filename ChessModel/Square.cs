@@ -5,7 +5,7 @@
         public int ColID { get; set; }
         public int RowID { get; set; }
         public bool HasPiece { get; set; }
-        public IPiece piece { get; set; }
+        public IPiece Piece { get; set; }
 
         public Square()
         {
@@ -20,8 +20,8 @@
 
         public void MakeSameCord()
         {
-            piece.ColID = ColID;
-            piece.RowID = RowID;
+            Piece.ColID = ColID;
+            Piece.RowID = RowID;
         }
     }
 }

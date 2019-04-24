@@ -13,7 +13,7 @@ namespace Tests.ModelTests
             GameLogic.lastMove[0] = gb.squares[0, 0];
             GameLogic.lastMove[1] = gb.squares[0, 0];
 
-            var piece = gb.squares[1, 1].piece;
+            var piece = gb.squares[1, 1].Piece;
 
             bool actual = piece.IsValidMove(gb, gb.squares[1, 1], gb.squares[2, 1]);
             Assert.AreEqual(true, actual);
@@ -45,7 +45,7 @@ namespace Tests.ModelTests
             GameLogic.lastMove[0] = gb.squares[0, 0];
             GameLogic.lastMove[1] = gb.squares[0, 0];
 
-            var piece = gb.squares[1, 1].piece;
+            var piece = gb.squares[1, 1].Piece;
 
             gb.MovePiece(gb.squares[1, 3], gb.squares[2, 1]);
             bool actual = piece.IsValidMove(gb, gb.squares[1, 1], gb.squares[2, 1]);
@@ -71,7 +71,7 @@ namespace Tests.ModelTests
             GameLogic.lastMove[0] = gb.squares[0, 0];
             GameLogic.lastMove[1] = gb.squares[0, 0];
 
-            var piece = gb.squares[1, 1].piece;
+            var piece = gb.squares[1, 1].Piece;
 
             gb.MovePiece(gb.squares[7, 3], gb.squares[2, 1]);
             bool actual = piece.IsValidMove(gb, gb.squares[1, 1], gb.squares[2, 1]);
@@ -97,7 +97,7 @@ namespace Tests.ModelTests
             GameLogic.lastMove[0] = gb.squares[0, 0];
             GameLogic.lastMove[1] = gb.squares[0, 0];
 
-            var piece = gb.squares[1, 2].piece;
+            var piece = gb.squares[1, 2].Piece;
 
             gb.MovePiece(gb.squares[1, 2], gb.squares[2, 2]);
             bool actual = piece.IsValidMove(gb, gb.squares[2, 2], gb.squares[3, 2]);
@@ -114,7 +114,7 @@ namespace Tests.ModelTests
             GameLogic.lastMove[0] = gb.squares[0, 0];
             GameLogic.lastMove[1] = gb.squares[0, 0];
 
-            var piece = gb.squares[6, 3].piece;
+            var piece = gb.squares[6, 3].Piece;
 
             bool actual = piece.IsValidMove(gb, gb.squares[6, 3], gb.squares[5, 3]);
             Assert.AreEqual(true, actual);
@@ -146,7 +146,7 @@ namespace Tests.ModelTests
             GameLogic.lastMove[0] = gb.squares[0, 0];
             GameLogic.lastMove[1] = gb.squares[0, 0];
 
-            var piece = gb.squares[6, 2].piece;
+            var piece = gb.squares[6, 2].Piece;
 
             gb.MovePiece(gb.squares[6, 4], gb.squares[5, 2]);
             bool actual = piece.IsValidMove(gb, gb.squares[6, 2], gb.squares[5, 2]);
@@ -172,7 +172,7 @@ namespace Tests.ModelTests
             GameLogic.lastMove[0] = gb.squares[0, 0];
             GameLogic.lastMove[1] = gb.squares[0, 0];
 
-            var piece = gb.squares[6, 2].piece;
+            var piece = gb.squares[6, 2].Piece;
 
             gb.MovePiece(gb.squares[0, 4], gb.squares[5, 2]);
             bool actual = piece.IsValidMove(gb, gb.squares[6, 2], gb.squares[5, 2]);
@@ -198,7 +198,7 @@ namespace Tests.ModelTests
             GameLogic.lastMove[0] = gb.squares[0, 0];
             GameLogic.lastMove[1] = gb.squares[0, 0];
 
-            var piece = gb.squares[6, 2].piece;
+            var piece = gb.squares[6, 2].Piece;
 
             gb.MovePiece(gb.squares[6, 2], gb.squares[5, 2]);
             bool actual = piece.IsValidMove(gb, gb.squares[5, 2], gb.squares[4, 2]);

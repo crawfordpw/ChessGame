@@ -14,7 +14,7 @@ namespace Tests.ModelTests
             gb.RemovePiece(gb.squares[1, 0]);
             gb.RemovePiece(gb.squares[6, 0]);
             gb.RemovePiece(gb.squares[7, 0]);
-            var piece = gb.squares[0, 0].piece;
+            var piece = gb.squares[0, 0].Piece;
 
             // Move up
             bool actual = piece.IsValidMove(gb, gb.squares[0, 0], gb.squares[7, 0]);
@@ -28,7 +28,7 @@ namespace Tests.ModelTests
 
             // Move down
             gb.MovePiece(gb.squares[0, 0], gb.squares[7, 0]);
-            piece = gb.squares[7, 0].piece;
+            piece = gb.squares[7, 0].Piece;
             actual = piece.IsValidMove(gb, gb.squares[7, 0], gb.squares[0, 0]);
             Assert.AreEqual(true, actual);
             actual = piece.IsValidMove(gb, gb.squares[7, 0], gb.squares[4, 0]);
@@ -40,7 +40,7 @@ namespace Tests.ModelTests
 
             // Move right
             gb.MovePiece(gb.squares[7, 0], gb.squares[3, 0]);
-            piece = gb.squares[3, 0].piece;
+            piece = gb.squares[3, 0].Piece;
             actual = piece.IsValidMove(gb, gb.squares[3, 0], gb.squares[3, 7]);
             Assert.AreEqual(true, actual);
             actual = piece.IsValidMove(gb, gb.squares[3, 0], gb.squares[3, 4]);
@@ -52,7 +52,7 @@ namespace Tests.ModelTests
 
             // Move left
             gb.MovePiece(gb.squares[3, 0], gb.squares[3, 7]);
-            piece = gb.squares[3, 7].piece;
+            piece = gb.squares[3, 7].Piece;
             actual = piece.IsValidMove(gb, gb.squares[3, 7], gb.squares[3, 0]);
             Assert.AreEqual(true, actual);
             actual = piece.IsValidMove(gb, gb.squares[3, 7], gb.squares[3, 4]);
@@ -74,7 +74,7 @@ namespace Tests.ModelTests
             gb.RemovePiece(gb.squares[1, 0]);
             gb.RemovePiece(gb.squares[6, 0]);
             gb.RemovePiece(gb.squares[7, 0]);
-            var piece = gb.squares[0, 0].piece;
+            var piece = gb.squares[0, 0].Piece;
 
             // Move up
             gb.MovePiece(gb.squares[0, 7], gb.squares[7, 0]);
@@ -85,14 +85,14 @@ namespace Tests.ModelTests
             gb.MovePiece(gb.squares[7, 0], gb.squares[5, 0]);
             gb.MovePiece(gb.squares[0, 0], gb.squares[7, 0]);
             gb.MovePiece(gb.squares[5, 0], gb.squares[0, 0]);
-            piece = gb.squares[7, 0].piece;
+            piece = gb.squares[7, 0].Piece;
             actual = piece.IsValidMove(gb, gb.squares[7, 0], gb.squares[0, 0]);
             Assert.AreEqual(false, actual);
 
             // Move right
             gb.MovePiece(gb.squares[7, 0], gb.squares[3, 0]);
             gb.MovePiece(gb.squares[0, 0], gb.squares[3, 7]);
-            piece = gb.squares[3, 0].piece;
+            piece = gb.squares[3, 0].Piece;
             actual = piece.IsValidMove(gb, gb.squares[3, 0], gb.squares[3, 7]);
             Assert.AreEqual(false, actual);
 
@@ -100,7 +100,7 @@ namespace Tests.ModelTests
             gb.MovePiece(gb.squares[3, 7], gb.squares[3, 5]);
             gb.MovePiece(gb.squares[3, 0], gb.squares[3, 7]);
             gb.MovePiece(gb.squares[3, 5], gb.squares[3, 0]);
-            piece = gb.squares[3, 7].piece;
+            piece = gb.squares[3, 7].Piece;
             actual = piece.IsValidMove(gb, gb.squares[3, 7], gb.squares[3, 0]);
             Assert.AreEqual(false, actual);
 
@@ -116,7 +116,7 @@ namespace Tests.ModelTests
 
             gb.RemovePiece(gb.squares[1, 0]);
             gb.RemovePiece(gb.squares[6, 0]);
-            var piece = gb.squares[0, 0].piece;
+            var piece = gb.squares[0, 0].Piece;
 
             // Move up
             bool actual = piece.IsValidMove(gb, gb.squares[0, 0], gb.squares[7, 0]);
@@ -126,14 +126,14 @@ namespace Tests.ModelTests
             gb.MovePiece(gb.squares[7, 0], gb.squares[5, 0]);
             gb.MovePiece(gb.squares[0, 0], gb.squares[7, 0]);
             gb.MovePiece(gb.squares[5, 0], gb.squares[0, 0]);
-            piece = gb.squares[7, 0].piece;
+            piece = gb.squares[7, 0].Piece;
             actual = piece.IsValidMove(gb, gb.squares[7, 0], gb.squares[0, 0]);
             Assert.AreEqual(true, actual);
 
             // Move right
             gb.MovePiece(gb.squares[7, 0], gb.squares[3, 0]);
             gb.MovePiece(gb.squares[0, 0], gb.squares[3, 7]);
-            piece = gb.squares[3, 0].piece;
+            piece = gb.squares[3, 0].Piece;
             actual = piece.IsValidMove(gb, gb.squares[3, 0], gb.squares[3, 7]);
             Assert.AreEqual(true, actual);
 
@@ -141,7 +141,7 @@ namespace Tests.ModelTests
             gb.MovePiece(gb.squares[3, 7], gb.squares[3, 5]);
             gb.MovePiece(gb.squares[3, 0], gb.squares[3, 7]);
             gb.MovePiece(gb.squares[3, 5], gb.squares[3, 0]);
-            piece = gb.squares[3, 7].piece;
+            piece = gb.squares[3, 7].Piece;
             actual = piece.IsValidMove(gb, gb.squares[3, 7], gb.squares[3, 0]);
             Assert.AreEqual(true, actual);
 
@@ -155,30 +155,30 @@ namespace Tests.ModelTests
         {
             GameBoard gb = new GameBoard(8, 8);
 
-            var piece = gb.squares[0, 0].piece;
+            var piece = gb.squares[0, 0].Piece;
 
             // Move up
             bool actual = piece.IsValidMove(gb, gb.squares[0, 0], gb.squares[5, 0]);
             Assert.AreEqual(false, actual);
 
             // Move down
-            piece = gb.squares[7, 0].piece;
+            piece = gb.squares[7, 0].Piece;
             actual = piece.IsValidMove(gb, gb.squares[7, 0], gb.squares[5, 0]);
             Assert.AreEqual(false, actual);
 
             // Move right
-            piece = gb.squares[0, 0].piece;
+            piece = gb.squares[0, 0].Piece;
             gb.RemovePiece(gb.squares[0, 2]);
             actual = piece.IsValidMove(gb, gb.squares[0, 0], gb.squares[0, 2]);
             Assert.AreEqual(false, actual);
 
             // Move left
-            piece = gb.squares[7, 7].piece;
+            piece = gb.squares[7, 7].Piece;
             gb.RemovePiece(gb.squares[7, 5]);
             actual = piece.IsValidMove(gb, gb.squares[7, 7], gb.squares[7, 5]);
             Assert.AreEqual(false, actual);
 
-            piece = gb.squares[0, 0].piece;
+            piece = gb.squares[0, 0].Piece;
             actual = piece.IsValidMove(gb, gb.squares[0, 0], gb.squares[2, 2]);
             Assert.AreEqual(false, actual);
         }

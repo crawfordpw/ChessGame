@@ -97,5 +97,54 @@ namespace Tests.ModelTests
             gb.MovePiece(gb.squares[7, 3], gb.squares[3, 7]);
             Assert.AreEqual(true, gs.CheckMate(gb, ChessColor.White));
         }
+
+        [TestMethod]
+        public void StaleMateDefaultTest()
+        {
+            GameBoard gb = new GameBoard(8, 8);
+            GameLogic gl = new GameLogic(gb);
+            GameState gs = new GameState(gl);
+
+            Assert.AreEqual(false, gs.StaleMate(gb, ChessColor.White));
+            Assert.AreEqual(false, gs.StaleMate(gb, ChessColor.Black));
+        }
+
+        [TestMethod]
+        public void StaleMateValidTest()
+        {
+            GameBoard gb = new GameBoard(8, 8);
+            GameLogic gl = new GameLogic(gb);
+            GameState gs = new GameState(gl);
+
+            gb.ClearBoard();
+            IPiece whiteKing = new King(ChessColor.White);
+            IPiece whiteQueen = new Queen(ChessColor.White);
+            IPiece blackKing = new King(ChessColor.Black);
+
+            gb.PlacePiece(whiteKing, gb.squares[6, 5]);
+            gb.PlacePiece(whiteQueen, gb.squares[5, 6]);
+            gb.PlacePiece(blackKing, gb.squares[7, 7]);
+
+            Assert.AreEqual(true, gs.StaleMate(gb, ChessColor.Black));
+        }
+
+        [TestMethod]
+        public void StaleMateFailTest()
+        {
+            GameBoard gb = new GameBoard(8, 8);
+            GameLogic gl = new GameLogic(gb);
+            GameState gs = new GameState(gl);
+
+            gb.ClearBoard();
+            IPiece whiteKing = new King(ChessColor.White);
+            IPiece whiteQueen = new Queen(ChessColor.White);
+            IPiece blackKing = new King(ChessColor.Black);
+
+            gb.PlacePiece(whiteKing, gb.squares[6, 5]);
+            gb.PlacePiece(whiteQueen, gb.squares[5, 6]);
+            gb.PlacePiece(blackKing, gb.squares[7, 4]);
+
+            Assert.AreEqual(false, gs.StaleMate(gb, ChessColor.Black));
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace ChessModel
 
         public bool MovePiece(Square fromSquare, Square toSquare)
         {
-            if (fromSquare.piece.IsValidMove(gameBoard, fromSquare, toSquare))
+            if (fromSquare.Piece.IsValidMove(gameBoard, fromSquare, toSquare))
             {
                 isEnPassant = false;
                 isCastle = false;
@@ -57,7 +57,7 @@ namespace ChessModel
                 lastMove[0] = fromSquare;
                 lastMove[1] = toSquare;
 
-                if (gs.Check(gameBoard, toSquare.piece.Color, isCastle))
+                if (gs.Check(gameBoard, toSquare.Piece.Color, isCastle))
                 {
                     Undo();
                     return false;
@@ -65,7 +65,7 @@ namespace ChessModel
 
                 if (isCapture)
                 {
-                    gameBoard.pieces.Remove(toSquare.piece);
+                    gameBoard.pieces.Remove(toSquare.Piece);
                 }
 
                 return true;
@@ -111,12 +111,15 @@ namespace ChessModel
             Square fromMove = gameBoard.squares[lastMove[1].RowID, lastMove[1].ColID];
             Square toMove = gameBoard.squares[lastMove[0].RowID, lastMove[0].ColID];
             gameBoard.MovePiece(fromMove, toMove);
-            toMove.piece.MoveCount -= 2;
+            toMove.Piece.MoveCount -= 2;
+            fromMove.HasPiece = false;
+            toMove.HasPiece = true;
 
             if (isEnPassant)
             {
                 var capturedPiece = gameBoard.pieces.Find(e => e.ColID == lastMove[2].ColID && e.RowID == lastMove[2].RowID);
-                gameBoard.squares[capturedPiece.RowID, capturedPiece.ColID].piece = capturedPiece;
+                gameBoard.squares[capturedPiece.RowID, capturedPiece.ColID].Piece = capturedPiece;
+                gameBoard.squares[capturedPiece.RowID, capturedPiece.ColID].HasPiece = true;
                 isEnPassant = false;
             }
             else if (isCastle)
@@ -130,14 +133,16 @@ namespace ChessModel
                     toMove = gameBoard.squares[lastMove[3].RowID, 7];
                 }
                 gameBoard.MovePiece(fromMove, toMove);
-                toMove.piece.MoveCount -= 2;
+                toMove.Piece.MoveCount -= 2;
+                toMove.HasPiece = true;
                 isCastle = false;
             }
             else if(isCapture)
             {               
-                var capturedPiece = gameBoard.pieces.Find(e => e.ColID == fromMove.ColID && e.RowID == fromMove.RowID && e != lastMove[1].piece);
-                gameBoard.squares[capturedPiece.RowID, capturedPiece.ColID].piece = capturedPiece;
+                var capturedPiece = gameBoard.pieces.Find(e => e.ColID == fromMove.ColID && e.RowID == fromMove.RowID && e != lastMove[1].Piece);
+                gameBoard.squares[capturedPiece.RowID, capturedPiece.ColID].Piece = capturedPiece;
                 isCapture = false;
+                fromMove.HasPiece = true;
             }
         }
     }

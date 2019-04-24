@@ -22,7 +22,7 @@ namespace ChessModel
         public bool InPlay(GameBoard gameboard)
         {
             bool checkmate = CheckMate(gameboard, ChessColor.Black);
-            bool stalemate = StaleMate();
+            bool stalemate = StaleMate(gameboard, ChessColor.Black);
 
             if(checkmate || stalemate)
                 return false;
@@ -35,19 +35,19 @@ namespace ChessModel
             bool check;
             whiteKing =
                 from Square square in gameBoard.squares
-                where square.piece != null && square.piece.Type == ChessPiece.King && square.piece.Color == ChessColor.White
+                where square.Piece != null && square.Piece.Type == ChessPiece.King && square.Piece.Color == ChessColor.White
                 select square;
             blackKing =
                 from Square square in gameBoard.squares
-                where square.piece != null && square.piece.Type == ChessPiece.King && square.piece.Color == ChessColor.Black
+                where square.Piece != null && square.Piece.Type == ChessPiece.King && square.Piece.Color == ChessColor.Black
                 select square;
             whitePieces =
                 from Square square in gameBoard.squares
-                where square.piece != null  && square.piece.Color == ChessColor.White
+                where square.Piece != null  && square.Piece.Color == ChessColor.White
                 select square;
             blackPieces =
                 from Square square in gameBoard.squares
-                where square.piece != null  && square.piece.Color == ChessColor.Black
+                where square.Piece != null  && square.Piece.Color == ChessColor.Black
                 select square;
 
             if (color == ChessColor.White || both)
@@ -70,7 +70,7 @@ namespace ChessModel
 
             foreach (var item in pieces)
             {
-                if (item.piece.IsValidMove(gameBoard, item, toSquare[0]))
+                if (item.Piece.IsValidMove(gameBoard, item, toSquare[0]))
                 {
                     return true;
                 }
@@ -78,14 +78,14 @@ namespace ChessModel
                 {
                     if (toSquare[0].ColID == 2 && toSquare[0].RowID == GameLogic.lastMove[3].RowID)
                     {
-                        if (item.piece.IsValidMove(gameBoard, item, gameBoard.squares[toSquare[0].RowID, 3]))
+                        if (item.Piece.IsValidMove(gameBoard, item, gameBoard.squares[toSquare[0].RowID, 3]))
                         {
                             return true;
                         }
                     }
                     else if (toSquare[0].ColID == 6 && toSquare[0].RowID == GameLogic.lastMove[3].RowID)
                     {
-                        if (item.piece.IsValidMove(gameBoard, item, gameBoard.squares[toSquare[0].RowID, 5]))
+                        if (item.Piece.IsValidMove(gameBoard, item, gameBoard.squares[toSquare[0].RowID, 5]))
                         {
                             return true;
                         }
@@ -103,7 +103,7 @@ namespace ChessModel
             if(Check(gameboard, color))
             {
                 var findColor = whiteKing.ToList();
-                IEnumerable<Square> pieces = findColor[0].piece.Color == color ? whitePieces : blackPieces;
+                IEnumerable<Square> pieces = findColor[0].Piece.Color == color ? whitePieces : blackPieces;
 
                 foreach (var item in pieces)
                 {
@@ -117,6 +117,8 @@ namespace ChessModel
             return false;
         }
 
+
+        // There is a valid move to make where own King is not in Check
         private bool GetAllPossibleMoves(GameBoard gameboard, Square fromSquare, ChessColor color)
         {
             for (int row = 0; row < GameBoard.XDim; row++)
@@ -140,11 +142,25 @@ namespace ChessModel
             return false;
         }
 
-        public bool StaleMate()
+        public bool StaleMate(GameBoard gameboard, ChessColor color)
         {
-            //King is NOT in check!
-            //No other legal moves to make! (own king cant be left in check)
-            //It is a draw!
+            // king is NOT in check!
+            // no other legal moves to make! (own king cant be left in check)
+
+            if (!Check(gameboard, color))
+            {
+                var findColor = whiteKing.ToList();
+                IEnumerable<Square> pieces = findColor[0].Piece.Color == color ? whitePieces : blackPieces;
+
+                foreach (var item in pieces)
+                {
+                    if (GetAllPossibleMoves(gameboard, item, color))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
             return false;
         }
     }

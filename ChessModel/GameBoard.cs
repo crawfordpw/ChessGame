@@ -40,12 +40,12 @@ namespace ChessModel
                         if (row == 0 || row == 1)
                         {
                             color = ChessColor.White;
-                            squares[row, col].piece = AddStartingPiece(row, col, color);
+                            squares[row, col].Piece = AddStartingPiece(row, col, color);
                         }
                         else if (row == XDim - 1 || row == XDim - 2)
                         {
                             color = ChessColor.Black;
-                            squares[row, col].piece = AddStartingPiece(row, col, color);
+                            squares[row, col].Piece = AddStartingPiece(row, col, color);
                         }
                     }
                 }
@@ -85,7 +85,7 @@ namespace ChessModel
 
         public void PlacePiece(IPiece piece, Square square)
         {
-            square.piece = piece;
+            square.Piece = piece;
             square.MakeSameCord();
             square.HasPiece = true;
             pieces.Add(piece);
@@ -94,23 +94,23 @@ namespace ChessModel
         public void RemovePieceTemp(Square square)
         {
             square.HasPiece = false;
-            square.piece = null;
+            square.Piece = null;
         }
 
         public void RemovePiece(Square square)
         {
             square.HasPiece = false;
-            pieces.Remove(square.piece);
-            square.piece = null;
+            pieces.Remove(square.Piece);
+            square.Piece = null;
         }
 
         public void MovePiece(Square fromSquare, Square toSquare)
         {
-            toSquare.piece = fromSquare.piece;
+            toSquare.Piece = fromSquare.Piece;
             toSquare.MakeSameCord();
             toSquare.HasPiece = true;
-            toSquare.piece.MoveCount += 1;
-            fromSquare.piece = null;
+            toSquare.Piece.MoveCount += 1;
+            fromSquare.Piece = null;
             fromSquare.HasPiece = false;
         }
         
@@ -120,7 +120,8 @@ namespace ChessModel
             {
                 for (int col = 0; col < YDim; col++)
                 {
-                    squares[row, col].piece = null;
+                    squares[row, col].Piece = null;
+                    squares[row, col].HasPiece = false;
                 }
             }
             pieces.Clear();

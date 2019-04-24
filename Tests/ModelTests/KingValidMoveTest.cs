@@ -12,7 +12,7 @@ namespace Tests.ModelTests
             GameBoard gb = new GameBoard(8, 8);
 
             gb.MovePiece(gb.squares[0, 4], gb.squares[3, 3]);
-            var piece = gb.squares[3, 3].piece;
+            var piece = gb.squares[3, 3].Piece;
 
             bool actual = piece.IsValidMove(gb, gb.squares[3, 3], gb.squares[4, 3]);
             Assert.AreEqual(true, actual);
@@ -42,7 +42,7 @@ namespace Tests.ModelTests
 
             gb.MovePiece(gb.squares[0, 4], gb.squares[3, 3]);
             gb.MovePiece(gb.squares[0, 0], gb.squares[4, 3]);
-            var piece = gb.squares[3, 3].piece;
+            var piece = gb.squares[3, 3].Piece;
 
             bool actual = piece.IsValidMove(gb, gb.squares[3, 3], gb.squares[4, 3]);
             Assert.AreEqual(false, actual);
@@ -57,7 +57,7 @@ namespace Tests.ModelTests
 
             gb.MovePiece(gb.squares[0, 4], gb.squares[3, 3]);
             gb.MovePiece(gb.squares[7, 0], gb.squares[4, 3]);
-            var piece = gb.squares[3, 3].piece;
+            var piece = gb.squares[3, 3].Piece;
 
             bool actual = piece.IsValidMove(gb, gb.squares[3, 3], gb.squares[4, 3]);
             Assert.AreEqual(true, actual);

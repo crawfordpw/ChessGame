@@ -35,7 +35,7 @@
             bool isOccupied = MoveValidator.IsOccupied(toSquare);
             bool isEnemy = MoveValidator.IsEnemy(fromSquare, toSquare);           
 
-            if (fromSquare.piece == null || fromSquare.piece == toSquare.piece)
+            if (fromSquare.Piece == null || fromSquare.Piece == toSquare.Piece)
                 return false;
 
             bool isCastle = MoveValidator.IsCastle(gameboard, fromSquare, toSquare);

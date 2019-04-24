@@ -7,7 +7,7 @@ namespace ChessModel
     {
         public static bool IsOccupied(Square toSquare)
         {
-            if (toSquare.piece != null)
+            if (toSquare.Piece != null)
                 return true;
             else
                 return false;
@@ -17,7 +17,7 @@ namespace ChessModel
         {
             if (IsOccupied(toSquare))
             {
-                if (fromSquare.piece.Color == toSquare.piece.Color)
+                if (fromSquare.Piece.Color == toSquare.Piece.Color)
                     return false;
                 else
                     return true;
@@ -40,7 +40,7 @@ namespace ChessModel
             int signRow = rowDiff > 0 ? 1 : -1;
             int signCol = colDiff > 0 ? 1 : -1;
 
-            if (fromSquare.piece == null || (rowDiff == 0 && colDiff == 0))
+            if (fromSquare.Piece == null || (rowDiff == 0 && colDiff == 0))
                 return false;
 
             // if the move is vertical
@@ -89,7 +89,7 @@ namespace ChessModel
             int signRow = rowDiff > 0 ? 1 : -1;
             int signCol = colDiff > 0 ? 1 : -1;
 
-            if (fromSquare.piece == null || Math.Abs(rowDiff) != Math.Abs(colDiff))
+            if (fromSquare.Piece == null || Math.Abs(rowDiff) != Math.Abs(colDiff))
                 return false;
 
             for (int i = 1; i < Math.Abs(rowDiff); i++)
@@ -115,9 +115,9 @@ namespace ChessModel
             bool enPassant = EnPassantHelper(fromSquare);
             if (enPassant)
             {
-                int sign = fromSquare.piece.Color == ChessColor.White ? 1 : -1;
+                int sign = fromSquare.Piece.Color == ChessColor.White ? 1 : -1;
 
-                if (fromSquare.piece.Type == ChessPiece.Pawn && toSquare.RowID == GameLogic.lastMove[1].RowID + sign 
+                if (fromSquare.Piece.Type == ChessPiece.Pawn && toSquare.RowID == GameLogic.lastMove[1].RowID + sign 
                     && toSquare.ColID == GameLogic.lastMove[1].ColID)
                 {
                     return true;
@@ -129,10 +129,10 @@ namespace ChessModel
         private static bool EnPassantHelper(Square fromSquare)
         {
             var lastMove = GameLogic.lastMove;
-            if (lastMove[1].piece == null)
+            if (lastMove[1].Piece == null)
                 return false;
 
-            if (Math.Abs(lastMove[0].RowID - lastMove[1].RowID) == 2 && lastMove[1].piece.Type == ChessPiece.Pawn && IsEnemy(lastMove[1], fromSquare))
+            if (Math.Abs(lastMove[0].RowID - lastMove[1].RowID) == 2 && lastMove[1].Piece.Type == ChessPiece.Pawn && IsEnemy(lastMove[1], fromSquare))
                 return true;
 
             return false;
@@ -144,27 +144,28 @@ namespace ChessModel
             int toRow = toSquare.RowID;
             bool isOccupied = IsOccupied(toSquare);
 
-            if (fromRow - toRow != 0 || fromSquare.piece.MoveCount != 0 || isOccupied)
+            if (fromRow - toRow != 0 || fromSquare.Piece.MoveCount != 0 || isOccupied)
                 return false;
 
 
             if(toSquare.ColID == 2)
             {
-                if (gameBoard.squares[fromRow, 0].piece == null)
+                if (gameBoard.squares[fromRow, 0].Piece == null || gameBoard.squares[fromRow, 4].Piece == null)
                 {
                     return false;
                 }
-                if (gameBoard.squares[fromRow, 1].piece == null && gameBoard.squares[fromRow, 3].piece == null && gameBoard.squares[fromRow, 0].piece.MoveCount == 0)
+                if (gameBoard.squares[fromRow, 1].Piece == null && gameBoard.squares[fromRow, 3].Piece == null && gameBoard.squares[fromRow, 0].Piece.MoveCount == 0)
                 {
                     return true;
                 }
             }
             else if (toSquare.ColID == 6)
             {
-                if(gameBoard.squares[fromRow, 7].piece == null){
+                if(gameBoard.squares[fromRow, 7].Piece == null || gameBoard.squares[fromRow, 4].Piece == null)
+                {
                     return false;
                 }
-                if (gameBoard.squares[fromRow, 5].piece == null && gameBoard.squares[fromRow, 7].piece.MoveCount == 0)
+                if (gameBoard.squares[fromRow, 5].Piece == null && gameBoard.squares[fromRow, 7].Piece.MoveCount == 0)
                 {
                     return true;
                 }                
