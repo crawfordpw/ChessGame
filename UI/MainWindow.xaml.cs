@@ -39,8 +39,6 @@ namespace UI
 
             ChessBoard = new ObservableCollection<Square>();
             ConvertToList(game, ChessBoard);
-            //game.gl.MovePiece(game.gb.squares[1, 0], game.gb.squares[2, 0]);
-            //game.gl.MovePiece(game.gb.squares[2, 0], game.gb.squares[3, 0]);
         }
 
         public void ConvertToList(Game game, ObservableCollection<Square> ChessBoard)

@@ -1,8 +1,6 @@
-﻿using System.ComponentModel;
-
-namespace ChessModel
+﻿namespace ChessModel
 {
-    public class Square : INotifyPropertyChanged
+    public class Square
     {
         public int ColID { get; set; }
         public int RowID { get; set; }
@@ -26,14 +24,6 @@ namespace ChessModel
         {
             Piece.ColID = ColID;
             Piece.RowID = RowID;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
     }
 }
