@@ -512,8 +512,8 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Null}"/>
-                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Null}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.None}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                     <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
@@ -526,8 +526,8 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Null}"/>
-                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Null}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.None}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                     <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>

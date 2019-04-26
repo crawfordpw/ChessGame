@@ -9,12 +9,12 @@ namespace UI
 {
     public class SquareViewModel
     {
-        public Square square { get; set; }
-        public IPiece piece { get; set; }
+        public Square Square { get; set; }
+        public IPiece Piece { get; set; }
         public string Cord { get; set; }
         public ChessColor SquareColor { get; set; }
-        public ChessPiece? SquarePiece { get; set; }
-        public ChessColor? PieceColor { get; set; }
+        public ChessPiece SquarePiece { get; set; }
+        public ChessColor PieceColor { get; set; }
 
         public SquareViewModel() : this(new Square())
         {
@@ -23,12 +23,12 @@ namespace UI
 
         public SquareViewModel(Square sq)
         {
-            this.square = sq;
-            this.piece = sq.Piece;
+            this.Square = sq;
+            this.Piece = sq.Piece;
             this.Cord = sq.Cord;
             this.SquareColor = sq.Color;
-            this.SquarePiece = sq.Piece.Type;
-            this.PieceColor = sq.Piece.Color;
+            this.SquarePiece = sq.Piece == null ? ChessPiece.None : sq.Piece.Type;
+            this.PieceColor = sq.Piece == null ? ChessColor.Black : sq.Piece.Color;
         }
     }
 }

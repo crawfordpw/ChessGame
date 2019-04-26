@@ -13,8 +13,9 @@
 
     public enum ChessColor
     {
+        None,
         Black,
-        White
+        White, 
     }
 
     public enum State
