@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ChessModel
+﻿namespace ChessModel
 {
     public abstract class Player
     {
@@ -12,6 +10,10 @@ namespace ChessModel
         {
         }
 
+        public Player(ChessColor color) : this(color, new PlayerClock())
+        {
+        }
+
         public Player(ChessColor color, PlayerClock clock)
         {
             this.Color = color;
@@ -19,6 +21,6 @@ namespace ChessModel
             this.MoveCount = 0;
         }
 
-        public abstract void Move(GameLogic gameLogic, Square fromSquare, Square toSquare);
+        public abstract bool Move(GameLogic gameLogic, Square fromSquare, Square toSquare);
     }
 }

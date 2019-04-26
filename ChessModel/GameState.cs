@@ -8,6 +8,7 @@ namespace ChessModel
 {
     public class GameState
     {
+        public State State { get; set; }
         GameLogic gameLogic;
         private IEnumerable<Square> whiteKing;
         private IEnumerable<Square> blackKing;
@@ -19,14 +20,15 @@ namespace ChessModel
             this.gameLogic = gameLogic;
         }
 
-        public bool InPlay(GameBoard gameboard)
+        public bool InPlay(GameBoard gameboard, ChessColor color)
         {
-            bool checkmate = CheckMate(gameboard, ChessColor.Black);
-            bool stalemate = StaleMate(gameboard, ChessColor.Black);
+            bool checkmate = CheckMate(gameboard, color);
+            bool stalemate = StaleMate(gameboard, color);
 
             if(checkmate || stalemate)
                 return false;
 
+            State = State.InPlay;
             return true;
         }
 
@@ -112,6 +114,7 @@ namespace ChessModel
                         return false;
                     }
                 }
+                State = State.CheckMate;
                 return true;
             }
             return false;
@@ -159,6 +162,7 @@ namespace ChessModel
                         return false;
                     }
                 }
+                State = State.StaleMate;
                 return true;
             }
             return false;

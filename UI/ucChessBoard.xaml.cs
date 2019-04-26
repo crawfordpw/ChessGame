@@ -20,20 +20,22 @@ namespace UI
     /// <summary>
     /// Interaction logic for Board.xaml
     /// </summary>
-    public partial class ucChessBoard : UserControl
+    public partial class UCChessBoard : UserControl
     {
         ObservableCollection<SquareViewModel> ChessBoard { get; set; }
+        private Player Player { get; set; }
         private Game game { get; set; }
-        public Square FromSquare { get; set; }
-        public Square ToSquare { get; set; }
+        private Square FromSquare { get; set; }
+        private Square ToSquare { get; set; }
 
-        public ucChessBoard()
+        public UCChessBoard()
         {
             InitializeComponent();
             FromSquare = null;
             ToSquare = null;
             game = new Game();
             game.NewGame();
+            Player = game.CurrentPlayer;
 
             ChessBoard = new ObservableCollection<SquareViewModel>();
             ConvertToList(game, ChessBoard);
@@ -53,10 +55,24 @@ namespace UI
 
         public void HandleGame(object sender, RoutedEventArgs e)
         {
-            HandleMovement(sender);
+            if (HandleMovement(sender))
+            {
+                if (!game.InPlay(Player.Color))
+                {
+                    if (game.State == State.CheckMate)
+                    {
+                        MessageBox.Show("Checkmate");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Stalemate");
+                    }
+                }
+                Player = game.NextPlayer();
+            }
         }
 
-        private void HandleMovement(object sender)
+        private bool HandleMovement(object sender)
         {
             var button = (Button)sender;
             var tag = button.Tag.ToString();
@@ -69,6 +85,9 @@ namespace UI
                 if (game.gb.squares[row, col].Piece == null)
                 {
                     FromSquare = null;
+                }else if(game.gb.squares[row, col].Piece.Color != Player.Color)
+                {
+                    FromSquare = null;
                 }
             }
             else
@@ -78,47 +97,51 @@ namespace UI
 
             if (FromSquare != null && ToSquare != null)
             {
-                game.gl.MovePiece(FromSquare, ToSquare);
-
-                var from =
-                    from SquareViewModel square in ChessBoard
-                    where square.Cord == FromSquare.Cord
-                    select square;
-                var to =
-                    from SquareViewModel square in ChessBoard
-                    where square.Cord == ToSquare.Cord
-                    select square;
-
-                from.ToList()[0].Update(FromSquare);
-                to.ToList()[0].Update(ToSquare);
-                if (game.gl.isEnPassant)
+                if (Player.Move(game.gl, FromSquare, ToSquare))
                 {
-                    from =
-                       from SquareViewModel square in ChessBoard
-                       where square.Cord == GameLogic.lastMove[2].Cord
-                       select square;
-                    from.ToList()[0].Update(GameLogic.lastMove[2]);
+                    UpdateMovement();
+                    return true;
                 }
-                if (game.gl.isCastle)
-                {
-                    from =
-                       from SquareViewModel square in ChessBoard
-                       where square.Cord == GameLogic.lastMove[3].Cord
-                       select square;
-                    to =
-                       from SquareViewModel square in ChessBoard
-                       where square.Cord == GameLogic.lastMove[4].Cord
-                       select square;
-                    from.ToList()[0].Update(GameLogic.lastMove[3]);
-                    to.ToList()[0].Update(GameLogic.lastMove[4]);
-                }
-
-
-                FromSquare = null;
-                ToSquare = null;
-                //ChessBoard.Clear();
-                //ConvertToList(game, ChessBoard);
             }
+            return false;
+        }
+
+        private void UpdateMovement()
+        { 
+            var from =
+                from SquareViewModel square in ChessBoard
+                where square.Cord == FromSquare.Cord
+                select square;
+            var to =
+                from SquareViewModel square in ChessBoard
+                where square.Cord == ToSquare.Cord
+                select square;
+
+            from.ToList()[0].Update(FromSquare);
+            to.ToList()[0].Update(ToSquare);
+            if (game.gl.isEnPassant)
+            {
+                from =
+                   from SquareViewModel square in ChessBoard
+                   where square.Cord == GameLogic.lastMove[2].Cord
+                   select square;
+                from.ToList()[0].Update(GameLogic.lastMove[2]);
+            }
+            else if (game.gl.isCastle)
+            {
+                from =
+                   from SquareViewModel square in ChessBoard
+                   where square.Cord == GameLogic.lastMove[3].Cord
+                   select square;
+                to =
+                   from SquareViewModel square in ChessBoard
+                   where square.Cord == GameLogic.lastMove[4].Cord
+                   select square;
+                from.ToList()[0].Update(GameLogic.lastMove[3]);
+                to.ToList()[0].Update(GameLogic.lastMove[4]);
+            }
+            FromSquare = null;
+            ToSquare = null;
         }
     }
 }

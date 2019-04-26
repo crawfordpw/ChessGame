@@ -96,6 +96,7 @@ namespace Tests.ModelTests
             gb.MovePiece(gb.squares[1, 6], gb.squares[3, 6]);
             gb.MovePiece(gb.squares[7, 3], gb.squares[3, 7]);
             Assert.AreEqual(true, gs.CheckMate(gb, ChessColor.White));
+            Assert.AreEqual(false, gs.InPlay(gb, ChessColor.White));
         }
 
         [TestMethod]
