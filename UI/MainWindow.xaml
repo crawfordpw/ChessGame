@@ -5,35 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-
+        SizeToContent="WidthAndHeight"
         ResizeMode="CanResize"
         MinHeight="500" MinWidth="500"
-        Title="Chess" Height="500" Width="500">
-
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
+        Title="ChessGame" Height="500" Width="500">
 
     <Grid>
-        <ItemsControl Name="Board">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Columns="8" Rows="8" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Style="{StaticResource ChessBoardStyle}" Click="HandleGame" Tag="{Binding Path=Cord}"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemContainerStyle>
-                <Style>
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-        </ItemsControl>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            
+        </Grid.RowDefinitions>
+        
+        <local:ucChessBoard Grid.Row="0" Grid.Column="0"/>
+
     </Grid>
+
 </Window>

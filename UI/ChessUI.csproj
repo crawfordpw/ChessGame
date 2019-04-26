@@ -55,7 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ucChessBoard.xaml.cs">
+      <DependentUpon>ucChessBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SquareViewModel.cs" />
+    <Page Include="ucChessBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
