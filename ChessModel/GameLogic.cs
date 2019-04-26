@@ -4,12 +4,12 @@ namespace ChessModel
 {
     public class GameLogic
     {
-        public static Square[] lastMove = new Square[4];
+        public static Square[] lastMove = new Square[5];
         public GameBoard gameBoard;
         public GameState gs;
 
-        private bool isEnPassant;
-        private bool isCastle;
+        public bool isEnPassant;
+        public bool isCastle;
         private bool isCapture;
 
         public GameLogic(GameBoard gameBoard)
@@ -82,14 +82,16 @@ namespace ChessModel
             if(toSquare.ColID == 2)
             {
                 lastMove[3] = gameBoard.squares[fromRow, 3];
+                lastMove[4] = gameBoard.squares[fromRow, 0];
                 gameBoard.MovePiece(fromSquare, toSquare);
-                gameBoard.MovePiece(gameBoard.squares[fromRow, 0], gameBoard.squares[fromRow, 3]);
+                gameBoard.MovePiece(gameBoard.squares[fromRow, 0], lastMove[3]);
             }
             else
             {
                 lastMove[3] = gameBoard.squares[fromRow, 5];
+                lastMove[4] = gameBoard.squares[fromRow, 7];
                 gameBoard.MovePiece(fromSquare, toSquare);
-                gameBoard.MovePiece(gameBoard.squares[fromRow, 7], gameBoard.squares[fromRow, 5]);
+                gameBoard.MovePiece(gameBoard.squares[fromRow, 7], lastMove[3]);
             }
         }
 

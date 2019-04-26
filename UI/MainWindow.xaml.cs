@@ -81,10 +81,47 @@ namespace UI
             if (FromSquare != null && ToSquare != null)
             {
                 game.gl.MovePiece(FromSquare, ToSquare);
+
+                var from =
+                    from SquareViewModel square in ChessBoard
+                    where square.Cord == FromSquare.Cord
+                    select square;
+                var to =
+                    from SquareViewModel square in ChessBoard
+                    where square.Cord == ToSquare.Cord
+                    select square;
+
+                from.ToList();
+
+                from.ToList()[0].Update(FromSquare);
+                to.ToList()[0].Update(ToSquare);
+                if (game.gl.isEnPassant)
+                {
+                     from =
+                        from SquareViewModel square in ChessBoard
+                        where square.Cord == GameLogic.lastMove[2].Cord
+                        select square;
+                    from.ToList()[0].Update(GameLogic.lastMove[2]);
+                }
+                if (game.gl.isCastle)
+                {
+                     from =
+                        from SquareViewModel square in ChessBoard
+                        where square.Cord == GameLogic.lastMove[3].Cord
+                        select square;
+                     to =
+                        from SquareViewModel square in ChessBoard
+                        where square.Cord == GameLogic.lastMove[4].Cord
+                        select square;
+                    from.ToList()[0].Update(GameLogic.lastMove[3]);
+                    to.ToList()[0].Update(GameLogic.lastMove[4]);
+                }
+
+
                 FromSquare = null;
                 ToSquare = null;
-                ChessBoard.Clear();
-                ConvertToList(game, ChessBoard);
+                //ChessBoard.Clear();
+                //ConvertToList(game, ChessBoard);
             }           
         }
     }
