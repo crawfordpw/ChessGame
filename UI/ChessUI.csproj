@@ -67,6 +67,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -93,6 +97,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChessModel\ChessModel.csproj">
+      <Project>{f2bb4541-061f-441e-92c9-7d0a7f2921ea}</Project>
+      <Name>ChessModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imgs\b_Bishop.png" />
+    <Resource Include="imgs\b_King.png" />
+    <Resource Include="imgs\b_Knight.png" />
+    <Resource Include="imgs\b_Pawn.png" />
+    <Resource Include="imgs\b_Queen.png" />
+    <Resource Include="imgs\b_Rook.png" />
+    <Resource Include="imgs\dark_square.png" />
+    <Resource Include="imgs\light_square.png" />
+    <Resource Include="imgs\w_Bishop.png" />
+    <Resource Include="imgs\w_King.png" />
+    <Resource Include="imgs\w_Knight.png" />
+    <Resource Include="imgs\w_Pawn.png" />
+    <Resource Include="imgs\w_Queen.png" />
+    <Resource Include="imgs\w_Rook.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

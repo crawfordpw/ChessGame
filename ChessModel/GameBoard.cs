@@ -34,7 +34,16 @@ namespace ChessModel
                 for(int col = 0; col < YDim; col++)
                 {
                     squares[row, col] = new Square(row, col);
-                   
+
+                    if ((row % 2 == 0 && col % 2 == 0) || (row % 2 == 1 && col % 2 == 1))
+                    {
+                         squares[row, col].Color = ChessColor.Black;
+                    }
+                    else
+                    {
+                        squares[row, col].Color = ChessColor.White;
+                    }
+
                     if (clear == 0)
                     {
                         if (row == 0 || row == 1)

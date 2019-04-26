@@ -1,0 +1,543 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:UI"
+                    xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+                    xmlns:ChessModel ="clr-namespace:ChessModel;assembly=ChessModel">
+
+    <Style x:Key="ChessBoardStyle" TargetType="{x:Type Button}">
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Pawn}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Pawn.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Rook}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Rook.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Knight}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Knight.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Bishop}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Bishop.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Queen}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Queen.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.King}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_King.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Pawn}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Pawn.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Rook}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Rook.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Knight}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Knight.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Bishop}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Bishop.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Queen}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Queen.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.King}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_King.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Pawn}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Pawn.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Rook}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Rook.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Knight}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Knight.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Bishop}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Bishop.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Queen}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Queen.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.King}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_King.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Pawn}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Pawn.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Rook}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Rook.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Knight}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Knight.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Bishop}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Bishop.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Queen}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Queen.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.King}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_King.png" Stretch="Fill"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Null}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Null}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/light_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Null}"/>
+                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Null}"/>
+                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="/imgs/dark_square.png"/>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
