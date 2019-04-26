@@ -8,9 +8,9 @@
         <Style.Triggers>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Pawn}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Pawn}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -29,9 +29,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Rook}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Rook}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -50,9 +50,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Knight}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Knight}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -71,9 +71,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Bishop}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Bishop}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -92,9 +92,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Queen}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Queen}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -113,9 +113,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.King}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.King}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -134,9 +134,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Pawn}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Pawn}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -155,9 +155,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Rook}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Rook}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -176,9 +176,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Knight}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Knight}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -197,9 +197,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Bishop}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Bishop}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -218,9 +218,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Queen}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Queen}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -239,9 +239,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.King}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.King}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -260,9 +260,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Pawn}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Pawn}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -281,9 +281,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Rook}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Rook}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -302,9 +302,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Knight}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Knight}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -323,9 +323,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Bishop}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Bishop}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -344,9 +344,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Queen}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Queen}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -365,9 +365,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.King}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.King}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -386,9 +386,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Pawn}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Pawn}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -407,9 +407,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Rook}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Rook}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -428,9 +428,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Knight}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Knight}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -449,9 +449,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Bishop}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Bishop}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -470,9 +470,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.Queen}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.Queen}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -491,9 +491,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Static ChessModel:ChessPiece.King}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Static ChessModel:ChessPiece.King}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="ContentTemplate">
@@ -512,9 +512,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Null}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Null}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Null}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Null}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.White}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="Background">
@@ -526,9 +526,9 @@
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=Piece.Type}" Value="{x:Null}"/>
-                    <Condition Binding="{Binding Path=Piece.Color}" Value="{x:Null}"/>
-                    <Condition Binding="{Binding Path=Color}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=SquarePiece}" Value="{x:Null}"/>
+                    <Condition Binding="{Binding Path=PieceColor}" Value="{x:Null}"/>
+                    <Condition Binding="{Binding Path=SquareColor}" Value="{x:Static ChessModel:ChessColor.Black}"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="Background">

@@ -22,7 +22,7 @@ namespace UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Square> ChessBoard { get; set; }
+        ObservableCollection<SquareViewModel> ChessBoard { get; set; }
         private Game game { get; set; }
         public Square FromSquare { get; set; }
         public Square ToSquare { get; set; }
@@ -37,17 +37,17 @@ namespace UI
             game = new Game();
             game.NewGame();
 
-            ChessBoard = new ObservableCollection<Square>();
+            ChessBoard = new ObservableCollection<SquareViewModel>();
             ConvertToList(game, ChessBoard);
         }
 
-        public void ConvertToList(Game game, ObservableCollection<Square> ChessBoard)
+        public void ConvertToList(Game game, ObservableCollection<SquareViewModel> ChessBoard)
         {
             for(int row = 7; row > -1; row--)
             {
                 for (int col = 0; col < 8; col++)
                 {
-                    ChessBoard.Add(game.gb.squares[row, col]);
+                    ChessBoard.Add(new SquareViewModel(game.gb.squares[row, col]));
                 }
             }
             Board.ItemsSource = ChessBoard;
