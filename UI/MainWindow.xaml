@@ -17,6 +17,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+
     <Grid>
         <ItemsControl Name="Board">
             <ItemsControl.ItemsPanel>
@@ -26,15 +27,11 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Button Style="{StaticResource ChessBoardStyle}"/>
-                    </Grid>
+                    <Button Style="{StaticResource ChessBoardStyle}" Click="HandleGame" Tag="{Binding Path=Cord}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemContainerStyle>
                 <Style>
-                    <Setter Property="Grid.Row" Value="{Binding Path=RowID}" />
-                    <Setter Property="Grid.Column" Value="{Binding Path=ColID}" />
                 </Style>
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>

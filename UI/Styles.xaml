@@ -16,7 +16,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Pawn.png" Stretch="Fill"/>
+                                <Image Source="/imgs/w_Pawn.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -37,7 +37,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Rook.png" Stretch="Fill"/>
+                                <Image Source="/imgs/w_Rook.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -58,7 +58,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Knight.png" Stretch="Fill"/>
+                                <Image Source="/imgs/w_Knight.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -79,7 +79,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Bishop.png" Stretch="Fill"/>
+                                <Image Source="/imgs/w_Bishop.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -100,7 +100,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Queen.png" Stretch="Fill"/>
+                                <Image Source="/imgs/w_Queen.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -121,7 +121,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_King.png" Stretch="Fill"/>
+                                <Image Source="/imgs/w_King.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -142,7 +142,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Pawn.png" Stretch="Fill"/>
+                                <Image Source="/imgs/b_Pawn.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -163,7 +163,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Rook.png" Stretch="Fill"/>
+                                <Image Source="/imgs/b_Rook.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -184,7 +184,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Knight.png" Stretch="Fill"/>
+                                <Image Source="/imgs/b_Knight.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -205,7 +205,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Bishop.png" Stretch="Fill"/>
+                                <Image Source="/imgs/b_Bishop.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -226,7 +226,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Queen.png" Stretch="Fill"/>
+                                <Image Source="/imgs/b_Queen.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -247,7 +247,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_King.png" Stretch="Fill"/>
+                                <Image Source="/imgs/b_King.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -268,7 +268,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Pawn.png" Stretch="Fill"/>
+                                <Image Source="/imgs/w_Pawn.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -289,7 +289,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Rook.png" Stretch="Fill"/>
+                                <Image Source="/imgs/w_Rook.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -310,7 +310,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Knight.png" Stretch="Fill"/>
+                                <Image Source="/imgs/w_Knight.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -331,7 +331,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Bishop.png" Stretch="Fill"/>
+                                <Image Source="/imgs/w_Bishop.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -352,7 +352,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Queen.png" Stretch="Fill"/>
+                                <Image Source="/imgs/w_Queen.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -373,7 +373,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_King.png" Stretch="Fill"/>
+                                <Image Source="/imgs/w_King.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -394,7 +394,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Pawn.png" Stretch="Fill"/>
+                                <Image Source="/imgs/b_Pawn.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -415,7 +415,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Rook.png" Stretch="Fill"/>
+                                <Image Source="/imgs/b_Rook.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -436,7 +436,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Knight.png" Stretch="Fill"/>
+                                <Image Source="/imgs/b_Knight.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -457,7 +457,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Bishop.png" Stretch="Fill"/>
+                                <Image Source="/imgs/b_Bishop.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -478,7 +478,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Queen.png" Stretch="Fill"/>
+                                <Image Source="/imgs/b_Queen.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -499,7 +499,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_King.png" Stretch="Fill"/>
+                                <Image Source="/imgs/b_King.png"/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
