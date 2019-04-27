@@ -20,6 +20,14 @@
             Cord = $"{row}{col}";
         }
 
+        public Square(int row, int col, IPiece piece)
+        {
+            RowID = row;
+            ColID = col;
+            Cord = $"{row}{col}";
+            Piece = piece;
+        }
+
         public void MakeSameCord()
         {
             Piece.ColID = ColID;

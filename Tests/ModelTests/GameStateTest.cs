@@ -1,6 +1,7 @@
 ﻿using ChessModel;
 using ChessModel.Pieces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Tests.ModelTests
 {
@@ -146,6 +147,33 @@ namespace Tests.ModelTests
             gb.PlacePiece(blackKing, gb.squares[7, 4]);
 
             Assert.AreEqual(false, gs.StaleMate(gb, ChessColor.Black));
+        }
+
+        [TestMethod]
+        public void StaleMateSamePositionTest()
+        {
+            Game game = new Game();
+            game.NewGame();
+            Game game2 = new Game();
+            game2.NewGame();
+
+
+            game.gb.MovePiece(game.gb.squares[1, 4], game.gb.squares[4, 4]);
+            game.Player2.Move(game.gl, game.gl.gameBoard.squares[6, 5], game.gl.gameBoard.squares[4, 5]);
+            //game2.gb.MovePiece(game2.gb.squares[1, 4], game2.gb.squares[4, 4]);
+            //game2.gb.MovePiece(game2.gb.squares[6, 5], game2.gb.squares[4, 5]);
+            var stalemate = game.gl.gs.CheckMate(game.gb, ChessColor.Black);
+
+            //for(var row = 0; row < 32; row++)
+            //{
+            //    Assert.AreEqual(game2.gb.pieces[row].Type, game.gb.pieces[row].Type);
+            //    Assert.AreEqual(game2.gb.pieces[row].RowID, game.gb.pieces[row].RowID);
+            //    Assert.AreEqual(game2.gb.pieces[row].Color, game.gb.pieces[row].Color);
+            //    Assert.AreEqual(game2.gb.pieces[row].ColID, game.gb.pieces[row].ColID);
+            //}
+            game.Player1.Move(game.gl, game.gl.gameBoard.squares[4, 4], game.gl.gameBoard.squares[5, 5]);
+            Assert.AreEqual(game.gb.squares[5, 5].Piece.Type, ChessPiece.Pawn);
+            Assert.AreEqual(game.gb.squares[5, 5].Piece.Color, ChessColor.White);
         }
     }
 }

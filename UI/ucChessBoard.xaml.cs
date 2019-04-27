@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ChessModel;
+using ChessModel.Pieces;
 
 namespace UI
 {
@@ -35,7 +36,8 @@ namespace UI
             ToSquare = null;
             game = new Game();
             game.NewGame();
-            //game.gb.MovePiece(game.gb.squares[1, 4], game.gb.squares[4, 4]);
+            game.gb.MovePiece(game.gb.squares[1, 4], game.gb.squares[4, 4]);
+
             Player = game.CurrentPlayer;
 
             ChessBoard = new ObservableCollection<SquareViewModel>();

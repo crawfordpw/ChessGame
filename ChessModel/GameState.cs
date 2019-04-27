@@ -8,6 +8,7 @@ namespace ChessModel
 {
     public class GameState
     {
+        public Square[] lastMove = new Square[5];
         public State State { get; set; }
         GameLogic gameLogic;
         private IEnumerable<Square> whiteKing;
@@ -18,6 +19,11 @@ namespace ChessModel
         public GameState(GameLogic gameLogic)
         {
             this.gameLogic = gameLogic;
+            for(int i = 0; i < lastMove.Length; i++)
+            {
+                lastMove[i] = new Square(0, 0, new Pawn(0, 0));
+            }
+            //lastMove = Enumerable.Repeat(new Square(0, 0, new Pawn(0,0)), 5).ToArray();
         }
 
         public bool InPlay(GameBoard gameboard, ChessColor color)
@@ -125,12 +131,12 @@ namespace ChessModel
         {
             // king is NOT in check!
             // no other legal moves to make! (own king cant be left in check)
-
-            if (Check(gameboard, color))
+            
+            if (!Check(gameboard, color))
             {
                 var findColor = whiteKing.ToList();
                 IEnumerable<Square> pieces = findColor[0].Piece.Color == color ? whitePieces : blackPieces;
-
+                //DeepCopy.DeepCopySquareArray(findColor[0].Piece, GameLogic.lastMove, lastMove);
                 foreach (var item in pieces)
                 {
                     if (GetAllPossibleMoves(gameboard, item, color))
@@ -139,6 +145,7 @@ namespace ChessModel
                     }
                 }
                 State = State.StaleMate;
+                //DeepCopy.DeepCopySquareArray(findColor[0].Piece, lastMove, GameLogic.lastMove);
                 return true;
             }
             return false;
@@ -152,8 +159,7 @@ namespace ChessModel
                 for (int col = 0; col < GameBoard.YDim; col++)
                 {
                     if (gameLogic.MovePiece(fromSquare, gameboard.squares[row, col]))
-                    {
-                        
+                    {                      
                         if (!Check(gameboard, color))
                         {
                             gameLogic.Undo();

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ChessModel;
+using ChessModel.Pieces;
 
 namespace Tests.ModelTests
 {
@@ -32,9 +33,21 @@ namespace Tests.ModelTests
             game.gb.MovePiece(game.gb.squares[6, 4], game.gb.squares[4, 4]);
             game.gb.MovePiece(game.gb.squares[1, 6], game.gb.squares[3, 6]);
             game.gb.MovePiece(game.gb.squares[7, 3], game.gb.squares[3, 7]);
-            Assert.AreEqual(true, game.InPlay(ChessColor.Black));
-            Assert.AreEqual(false, game.InPlay(ChessColor.White));
+            Assert.AreEqual(true, game.InPlay(ChessColor.White));
+            Assert.AreEqual(false, game.InPlay(ChessColor.Black));
             Assert.AreEqual(State.CheckMate, game.State);
+
+            game.NewGame();
+            game.gb.ClearBoard();
+            IPiece whiteKing = new King(ChessColor.White);
+            IPiece whiteQueen = new Queen(ChessColor.White);
+            IPiece blackKing = new King(ChessColor.Black);
+
+            game.gb.PlacePiece(whiteKing, game.gb.squares[6, 5]);
+            game.gb.PlacePiece(whiteQueen, game.gb.squares[5, 6]);
+            game.gb.PlacePiece(blackKing, game.gb.squares[7, 7]);
+
+            Assert.AreEqual(false, game.InPlay(ChessColor.White));
         }
 
         [TestMethod]

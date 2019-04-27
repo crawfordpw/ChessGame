@@ -18,6 +18,9 @@ namespace ChessModel
             this.gameBoard = gameBoard;
             lastMove[0] = gameBoard.squares[4, 4];
             lastMove[1] = gameBoard.squares[4, 4];
+            lastMove[2] = gameBoard.squares[4, 4];
+            lastMove[3] = gameBoard.squares[4, 4];
+            lastMove[4] = gameBoard.squares[4, 4];
         }
 
         public bool MovePiece(Square fromSquare, Square toSquare)

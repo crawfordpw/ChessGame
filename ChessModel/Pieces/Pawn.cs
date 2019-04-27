@@ -20,6 +20,15 @@
             MoveCount = 0;
         }
 
+        public Pawn(int row, int col)
+        {
+            Type = ChessPiece.Pawn;
+            Color = ChessColor.White;
+            MoveCount = 0;
+            ColID = col;
+            RowID = row;
+        }
+
         public void AddAtLocation(int row, int col)
         {
             RowID = row;
