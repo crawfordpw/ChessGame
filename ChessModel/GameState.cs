@@ -9,15 +9,15 @@ namespace ChessModel
     public class GameState
     {
         public State State { get; set; }
-        GameLogic gameLogic;
+        MoveLogic ml;
         private IEnumerable<Square> whiteKing;
         private IEnumerable<Square> blackKing;
         private IEnumerable<Square> whitePieces;
         private IEnumerable<Square> blackPieces;
 
-        public GameState(GameLogic gameLogic)
+        public GameState(MoveLogic ml)
         {
-            this.gameLogic = gameLogic;
+            this.ml = ml;
         }
 
         public bool InPlay(GameBoard gameboard, ChessColor color)
@@ -78,14 +78,14 @@ namespace ChessModel
                 }
                 else if (isCastle)
                 {
-                    if (toSquare[0].ColID == 2 && toSquare[0].RowID == GameLogic.lastMove[3].RowID)
+                    if (toSquare[0].ColID == 2 && toSquare[0].RowID == MoveLogic.lastMove[3].RowID)
                     {
                         if (item.Piece.IsValidMove(gameBoard, item, gameBoard.squares[toSquare[0].RowID, 3]))
                         {
                             return true;
                         }
                     }
-                    else if (toSquare[0].ColID == 6 && toSquare[0].RowID == GameLogic.lastMove[3].RowID)
+                    else if (toSquare[0].ColID == 6 && toSquare[0].RowID == MoveLogic.lastMove[3].RowID)
                     {
                         if (item.Piece.IsValidMove(gameBoard, item, gameBoard.squares[toSquare[0].RowID, 5]))
                         {
@@ -128,16 +128,16 @@ namespace ChessModel
             {
                 for (int col = 0; col < GameBoard.YDim; col++)
                 {
-                    if (gameLogic.MovePiece(fromSquare, gameboard.squares[row, col]))
+                    if (ml.MovePiece(fromSquare, gameboard.squares[row, col]))
                     {
                         if(!Check(gameboard, color))
                         {
-                            gameLogic.Undo();
+                            ml.Undo();
                             return true;
                         }
                         else
                         {
-                            gameLogic.Undo();
+                            ml.Undo();
                         }
                     }
                 }

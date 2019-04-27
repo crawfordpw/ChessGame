@@ -12,10 +12,10 @@ namespace Tests.ModelTests
         public void HumanPlayerMoveTest()
         {
             GameBoard gb = new GameBoard();
-            GameLogic gl = new GameLogic(gb);
+            MoveLogic ml = new MoveLogic(gb);
             Player player = new Human();
 
-            player.Move(gl, gb.squares[0, 1], gb.squares[2, 0]);
+            player.Move(ml, gb.squares[0, 1], gb.squares[2, 0]);
 
             Assert.AreEqual(ChessColor.White, player.Color);
             Assert.AreEqual(new TimeSpan(0, 60, 0), player.Clock.TimeRemaining);

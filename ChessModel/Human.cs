@@ -14,9 +14,9 @@
         {
         }
 
-        public override bool Move(GameLogic gameLogic, Square fromSquare, Square toSquare)
+        public override bool Move(MoveLogic ml, Square fromSquare, Square toSquare)
         {
-            return gameLogic.MovePiece(fromSquare, toSquare);
+            return ml.MovePiece(fromSquare, toSquare);
         }
     }
 }

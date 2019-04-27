@@ -10,8 +10,8 @@ namespace Tests.ModelTests
         public void WhiteMoveToEmpty()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic.lastMove[0] = gb.squares[0, 0];
-            GameLogic.lastMove[1] = gb.squares[0, 0];
+            MoveLogic.lastMove[0] = gb.squares[0, 0];
+            MoveLogic.lastMove[1] = gb.squares[0, 0];
 
             var piece = gb.squares[1, 1].Piece;
 
@@ -42,8 +42,8 @@ namespace Tests.ModelTests
         public void WhiteMoveToOccupied()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic.lastMove[0] = gb.squares[0, 0];
-            GameLogic.lastMove[1] = gb.squares[0, 0];
+            MoveLogic.lastMove[0] = gb.squares[0, 0];
+            MoveLogic.lastMove[1] = gb.squares[0, 0];
 
             var piece = gb.squares[1, 1].Piece;
 
@@ -68,8 +68,8 @@ namespace Tests.ModelTests
         public void WhiteMoveToEnemy()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic.lastMove[0] = gb.squares[0, 0];
-            GameLogic.lastMove[1] = gb.squares[0, 0];
+            MoveLogic.lastMove[0] = gb.squares[0, 0];
+            MoveLogic.lastMove[1] = gb.squares[0, 0];
 
             var piece = gb.squares[1, 1].Piece;
 
@@ -94,8 +94,8 @@ namespace Tests.ModelTests
         public void WhiteDoubleMove()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic.lastMove[0] = gb.squares[0, 0];
-            GameLogic.lastMove[1] = gb.squares[0, 0];
+            MoveLogic.lastMove[0] = gb.squares[0, 0];
+            MoveLogic.lastMove[1] = gb.squares[0, 0];
 
             var piece = gb.squares[1, 2].Piece;
 
@@ -111,8 +111,8 @@ namespace Tests.ModelTests
         public void BlackMoveToEmpty()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic.lastMove[0] = gb.squares[0, 0];
-            GameLogic.lastMove[1] = gb.squares[0, 0];
+            MoveLogic.lastMove[0] = gb.squares[0, 0];
+            MoveLogic.lastMove[1] = gb.squares[0, 0];
 
             var piece = gb.squares[6, 3].Piece;
 
@@ -143,8 +143,8 @@ namespace Tests.ModelTests
         public void BlackMoveToOccupied()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic.lastMove[0] = gb.squares[0, 0];
-            GameLogic.lastMove[1] = gb.squares[0, 0];
+            MoveLogic.lastMove[0] = gb.squares[0, 0];
+            MoveLogic.lastMove[1] = gb.squares[0, 0];
 
             var piece = gb.squares[6, 2].Piece;
 
@@ -169,8 +169,8 @@ namespace Tests.ModelTests
         public void BlackMoveToEnemy()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic.lastMove[0] = gb.squares[0, 0];
-            GameLogic.lastMove[1] = gb.squares[0, 0];
+            MoveLogic.lastMove[0] = gb.squares[0, 0];
+            MoveLogic.lastMove[1] = gb.squares[0, 0];
 
             var piece = gb.squares[6, 2].Piece;
 
@@ -195,8 +195,8 @@ namespace Tests.ModelTests
         public void BlackDoubleMove()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic.lastMove[0] = gb.squares[0, 0];
-            GameLogic.lastMove[1] = gb.squares[0, 0];
+            MoveLogic.lastMove[0] = gb.squares[0, 0];
+            MoveLogic.lastMove[1] = gb.squares[0, 0];
 
             var piece = gb.squares[6, 2].Piece;
 
