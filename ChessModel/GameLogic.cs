@@ -10,7 +10,7 @@ namespace ChessModel
 
         public bool isEnPassant;
         public bool isCastle;
-        private bool isCapture;
+        public bool isCapture;
 
         public GameLogic(GameBoard gameBoard)
         {
@@ -53,6 +53,10 @@ namespace ChessModel
                 if (isCapture)
                 {
                     gameBoard.pieces.Remove(toSquare.Piece);
+                }
+                if (isEnPassant)
+                {
+                    gameBoard.pieces.Remove(lastMove[2].Piece);
                 }
 
                 return true;

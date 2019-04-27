@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        SizeToContent="WidthAndHeight"
+
         ResizeMode="CanResize"
         MinHeight="500" MinWidth="500"
         Title="ChessGame" Height="500" Width="500">
@@ -19,7 +19,7 @@
             
         </Grid.RowDefinitions>
         
-        <local:ucChessBoard Grid.Row="0" Grid.Column="0"/>
+        <local:UCChessBoard Grid.Row="0" Grid.Column="0"/>
 
     </Grid>
 

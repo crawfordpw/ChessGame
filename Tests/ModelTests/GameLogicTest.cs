@@ -345,6 +345,7 @@ namespace Tests.ModelTests
             Assert.AreEqual(ChessPiece.Pawn, gb.squares[2, 0].Piece.Type);
             Assert.AreEqual(ChessColor.Black, gb.squares[2, 0].Piece.Color);
             Assert.IsNull(gb.squares[3, 0].Piece);
+            Assert.IsNull(gb.squares[3, 1].Piece);
             Assert.AreEqual(2, gb.squares[2, 0].Piece.MoveCount);
 
             gameLogic.Undo();

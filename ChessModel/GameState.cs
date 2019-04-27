@@ -8,6 +8,7 @@ namespace ChessModel
 {
     public class GameState
     {
+        public State State { get; set; }
         GameLogic gameLogic;
         private IEnumerable<Square> whiteKing;
         private IEnumerable<Square> blackKing;
@@ -19,14 +20,15 @@ namespace ChessModel
             this.gameLogic = gameLogic;
         }
 
-        public bool InPlay(GameBoard gameboard)
+        public bool InPlay(GameBoard gameboard, ChessColor color)
         {
-            bool checkmate = CheckMate(gameboard, ChessColor.Black);
-            bool stalemate = StaleMate(gameboard, ChessColor.Black);
+            bool checkmate = CheckMate(gameboard, color);
+            bool stalemate = StaleMate(gameboard, color);
 
             if(checkmate || stalemate)
                 return false;
 
+            State = State.InPlay;
             return true;
         }
 
@@ -67,6 +69,7 @@ namespace ChessModel
         private bool CheckHelper(GameBoard gameBoard, IEnumerable<Square> king, IEnumerable<Square> pieces, bool isCastle)
         {
             List<Square> toSquare = king.ToList();
+
 
             foreach (var item in pieces)
             {
@@ -112,32 +115,8 @@ namespace ChessModel
                         return false;
                     }
                 }
+                State = State.CheckMate;
                 return true;
-            }
-            return false;
-        }
-
-
-        // There is a valid move to make where own King is not in Check
-        private bool GetAllPossibleMoves(GameBoard gameboard, Square fromSquare, ChessColor color)
-        {
-            for (int row = 0; row < GameBoard.XDim; row++)
-            {
-                for (int col = 0; col < GameBoard.YDim; col++)
-                {
-                    if (gameLogic.MovePiece(fromSquare, gameboard.squares[row, col]))
-                    {
-                        if(!Check(gameboard, color))
-                        {
-                            gameLogic.Undo();
-                            return true;
-                        }
-                        else
-                        {
-                            gameLogic.Undo();
-                        }
-                    }
-                }
             }
             return false;
         }
@@ -147,7 +126,7 @@ namespace ChessModel
             // king is NOT in check!
             // no other legal moves to make! (own king cant be left in check)
 
-            if (!Check(gameboard, color))
+            if (Check(gameboard, color))
             {
                 var findColor = whiteKing.ToList();
                 IEnumerable<Square> pieces = findColor[0].Piece.Color == color ? whitePieces : blackPieces;
@@ -159,7 +138,33 @@ namespace ChessModel
                         return false;
                     }
                 }
+                State = State.StaleMate;
                 return true;
+            }
+            return false;
+        }
+
+        // There is a valid move to make where own King is not in Check
+        private bool GetAllPossibleMoves(GameBoard gameboard, Square fromSquare, ChessColor color)
+        {
+            for (int row = 0; row < GameBoard.XDim; row++)
+            {
+                for (int col = 0; col < GameBoard.YDim; col++)
+                {
+                    if (gameLogic.MovePiece(fromSquare, gameboard.squares[row, col]))
+                    {
+                        
+                        if (!Check(gameboard, color))
+                        {
+                            gameLogic.Undo();
+                            return true;
+                        }
+                        else
+                        {
+                            gameLogic.Undo();
+                        }
+                    }
+                }
             }
             return false;
         }
