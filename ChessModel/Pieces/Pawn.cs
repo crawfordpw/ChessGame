@@ -48,7 +48,7 @@
                 return false;
 
 
-            bool enPassant = MoveValidator.IsEnPassant(fromSquare, toSquare);
+            bool enPassant = MoveValidator.IsEnPassant(gameboard, fromSquare, toSquare);
             int sign = fromSquare.Piece.Color == ChessColor.White ? 1 : -1;
 
             if (MoveCount == 0)

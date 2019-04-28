@@ -110,9 +110,9 @@ namespace ChessModel
             return false;
         }
 
-        public static bool IsEnPassant(Square fromSquare, Square toSquare)
+        public static bool IsEnPassant(GameBoard gb, Square fromSquare, Square toSquare)
         {
-            bool enPassant = EnPassantHelper(fromSquare);
+            bool enPassant = EnPassantHelper(gb, fromSquare);
             if (enPassant)
             {
                 int sign = fromSquare.Piece.Color == ChessColor.White ? 1 : -1;
@@ -120,20 +120,23 @@ namespace ChessModel
                 if (fromSquare.Piece.Type == ChessPiece.Pawn && toSquare.RowID == GameLogic.lastMove[1].RowID + sign 
                     && toSquare.ColID == GameLogic.lastMove[1].ColID)
                 {
+                    GameLogic.lastMove[2] = gb.squares[GameLogic.lastMove[1].RowID, GameLogic.lastMove[1].ColID];
                     return true;
                 }
             }
             return false;
         }
 
-        private static bool EnPassantHelper(Square fromSquare)
+        private static bool EnPassantHelper(GameBoard gb, Square fromSquare)
         {
             var lastMove = GameLogic.lastMove;
             if (lastMove[1].Piece == null)
                 return false;
 
             if (Math.Abs(lastMove[0].RowID - lastMove[1].RowID) == 2 && lastMove[1].Piece.Type == ChessPiece.Pawn && IsEnemy(lastMove[1], fromSquare))
+            {
                 return true;
+            }
 
             return false;
         }

@@ -154,15 +154,15 @@ namespace Tests.ModelTests
         {
             Game game = new Game();
             game.NewGame();
-            Game game2 = new Game();
-            game2.NewGame();
+            //Game game2 = new Game();
+            //game2.NewGame();
 
 
             game.gb.MovePiece(game.gb.squares[1, 4], game.gb.squares[4, 4]);
             game.Player2.Move(game.gl, game.gl.gameBoard.squares[6, 5], game.gl.gameBoard.squares[4, 5]);
             //game2.gb.MovePiece(game2.gb.squares[1, 4], game2.gb.squares[4, 4]);
             //game2.gb.MovePiece(game2.gb.squares[6, 5], game2.gb.squares[4, 5]);
-            var stalemate = game.gl.gs.CheckMate(game.gb, ChessColor.Black);
+            var stalemate = game.gl.gs.StaleMate(game.gb, ChessColor.White);
 
             //for(var row = 0; row < 32; row++)
             //{

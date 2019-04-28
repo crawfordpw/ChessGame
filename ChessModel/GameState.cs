@@ -8,7 +8,9 @@ namespace ChessModel
 {
     public class GameState
     {
-        public Square[] lastMove = new Square[5];
+        IEnumerable<Square> lastFromMove;
+        IEnumerable<Square> lastToMove;
+        //public Square[] lastMove = new Square[2];
         public State State { get; set; }
         GameLogic gameLogic;
         private IEnumerable<Square> whiteKing;
@@ -19,10 +21,10 @@ namespace ChessModel
         public GameState(GameLogic gameLogic)
         {
             this.gameLogic = gameLogic;
-            for(int i = 0; i < lastMove.Length; i++)
-            {
-                lastMove[i] = new Square(0, 0, new Pawn(0, 0));
-            }
+            //for(int i = 0; i < lastMove.Length; i++)
+            //{
+            //    lastMove[i] = new Square(0, 0, new Pawn(0, 0));
+            //}
             //lastMove = Enumerable.Repeat(new Square(0, 0, new Pawn(0,0)), 5).ToArray();
         }
 
@@ -75,7 +77,6 @@ namespace ChessModel
         private bool CheckHelper(GameBoard gameBoard, IEnumerable<Square> king, IEnumerable<Square> pieces, bool isCastle)
         {
             List<Square> toSquare = king.ToList();
-
 
             foreach (var item in pieces)
             {
@@ -131,7 +132,16 @@ namespace ChessModel
         {
             // king is NOT in check!
             // no other legal moves to make! (own king cant be left in check)
-            
+
+            lastFromMove =  from Square square in gameboard.squares
+                            where square.ColID == GameLogic.lastMove[0].ColID && square.RowID == GameLogic.lastMove[0].RowID
+                            select square;
+            lastToMove = from Square square in gameboard.squares
+                         where square.ColID == GameLogic.lastMove[1].ColID && square.RowID == GameLogic.lastMove[1].RowID
+                         select square;
+            var lastfrom = lastFromMove.ToList()[0];
+            var lastTo = lastToMove.ToList()[0];
+
             if (!Check(gameboard, color))
             {
                 var findColor = whiteKing.ToList();
@@ -141,6 +151,8 @@ namespace ChessModel
                 {
                     if (GetAllPossibleMoves(gameboard, item, color))
                     {
+                        GameLogic.lastMove[0] = lastfrom;
+                        GameLogic.lastMove[1] = lastTo;
                         return false;
                     }
                 }

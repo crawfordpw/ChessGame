@@ -4,7 +4,7 @@ namespace ChessModel
 {
     public class GameLogic
     {
-        public static Square[] lastMove = new Square[5];
+        public static Square[] lastMove = new Square[6];
         public GameBoard gameBoard;
         public GameState gs;
 
@@ -33,7 +33,7 @@ namespace ChessModel
 
                 if (!MoveValidator.IsEnemy(fromSquare, toSquare))
                 {
-                    if (MoveValidator.IsEnPassant(fromSquare, toSquare))
+                    if (MoveValidator.IsEnPassant(gameBoard, fromSquare, toSquare))
                         EnPassant(fromSquare, toSquare);
                     else if (MoveValidator.IsCastle(gameBoard, fromSquare, toSquare))
                         Castle(fromSquare, toSquare);
@@ -59,7 +59,7 @@ namespace ChessModel
                 }
                 if (isEnPassant)
                 {
-                    gameBoard.pieces.Remove(lastMove[2].Piece);
+                    gameBoard.pieces.Remove(lastMove[1].Piece);
                 }
 
                 return true;
@@ -77,8 +77,8 @@ namespace ChessModel
         private void EnPassant(Square fromSquare, Square toSquare)
         {
             isEnPassant = true;
-            lastMove[2] = lastMove[1];
-            gameBoard.RemovePieceTemp(lastMove[1]);
+            //lastMove[2] = lastMove[1];
+            gameBoard.RemovePieceTemp(lastMove[2]);
             gameBoard.MovePiece(fromSquare, toSquare);
         }
 
@@ -112,7 +112,8 @@ namespace ChessModel
             if (isEnPassant)
             {
                 var capturedPiece = gameBoard.pieces.Find(e => e.ColID == lastMove[2].ColID && e.RowID == lastMove[2].RowID);
-                gameBoard.squares[capturedPiece.RowID, capturedPiece.ColID].Piece = capturedPiece;
+                if(capturedPiece.Color == ChessColor.White)
+                    gameBoard.squares[capturedPiece.RowID, capturedPiece.ColID].Piece = capturedPiece;
                 isEnPassant = false;
             }
             else if (isCastle)
