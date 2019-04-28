@@ -57,6 +57,11 @@ namespace UI
 
             if (Game.gl.HandleMovement(row, col))
             {
+                if (Game.ml.IsPromotion(Game.gl.ToSquare))
+                {
+                    Game.ml.Promote(Game.gl.ToSquare);
+                }
+
                 UpdateMovement();
                 Game.gl.FromSquare = null;
                 Game.gl.ToSquare = null;

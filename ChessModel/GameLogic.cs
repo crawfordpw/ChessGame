@@ -28,6 +28,11 @@ namespace ChessModel
         {
             if (HandleMovement(row, col))
             {
+                if (_game.ml.IsPromotion(_game.gl.ToSquare))
+                {
+                    _game.ml.Promote(_game.gl.ToSquare);
+                }
+
                 FromSquare = null;
                 ToSquare = null;
                 if (!_game.InPlay(Player.Color))

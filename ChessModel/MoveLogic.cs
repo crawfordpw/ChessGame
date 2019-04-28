@@ -154,7 +154,7 @@ namespace ChessModel
             return false;
         }
 
-        public void Promote(Square square, Promotion selection)
+        public void Promote(Square square, Promotion selection = Promotion.Queen)
         {
             IPiece piece;
             ChessColor color = square.Piece.Color;
