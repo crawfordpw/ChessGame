@@ -25,12 +25,14 @@ namespace UI
     {
         ObservableCollection<SquareViewModel> ChessBoard { get; set; }
         private Game Game { get; set; }
+        private GameLogicViewModel GameLogicViewModel { get; set; }
 
         public UCChessBoard()
         {
             InitializeComponent();
             Game = new Game();
             Game.NewGame();
+            GameLogicViewModel = new GameLogicViewModel(Game);
 
             ChessBoard = new ObservableCollection<SquareViewModel>();
             ConvertToList(Game, ChessBoard);
@@ -55,29 +57,26 @@ namespace UI
             int row = (int)Char.GetNumericValue(tag[0]);
             int col = (int)Char.GetNumericValue(tag[1]);
 
-            if (Game.gl.HandleMovement(row, col))
-            {
-                if (Game.ml.IsPromotion(Game.gl.ToSquare))
-                {
-                    Game.ml.Promote(Game.gl.ToSquare);
-                }
+            GameLogicViewModel.HandleGame(Game, row, col);
+            GameLogicViewModel.Update();
 
+            if (GameLogicViewModel.UpdateMovement)
+            {
                 UpdateMovement();
-                Game.gl.FromSquare = null;
-                Game.gl.ToSquare = null;
-                if (!Game.InPlay(Game.CurrentPlayer.Color))
-                {
-                    if (Game.State == State.CheckMate)
-                    {
-                        MessageBox.Show("Checkmate");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Stalemate");
-                    }
-                }
-                Game.NextPlayer();
             }
+            if (GameLogicViewModel.Promotion)
+            {
+                GameLogicViewModel.Promote();
+            }
+            if (GameLogicViewModel.CheckMate)
+            {
+                MessageBox.Show("Checkmate");
+            }
+            else if (GameLogicViewModel.StaleMate)
+            {
+                MessageBox.Show("Stalemate");
+            }
+
         }
         private void UpdateMovement()
         {
@@ -116,6 +115,10 @@ namespace UI
                 from.ToList()[0].Update(MoveLogic.lastMove[3]);
                 to.ToList()[0].Update(MoveLogic.lastMove[4]);
             }
+            //ChessBoard.Clear();
+            //ConvertToList(Game, ChessBoard);
+            Game.gl.FromSquare = null;
+            Game.gl.ToSquare = null;
         }
     }
 }

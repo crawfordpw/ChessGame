@@ -88,8 +88,8 @@ namespace ChessModel
             int fromRow = fromSquare.RowID;
             if(toSquare.ColID == 2)
             {
-                lastMove[3] = gameBoard.squares[fromRow, 3];
                 lastMove[4] = gameBoard.squares[fromRow, 0];
+                lastMove[3] = gameBoard.squares[fromRow, 3];
                 gameBoard.MovePiece(fromSquare, toSquare);
                 gameBoard.MovePiece(gameBoard.squares[fromRow, 0], lastMove[3]);
             }

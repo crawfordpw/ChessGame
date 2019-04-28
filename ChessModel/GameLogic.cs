@@ -6,12 +6,14 @@ namespace ChessModel
 {
     public class GameLogic
     {
-        public bool GameEnd { get; set; }
-        private Player Player { get; set; }
         public Square FromSquare { get; set; }
         public Square ToSquare { get; set; }
         public bool UpdateMovement { get; set; }
+        public bool Promotion { get; set; }
+        public bool CheckMate { get; set; }
+        public bool StaleMate { get; set; }
         private Game _game;
+        private Player Player { get; set; }
 
         public GameLogic(Game game)
         {
@@ -21,33 +23,36 @@ namespace ChessModel
             Player = game.CurrentPlayer;
         }
 
-        // this logic is not used is this application due to the way updating the board works.
-        // something similar has been implemented in the board user control.
-        // it is here, however, for other UI's
-        private bool HandleGame(int row, int col)
-        {
-            if (HandleMovement(row, col))
-            {
-                if (_game.ml.IsPromotion(_game.gl.ToSquare))
-                {
-                    _game.ml.Promote(_game.gl.ToSquare);
-                }
-
-                FromSquare = null;
-                ToSquare = null;
-                if (!_game.InPlay(Player.Color))
-                {
-                    _game.EndGame();
-                }
-                Player = _game.NextPlayer();
-                return true;
-            }
-            return false;
-        }
-
-        public bool HandleMovement(int row, int col)
+        public void HandleGame(int row, int col)
         {
             UpdateMovement = false;
+            Promotion = false;
+            CheckMate = false;
+            StaleMate = false;
+            if (HandleMovement(row, col))
+            {
+                if (_game.ml.IsPromotion(ToSquare))
+                {
+                    Promotion = true;
+                }               
+
+                if (!_game.InPlay(Player.Color))
+                {
+                    if (_game.State == State.CheckMate)
+                    {
+                        CheckMate = true;
+                    }
+                    else
+                    {
+                        StaleMate = true;
+                    }
+                }
+                Player = _game.NextPlayer();
+            }
+        }
+
+        private bool HandleMovement(int row, int col)
+        {
             Player = _game.CurrentPlayer;
             if (FromSquare == null)
             {
@@ -72,6 +77,11 @@ namespace ChessModel
                 {
                     UpdateMovement = true;
                     return true;
+                }
+                else
+                {
+                    FromSquare = null;
+                    ToSquare = null;
                 }
             }
             return false;

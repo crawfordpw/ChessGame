@@ -18,6 +18,9 @@ namespace ChessModel
         private IEnumerable<Square> lastToMoveIE;
         private Square lastFromMove;
         private Square lastToMove;
+        private bool _castle;
+        private bool _enPassant;
+        private bool _capture;
 
         public GameState(MoveLogic ml)
         {
@@ -190,12 +193,18 @@ namespace ChessModel
                            select square;
             lastFromMove = lastFromMoveIE.ToList()[0];
             lastToMove = lastToMoveIE.ToList()[0];
+            _castle = ml.isCastle;
+            _enPassant = ml.isEnPassant;
+            _capture = ml.isCapture;
         }
 
         private void SetLastMove()
         {
             MoveLogic.lastMove[0] = lastFromMove;
             MoveLogic.lastMove[1] = lastToMove;
+            ml.isCastle = _castle;
+            ml.isEnPassant = _enPassant;
+            ml.isCapture = _capture;
         }
     }
 }

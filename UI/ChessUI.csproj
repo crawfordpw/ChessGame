@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GameLogicViewModel.cs" />
     <Compile Include="UCChessBoard.xaml.cs">
       <DependentUpon>UCChessBoard.xaml</DependentUpon>
     </Compile>
