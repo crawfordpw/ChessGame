@@ -16,11 +16,10 @@ namespace ChessModel
         {
             gs = new GameState(this);
             this.gameBoard = gameBoard;
-            lastMove[0] = gameBoard.squares[4, 4];
-            lastMove[1] = gameBoard.squares[4, 4];
-            lastMove[2] = gameBoard.squares[4, 4];
-            lastMove[3] = gameBoard.squares[4, 4];
-            lastMove[4] = gameBoard.squares[4, 4];
+            for(int i = 0; i < lastMove.Length; i++)
+            {
+                lastMove[i] = gameBoard.squares[4, 4];
+            }
         }
 
         public bool MovePiece(Square fromSquare, Square toSquare)
@@ -77,7 +76,6 @@ namespace ChessModel
         private void EnPassant(Square fromSquare, Square toSquare)
         {
             isEnPassant = true;
-            //lastMove[2] = lastMove[1];
             gameBoard.RemovePieceTemp(lastMove[2]);
             gameBoard.MovePiece(fromSquare, toSquare);
         }
@@ -112,8 +110,7 @@ namespace ChessModel
             if (isEnPassant)
             {
                 var capturedPiece = gameBoard.pieces.Find(e => e.ColID == lastMove[2].ColID && e.RowID == lastMove[2].RowID);
-                if(capturedPiece.Color == ChessColor.White)
-                    gameBoard.squares[capturedPiece.RowID, capturedPiece.ColID].Piece = capturedPiece;
+                gameBoard.squares[capturedPiece.RowID, capturedPiece.ColID].Piece = capturedPiece;
                 isEnPassant = false;
             }
             else if (isCastle)

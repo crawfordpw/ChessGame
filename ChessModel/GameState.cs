@@ -8,24 +8,20 @@ namespace ChessModel
 {
     public class GameState
     {
-        IEnumerable<Square> lastFromMove;
-        IEnumerable<Square> lastToMove;
-        //public Square[] lastMove = new Square[2];
         public State State { get; set; }
-        GameLogic gameLogic;
+        private readonly GameLogic gameLogic;
         private IEnumerable<Square> whiteKing;
         private IEnumerable<Square> blackKing;
         private IEnumerable<Square> whitePieces;
         private IEnumerable<Square> blackPieces;
+        private IEnumerable<Square> lastFromMoveIE;
+        private IEnumerable<Square> lastToMoveIE;
+        private Square lastFromMove;
+        private Square lastToMove;
 
         public GameState(GameLogic gameLogic)
         {
             this.gameLogic = gameLogic;
-            //for(int i = 0; i < lastMove.Length; i++)
-            //{
-            //    lastMove[i] = new Square(0, 0, new Pawn(0, 0));
-            //}
-            //lastMove = Enumerable.Repeat(new Square(0, 0, new Pawn(0,0)), 5).ToArray();
         }
 
         public bool InPlay(GameBoard gameboard, ChessColor color)
@@ -109,6 +105,7 @@ namespace ChessModel
         {
             // king is in check
             // moving own pieces still in check
+            StoreLastMove(gameboard);
 
             if(Check(gameboard, color))
             {
@@ -119,12 +116,15 @@ namespace ChessModel
                 {
                     if (GetAllPossibleMoves(gameboard, item, color))
                     {
+                        SetLastMove();
                         return false;
                     }
                 }
+                SetLastMove();
                 State = State.CheckMate;
                 return true;
             }
+            SetLastMove();
             return false;
         }
 
@@ -132,34 +132,26 @@ namespace ChessModel
         {
             // king is NOT in check!
             // no other legal moves to make! (own king cant be left in check)
-
-            lastFromMove =  from Square square in gameboard.squares
-                            where square.ColID == GameLogic.lastMove[0].ColID && square.RowID == GameLogic.lastMove[0].RowID
-                            select square;
-            lastToMove = from Square square in gameboard.squares
-                         where square.ColID == GameLogic.lastMove[1].ColID && square.RowID == GameLogic.lastMove[1].RowID
-                         select square;
-            var lastfrom = lastFromMove.ToList()[0];
-            var lastTo = lastToMove.ToList()[0];
+            StoreLastMove(gameboard);
 
             if (!Check(gameboard, color))
             {
                 var findColor = whiteKing.ToList();
                 IEnumerable<Square> pieces = findColor[0].Piece.Color == color ? whitePieces : blackPieces;
-                //DeepCopy.DeepCopySquareArray(findColor[0].Piece, GameLogic.lastMove, lastMove);
+
                 foreach (var item in pieces)
                 {
                     if (GetAllPossibleMoves(gameboard, item, color))
                     {
-                        GameLogic.lastMove[0] = lastfrom;
-                        GameLogic.lastMove[1] = lastTo;
+                        SetLastMove();
                         return false;
                     }
                 }
                 State = State.StaleMate;
-                //DeepCopy.DeepCopySquareArray(findColor[0].Piece, lastMove, GameLogic.lastMove);
+                SetLastMove();
                 return true;
             }
+            SetLastMove();
             return false;
         }
 
@@ -185,6 +177,25 @@ namespace ChessModel
                 }
             }
             return false;
+        }
+
+        private void StoreLastMove(GameBoard gameboard)
+        {
+
+            lastFromMoveIE = from Square square in gameboard.squares
+                             where square.ColID == GameLogic.lastMove[0].ColID && square.RowID == GameLogic.lastMove[0].RowID
+                             select square;
+            lastToMoveIE = from Square square in gameboard.squares
+                           where square.ColID == GameLogic.lastMove[1].ColID && square.RowID == GameLogic.lastMove[1].RowID
+                           select square;
+            lastFromMove = lastFromMoveIE.ToList()[0];
+            lastToMove = lastToMoveIE.ToList()[0];
+        }
+
+        private void SetLastMove()
+        {
+            GameLogic.lastMove[0] = lastFromMove;
+            GameLogic.lastMove[1] = lastToMove;
         }
     }
 }
