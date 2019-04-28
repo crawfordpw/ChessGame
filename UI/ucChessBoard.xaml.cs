@@ -58,15 +58,16 @@ namespace UI
             int col = (int)Char.GetNumericValue(tag[1]);
 
             GameLogicViewModel.HandleGame(Game, row, col);
+            var ToSquare = Game.gl.ToSquare;
             GameLogicViewModel.Update();
 
+            if (GameLogicViewModel.Promotion)
+            {
+                GameLogicViewModel.Promote(ToSquare);
+            }
             if (GameLogicViewModel.UpdateMovement)
             {
                 UpdateMovement();
-            }
-            if (GameLogicViewModel.Promotion)
-            {
-                GameLogicViewModel.Promote();
             }
             if (GameLogicViewModel.CheckMate)
             {

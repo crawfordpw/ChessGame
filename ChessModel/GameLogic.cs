@@ -13,7 +13,7 @@ namespace ChessModel
         public bool CheckMate { get; set; }
         public bool StaleMate { get; set; }
         private Game _game;
-        private Player Player { get; set; }
+        public Player Player { get; set; }
 
         public GameLogic(Game game)
         {

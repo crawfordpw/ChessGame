@@ -27,9 +27,9 @@ namespace UI
             game.gl.HandleGame(row, col);
         }
 
-        public void Promote()
+        public void Promote(Square square)
         {
-            _game.ml.Promote(_game.gl.ToSquare);
+            _game.ml.Promote(square);
         }
 
         public void Update()
