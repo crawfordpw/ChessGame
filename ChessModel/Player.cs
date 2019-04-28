@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ChessModel
+﻿namespace ChessModel
 {
     public abstract class Player
     {
