@@ -59,7 +59,7 @@
     <Compile Include="ModelTests\BishopValidMoveTest.cs" />
     <Compile Include="ModelTests\QueenValidMoveTest.cs" />
     <Compile Include="ModelTests\KingValidMoveTest.cs" />
-    <Compile Include="ModelTests\GameLogicTest.cs" />
+    <Compile Include="ModelTests\MoveLogicTest.cs" />
     <Compile Include="ModelTests\GameStateTest.cs" />
     <Compile Include="ModelTests\PlayerTest.cs" />
     <Compile Include="ModelTests\GameTest.cs" />

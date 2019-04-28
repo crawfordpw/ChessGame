@@ -21,6 +21,6 @@
             this.MoveCount = 0;
         }
 
-        public abstract bool Move(GameLogic gameLogic, Square fromSquare, Square toSquare);
+        public abstract bool Move(MoveLogic ml, Square fromSquare, Square toSquare);
     }
 }

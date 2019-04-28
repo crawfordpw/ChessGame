@@ -117,10 +117,10 @@ namespace ChessModel
             {
                 int sign = fromSquare.Piece.Color == ChessColor.White ? 1 : -1;
 
-                if (fromSquare.Piece.Type == ChessPiece.Pawn && toSquare.RowID == GameLogic.lastMove[1].RowID + sign 
-                    && toSquare.ColID == GameLogic.lastMove[1].ColID)
+                if (fromSquare.Piece.Type == ChessPiece.Pawn && toSquare.RowID == MoveLogic.lastMove[1].RowID + sign 
+                    && toSquare.ColID == MoveLogic.lastMove[1].ColID)
                 {
-                    GameLogic.lastMove[2] = gb.squares[GameLogic.lastMove[1].RowID, GameLogic.lastMove[1].ColID];
+                    MoveLogic.lastMove[2] = gb.squares[MoveLogic.lastMove[1].RowID, MoveLogic.lastMove[1].ColID];
                     return true;
                 }
             }
@@ -129,7 +129,7 @@ namespace ChessModel
 
         private static bool EnPassantHelper(GameBoard gb, Square fromSquare)
         {
-            var lastMove = GameLogic.lastMove;
+            var lastMove = MoveLogic.lastMove;
             if (lastMove[1].Piece == null)
                 return false;
 

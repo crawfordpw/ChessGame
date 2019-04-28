@@ -12,8 +12,8 @@ namespace Tests.ModelTests
         public void CheckTest()
         {
             GameBoard gameboard = new GameBoard(8, 8);
-            GameLogic gl = new GameLogic(gameboard);
-            GameState gs = new GameState(gl);
+            MoveLogic ml = new MoveLogic(gameboard);
+            GameState gs = new GameState(ml);
 
             Assert.AreEqual(false, gs.Check(gameboard, ChessColor.White, false,  true));
 
@@ -41,8 +41,8 @@ namespace Tests.ModelTests
         public void CheckMateDefaultTest()
         {
             GameBoard gameboard = new GameBoard(8, 8);
-            GameLogic gl = new GameLogic(gameboard);
-            GameState gs = new GameState(gl);
+            MoveLogic ml = new MoveLogic(gameboard);
+            GameState gs = new GameState(ml);
 
             Assert.AreEqual(false, gs.CheckMate(gameboard, ChessColor.White));
             Assert.AreEqual(false, gs.CheckMate(gameboard, ChessColor.Black));
@@ -52,8 +52,8 @@ namespace Tests.ModelTests
         public void CheckMateValidTest()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic gl = new GameLogic(gb);
-            GameState gs = new GameState(gl);
+            MoveLogic ml = new MoveLogic(gb);
+            GameState gs = new GameState(ml);
 
             gb.ClearBoard();
             IPiece whiteKing = new King(ChessColor.White);
@@ -71,8 +71,8 @@ namespace Tests.ModelTests
         public void CheckMateFailTest()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic gl = new GameLogic(gb);
-            GameState gs = new GameState(gl);
+            MoveLogic ml = new MoveLogic(gb);
+            GameState gs = new GameState(ml);
 
             gb.MovePiece(gb.squares[7, 6], gb.squares[2, 5]);
             Assert.AreEqual(true, gs.Check(gb, ChessColor.White, true));
@@ -89,8 +89,8 @@ namespace Tests.ModelTests
         public void FoolsMateTest()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic gl = new GameLogic(gb);
-            GameState gs = new GameState(gl);
+            MoveLogic ml = new MoveLogic(gb);
+            GameState gs = new GameState(ml);
 
             gb.MovePiece(gb.squares[1, 5], gb.squares[2, 5]);
             gb.MovePiece(gb.squares[6, 4], gb.squares[4, 4]);
@@ -104,8 +104,8 @@ namespace Tests.ModelTests
         public void StaleMateDefaultTest()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic gl = new GameLogic(gb);
-            GameState gs = new GameState(gl);
+            MoveLogic ml = new MoveLogic(gb);
+            GameState gs = new GameState(ml);
 
             Assert.AreEqual(false, gs.StaleMate(gb, ChessColor.White));
             Assert.AreEqual(false, gs.StaleMate(gb, ChessColor.Black));
@@ -115,8 +115,8 @@ namespace Tests.ModelTests
         public void StaleMateValidTest()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic gl = new GameLogic(gb);
-            GameState gs = new GameState(gl);
+            MoveLogic ml = new MoveLogic(gb);
+            GameState gs = new GameState(ml);
 
             gb.ClearBoard();
             IPiece whiteKing = new King(ChessColor.White);
@@ -134,8 +134,8 @@ namespace Tests.ModelTests
         public void StaleMateFailTest()
         {
             GameBoard gb = new GameBoard(8, 8);
-            GameLogic gl = new GameLogic(gb);
-            GameState gs = new GameState(gl);
+            MoveLogic ml = new MoveLogic(gb);
+            GameState gs = new GameState(ml);
 
             gb.ClearBoard();
             IPiece whiteKing = new King(ChessColor.White);
@@ -154,24 +154,12 @@ namespace Tests.ModelTests
         {
             Game game = new Game();
             game.NewGame();
-            //Game game2 = new Game();
-            //game2.NewGame();
-
 
             game.gb.MovePiece(game.gb.squares[1, 4], game.gb.squares[4, 4]);
-            game.Player2.Move(game.gl, game.gl.gameBoard.squares[6, 5], game.gl.gameBoard.squares[4, 5]);
-            //game2.gb.MovePiece(game2.gb.squares[1, 4], game2.gb.squares[4, 4]);
-            //game2.gb.MovePiece(game2.gb.squares[6, 5], game2.gb.squares[4, 5]);
-            var stalemate = game.gl.gs.StaleMate(game.gb, ChessColor.White);
+            game.Player2.Move(game.ml, game.ml.gameBoard.squares[6, 5], game.ml.gameBoard.squares[4, 5]);
+            var stalemate = game.ml.gs.StaleMate(game.gb, ChessColor.White);
 
-            //for(var row = 0; row < 32; row++)
-            //{
-            //    Assert.AreEqual(game2.gb.pieces[row].Type, game.gb.pieces[row].Type);
-            //    Assert.AreEqual(game2.gb.pieces[row].RowID, game.gb.pieces[row].RowID);
-            //    Assert.AreEqual(game2.gb.pieces[row].Color, game.gb.pieces[row].Color);
-            //    Assert.AreEqual(game2.gb.pieces[row].ColID, game.gb.pieces[row].ColID);
-            //}
-            game.Player1.Move(game.gl, game.gl.gameBoard.squares[4, 4], game.gl.gameBoard.squares[5, 5]);
+            game.Player1.Move(game.ml, game.ml.gameBoard.squares[4, 4], game.ml.gameBoard.squares[5, 5]);
             Assert.AreEqual(game.gb.squares[5, 5].Piece.Type, ChessPiece.Pawn);
             Assert.AreEqual(game.gb.squares[5, 5].Piece.Color, ChessColor.White);
         }

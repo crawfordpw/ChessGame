@@ -9,7 +9,7 @@ namespace ChessModel
     public class GameState
     {
         public State State { get; set; }
-        private readonly GameLogic gameLogic;
+        private readonly MoveLogic ml;
         private IEnumerable<Square> whiteKing;
         private IEnumerable<Square> blackKing;
         private IEnumerable<Square> whitePieces;
@@ -19,9 +19,9 @@ namespace ChessModel
         private Square lastFromMove;
         private Square lastToMove;
 
-        public GameState(GameLogic gameLogic)
+        public GameState(MoveLogic ml)
         {
-            this.gameLogic = gameLogic;
+            this.ml = ml;
         }
 
         public bool InPlay(GameBoard gameboard, ChessColor color)
@@ -82,14 +82,14 @@ namespace ChessModel
                 }
                 else if (isCastle)
                 {
-                    if (toSquare[0].ColID == 2 && toSquare[0].RowID == GameLogic.lastMove[3].RowID)
+                    if (toSquare[0].ColID == 2 && toSquare[0].RowID == MoveLogic.lastMove[3].RowID)
                     {
                         if (item.Piece.IsValidMove(gameBoard, item, gameBoard.squares[toSquare[0].RowID, 3]))
                         {
                             return true;
                         }
                     }
-                    else if (toSquare[0].ColID == 6 && toSquare[0].RowID == GameLogic.lastMove[3].RowID)
+                    else if (toSquare[0].ColID == 6 && toSquare[0].RowID == MoveLogic.lastMove[3].RowID)
                     {
                         if (item.Piece.IsValidMove(gameBoard, item, gameBoard.squares[toSquare[0].RowID, 5]))
                         {
@@ -162,16 +162,16 @@ namespace ChessModel
             {
                 for (int col = 0; col < GameBoard.YDim; col++)
                 {
-                    if (gameLogic.MovePiece(fromSquare, gameboard.squares[row, col], true))
+                    if (ml.MovePiece(fromSquare, gameboard.squares[row, col], true))
                     {                      
                         if (!Check(gameboard, color))
                         {
-                            gameLogic.Undo();
+                            ml.Undo();
                             return true;
                         }
                         else
                         {
-                            gameLogic.Undo();
+                            ml.Undo();
                         }
                     }
                 }
@@ -183,10 +183,10 @@ namespace ChessModel
         {
 
             lastFromMoveIE = from Square square in gameboard.squares
-                             where square.ColID == GameLogic.lastMove[0].ColID && square.RowID == GameLogic.lastMove[0].RowID
+                             where square.ColID == MoveLogic.lastMove[0].ColID && square.RowID == MoveLogic.lastMove[0].RowID
                              select square;
             lastToMoveIE = from Square square in gameboard.squares
-                           where square.ColID == GameLogic.lastMove[1].ColID && square.RowID == GameLogic.lastMove[1].RowID
+                           where square.ColID == MoveLogic.lastMove[1].ColID && square.RowID == MoveLogic.lastMove[1].RowID
                            select square;
             lastFromMove = lastFromMoveIE.ToList()[0];
             lastToMove = lastToMoveIE.ToList()[0];
@@ -194,8 +194,8 @@ namespace ChessModel
 
         private void SetLastMove()
         {
-            GameLogic.lastMove[0] = lastFromMove;
-            GameLogic.lastMove[1] = lastToMove;
+            MoveLogic.lastMove[0] = lastFromMove;
+            MoveLogic.lastMove[1] = lastToMove;
         }
     }
 }
