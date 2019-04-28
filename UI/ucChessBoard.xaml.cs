@@ -36,7 +36,6 @@ namespace UI
             ToSquare = null;
             game = new Game();
             game.NewGame();
-            game.gb.MovePiece(game.gb.squares[1, 4], game.gb.squares[4, 4]);
 
             Player = game.CurrentPlayer;
 
@@ -117,42 +116,42 @@ namespace UI
 
         private void UpdateMovement()
         {
-            //var from =
-            //    from SquareViewModel square in ChessBoard
-            //    where square.Cord == FromSquare.Cord
-            //    select square;
-            //var to =
-            //    from SquareViewModel square in ChessBoard
-            //    where square.Cord == ToSquare.Cord
-            //    select square;
+            var from =
+                from SquareViewModel square in ChessBoard
+                where square.Cord == FromSquare.Cord
+                select square;
+            var to =
+                from SquareViewModel square in ChessBoard
+                where square.Cord == ToSquare.Cord
+                select square;
 
-            //from.ToList()[0].Update(FromSquare);
-            //to.ToList()[0].Update(ToSquare);
-            //if (game.gl.isEnPassant)
-            //{
-            //    from =
-            //       from SquareViewModel square in ChessBoard
-            //       where square.Cord == GameLogic.lastMove[2].Cord
-            //       select square;
-            //    from.ToList()[0].Update(GameLogic.lastMove[2]);
-            //}
-            //if (game.gl.isCastle)
-            //{
-            //    from =
-            //       from SquareViewModel square in ChessBoard
-            //       where square.Cord == GameLogic.lastMove[3].Cord
-            //       select square;
-            //    to =
-            //       from SquareViewModel square in ChessBoard
-            //       where square.Cord == GameLogic.lastMove[4].Cord
-            //       select square;
-            //    from.ToList()[0].Update(GameLogic.lastMove[3]);
-            //    to.ToList()[0].Update(GameLogic.lastMove[4]);
-            //}
+            from.ToList()[0].Update(FromSquare);
+            to.ToList()[0].Update(ToSquare);
+            if (game.gl.isEnPassant)
+            {
+                from =
+                   from SquareViewModel square in ChessBoard
+                   where square.Cord == GameLogic.lastMove[2].Cord
+                   select square;
+                from.ToList()[0].Update(GameLogic.lastMove[2]);
+            }
+            if (game.gl.isCastle)
+            {
+                from =
+                   from SquareViewModel square in ChessBoard
+                   where square.Cord == GameLogic.lastMove[3].Cord
+                   select square;
+                to =
+                   from SquareViewModel square in ChessBoard
+                   where square.Cord == GameLogic.lastMove[4].Cord
+                   select square;
+                from.ToList()[0].Update(GameLogic.lastMove[3]);
+                to.ToList()[0].Update(GameLogic.lastMove[4]);
+            }
             FromSquare = null;
             ToSquare = null;
-            ChessBoard.Clear();
-            ConvertToList(game, ChessBoard);
+            //ChessBoard.Clear();
+            //ConvertToList(game, ChessBoard);
         }
     }
 }

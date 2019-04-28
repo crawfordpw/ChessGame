@@ -162,7 +162,7 @@ namespace ChessModel
             {
                 for (int col = 0; col < GameBoard.YDim; col++)
                 {
-                    if (gameLogic.MovePiece(fromSquare, gameboard.squares[row, col]))
+                    if (gameLogic.MovePiece(fromSquare, gameboard.squares[row, col], true))
                     {                      
                         if (!Check(gameboard, color))
                         {

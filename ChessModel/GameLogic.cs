@@ -22,7 +22,7 @@ namespace ChessModel
             }
         }
 
-        public bool MovePiece(Square fromSquare, Square toSquare)
+        public bool MovePiece(Square fromSquare, Square toSquare, bool debug = false)
         {
             if (fromSquare.Piece.IsValidMove(gameBoard, fromSquare, toSquare))
             {
@@ -52,11 +52,13 @@ namespace ChessModel
                     return false;
                 }
 
-                if (isCapture)
+                if (isCapture && !debug)
                 {
-                    gameBoard.pieces.Remove(toSquare.Piece);
+                    var color = toSquare.Piece.Color;
+                    IPiece findPiece = gameBoard.pieces.Find(e => e.ColID == toSquare.Piece.ColID && e.RowID == toSquare.Piece.RowID && e.Color != color);
+                    gameBoard.pieces.Remove(findPiece);
                 }
-                if (isEnPassant)
+                if (isEnPassant && !debug)
                 {
                     gameBoard.pieces.Remove(lastMove[1].Piece);
                 }
