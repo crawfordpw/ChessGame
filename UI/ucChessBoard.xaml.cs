@@ -57,7 +57,7 @@ namespace UI
             int row = (int)Char.GetNumericValue(tag[0]);
             int col = (int)Char.GetNumericValue(tag[1]);
 
-            GameLogicViewModel.HandleGame(Game, row, col);
+            GameLogicViewModel.HandleGame(row, col);
             var ToSquare = Game.gl.ToSquare;
             GameLogicViewModel.Update();
 

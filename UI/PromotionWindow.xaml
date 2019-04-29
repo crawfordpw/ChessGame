@@ -1,0 +1,80 @@
+﻿<Window x:Class="UI.PromotionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        MinHeight="200"
+        MinWidth="400"
+        MaxHeight="400"
+        MaxWidth="800"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" 
+        Title="Pawn Promotion" Height="200" Width="400">
+
+    <Grid Background="AntiqueWhite">
+        <StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label FontWeight="Bold" Grid.ColumnSpan="4" FontSize="16" Margin="0,10,0,10" Grid.Row="0">
+                    Select a piece for pawn promotion:
+                </Label>
+
+                <StackPanel Grid.Row="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <RadioButton Grid.Column="0" IsChecked="True" Name="Queen" Style="{StaticResource RadioStyle}">
+                            <WrapPanel>
+
+                                <TextBlock Text="Queen"/>
+                            </WrapPanel>
+                        </RadioButton>
+
+
+                        <RadioButton Grid.Column="1" Name="Knight" Style="{StaticResource RadioStyle}" >
+                            <WrapPanel>
+
+                                <TextBlock Text="Knight"/>
+                            </WrapPanel>
+                        </RadioButton>
+
+                        <RadioButton Grid.Column="2" Name="Rook" Style="{StaticResource RadioStyle}">
+                            <WrapPanel>
+
+                                <TextBlock Text="Rook"/>
+                            </WrapPanel>
+                        </RadioButton>
+
+                        <RadioButton Grid.Column="3" Name="Bishop" Style="{StaticResource RadioStyle}">
+                            <WrapPanel>
+
+                                <TextBlock Text="Bishop"/>
+                            </WrapPanel>
+                        </RadioButton>
+                    </Grid>
+                </StackPanel>
+
+                <Button x:Name="Select" 
+                    Click="Select_Click" 
+                    Content="SELECT PIECE" 
+                    Grid.Row="2" 
+                    
+                    Margin="20,20,20,10"
+                    />
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

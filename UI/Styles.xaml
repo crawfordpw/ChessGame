@@ -1,9 +1,133 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:UI"
-                    xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
                     xmlns:ChessModel ="clr-namespace:ChessModel;assembly=ChessModel">
 
+    <Style x:Key="RadioStyle" TargetType="{x:Type RadioButton}">
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Player}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Name, RelativeSource={RelativeSource Self}}" Value="Queen"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Queen.png" Width="50" Height="50"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Player}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Name, RelativeSource={RelativeSource Self}}" Value="Knight"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Knight.png" Width="50" Height="50"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Player}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Name, RelativeSource={RelativeSource Self}}" Value="Rook"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Rook.png" Width="50" Height="50"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Player}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Name, RelativeSource={RelativeSource Self}}" Value="Bishop"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/w_Bishop.png" Width="50" Height="50"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Player}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Name, RelativeSource={RelativeSource Self}}" Value="Queen"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Queen.png" Width="50" Height="50"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Player}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Name, RelativeSource={RelativeSource Self}}" Value="Knight"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Knight.png" Width="50" Height="50"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Player}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Name, RelativeSource={RelativeSource Self}}" Value="Rook"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Rook.png" Width="50" Height="50"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Player}" Value="{x:Static ChessModel:ChessColor.Black}"/>
+                    <Condition Binding="{Binding Path=Name, RelativeSource={RelativeSource Self}}" Value="Bishop"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Image Source="/imgs/b_Bishop.png" Width="50" Height="50"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+    
     <Style x:Key="ChessBoardStyle" TargetType="{x:Type Button}">
         <Style.Triggers>
             <MultiDataTrigger>

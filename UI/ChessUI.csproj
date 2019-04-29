@@ -55,11 +55,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="GameLogicViewModel.cs" />
+    <Compile Include="PromotionWindow.xaml.cs">
+      <DependentUpon>PromotionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\GameLogicViewModel.cs" />
     <Compile Include="UCChessBoard.xaml.cs">
       <DependentUpon>UCChessBoard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SquareViewModel.cs" />
+    <Compile Include="ViewModels\SquareViewModel.cs" />
+    <Page Include="PromotionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UCChessBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

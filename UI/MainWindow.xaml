@@ -16,9 +16,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            
         </Grid.RowDefinitions>
-        
+
         <local:UCChessBoard Grid.Row="0" Grid.Column="0"/>
 
     </Grid>

@@ -22,9 +22,9 @@ namespace UI
             _game = game;
         }
 
-        public void HandleGame(Game game, int row, int col)
+        public void HandleGame(int row, int col)
         {
-            game.gl.HandleGame(row, col);
+            _game.gl.HandleGame(row, col);
         }
 
         public void Promote(Square square)
