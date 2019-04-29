@@ -67,8 +67,13 @@ namespace UI
 
             if (GameLogicViewModel.Promotion)
             {
+                // switch color since NextPLayer would've already been called
                 var color = Game.CurrentPlayer.Color == ChessColor.Black ? ChessColor.White : ChessColor.Black;
-                var PromotionWindow = new PromotionWindow(color);
+                var PromotionWindow = new PromotionWindow(color)
+                {
+                    Owner = Window.GetWindow(this)
+                };
+
                 PromotionWindow.ShowDialog();
                 var selection = PromotionWindow.Selection;
                 GameLogicViewModel.Promote(ToSquare, selection);

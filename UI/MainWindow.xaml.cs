@@ -27,8 +27,6 @@ namespace UI
         {
             DataContext = this;
             InitializeComponent();
-
-
         }
     }
         
