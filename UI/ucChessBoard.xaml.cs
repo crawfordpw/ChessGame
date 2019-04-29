@@ -30,19 +30,19 @@ namespace UI
         public UCChessBoard()
         {
             InitializeComponent();
+            NewGame();                         
+        }
+
+        private void NewGame()
+        {
             Game = new Game();
             Game.NewGame();
-            Game.gb.MovePiece(Game.gb.squares[1, 0], Game.gb.squares[5, 0]);
-            Game.gb.MovePiece(Game.gb.squares[6, 7], Game.gb.squares[2, 7]);
-            Game.ml.MovePiece(Game.gb.squares[5, 0], Game.gb.squares[6, 1]);
-            Game.ml.MovePiece(Game.gb.squares[2, 7], Game.gb.squares[1, 6]);
             GameLogicViewModel = new GameLogicViewModel(Game);
-
             ChessBoard = new ObservableCollection<SquareViewModel>();
             ConvertToList(Game, ChessBoard);
         }
-
-        public void ConvertToList(Game game, ObservableCollection<SquareViewModel> ChessBoard)
+        
+        private void ConvertToList(Game game, ObservableCollection<SquareViewModel> ChessBoard)
         {
             for (int row = 7; row > -1; row--)
             {
@@ -86,11 +86,12 @@ namespace UI
             }
             if (GameLogicViewModel.CheckMate)
             {
-                MessageBox.Show("Checkmate");
+                string color = Game.CurrentPlayer.Color == ChessColor.Black ? "White" : "Black";
+                EndGameWindow($"Checkmate! {color} Wins!");
             }
             else if (GameLogicViewModel.StaleMate)
             {
-                MessageBox.Show("Stalemate");
+                EndGameWindow("Stalemate!");
             }
 
         }
@@ -135,6 +136,26 @@ namespace UI
             //ConvertToList(Game, ChessBoard);
             Game.gl.FromSquare = null;
             Game.gl.ToSquare = null;
+        }
+
+        private void EndGameWindow(string message)
+        {
+            var EndGameWindow = new EndGameWindow(message)
+            {
+                Owner = Window.GetWindow(this)
+            };
+            EndGameWindow.ShowDialog();
+            var selection = EndGameWindow.Selection;
+
+            switch (selection)
+            {
+                case "NewGame":
+                    NewGame();
+                    break;
+                case "EndGame":
+                    Window.GetWindow(this).Close();
+                    break;
+            }
         }
     }
 }
