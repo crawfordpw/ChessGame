@@ -32,6 +32,10 @@ namespace UI
             InitializeComponent();
             Game = new Game();
             Game.NewGame();
+            Game.gb.MovePiece(Game.gb.squares[1, 0], Game.gb.squares[5, 0]);
+            Game.gb.MovePiece(Game.gb.squares[6, 7], Game.gb.squares[2, 7]);
+            Game.ml.MovePiece(Game.gb.squares[5, 0], Game.gb.squares[6, 1]);
+            Game.ml.MovePiece(Game.gb.squares[2, 7], Game.gb.squares[1, 6]);
             GameLogicViewModel = new GameLogicViewModel(Game);
 
             ChessBoard = new ObservableCollection<SquareViewModel>();
@@ -63,7 +67,13 @@ namespace UI
 
             if (GameLogicViewModel.Promotion)
             {
-                GameLogicViewModel.Promote(ToSquare);
+                var color = Game.CurrentPlayer.Color == ChessColor.Black ? ChessColor.White : ChessColor.Black;
+                var PromotionWindow = new PromotionWindow(color);
+                PromotionWindow.ShowDialog();
+                var selection = PromotionWindow.Selection;
+                GameLogicViewModel.Promote(ToSquare, selection);
+                GameLogicViewModel.HandleGame(row, col, true);
+                GameLogicViewModel.Update();
             }
             if (GameLogicViewModel.UpdateMovement)
             {

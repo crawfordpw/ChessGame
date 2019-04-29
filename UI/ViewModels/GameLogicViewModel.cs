@@ -22,14 +22,14 @@ namespace UI
             _game = game;
         }
 
-        public void HandleGame(int row, int col)
+        public void HandleGame(int row, int col, bool inPlay = false)
         {
-            _game.gl.HandleGame(row, col);
+            _game.gl.HandleGame(row, col, inPlay);
         }
 
-        public void Promote(Square square)
+        public void Promote(Square square, Promotion selection)
         {
-            _game.ml.Promote(square);
+            _game.ml.Promote(square, selection);
         }
 
         public void Update()

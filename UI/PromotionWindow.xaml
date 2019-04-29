@@ -35,7 +35,8 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         
-                        <RadioButton Grid.Column="0" IsChecked="True" Name="Queen" Style="{StaticResource RadioStyle}">
+                        <RadioButton Grid.Column="0" IsChecked="True" Name="Queen" Style="{StaticResource RadioStyle}"
+                                     Checked="RadioButton_Checked">
                             <WrapPanel>
 
                                 <TextBlock Text="Queen"/>
@@ -43,21 +44,24 @@
                         </RadioButton>
 
 
-                        <RadioButton Grid.Column="1" Name="Knight" Style="{StaticResource RadioStyle}" >
+                        <RadioButton Grid.Column="1" Name="Knight" Style="{StaticResource RadioStyle}" 
+                                     Checked="RadioButton_Checked">
                             <WrapPanel>
 
                                 <TextBlock Text="Knight"/>
                             </WrapPanel>
                         </RadioButton>
 
-                        <RadioButton Grid.Column="2" Name="Rook" Style="{StaticResource RadioStyle}">
+                        <RadioButton Grid.Column="2" Name="Rook" Style="{StaticResource RadioStyle}"
+                                     Checked="RadioButton_Checked">
                             <WrapPanel>
 
                                 <TextBlock Text="Rook"/>
                             </WrapPanel>
                         </RadioButton>
 
-                        <RadioButton Grid.Column="3" Name="Bishop" Style="{StaticResource RadioStyle}">
+                        <RadioButton Grid.Column="3" Name="Bishop" Style="{StaticResource RadioStyle}"
+                                     Checked="RadioButton_Checked">
                             <WrapPanel>
 
                                 <TextBlock Text="Bishop"/>

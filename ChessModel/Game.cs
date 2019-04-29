@@ -1,4 +1,6 @@
-﻿namespace ChessModel
+﻿
+
+namespace ChessModel
 {
     public class Game
     {
@@ -33,14 +35,7 @@
 
         public void EndGame()
         {
-            if (State == State.CheckMate)
-            {
-
-            }
-            else
-            {
-
-            }
+            System.Environment.Exit(1);
         }
     }
 }

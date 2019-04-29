@@ -7,7 +7,7 @@
         <Style.Triggers>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Player}" Value="{x:Static ChessModel:ChessColor.White}"/>
+                    <Condition Binding="{Binding Path=Player}" Value="{x:Static ChessModel:ChessColor.White}"/>
                     <Condition Binding="{Binding Path=Name, RelativeSource={RelativeSource Self}}" Value="Queen"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>

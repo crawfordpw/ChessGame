@@ -23,31 +23,27 @@ namespace ChessModel
             Player = game.CurrentPlayer;
         }
 
-        public void HandleGame(int row, int col)
+        public void HandleGame(int row, int col, bool inPlay = false)
         {
             UpdateMovement = false;
             Promotion = false;
             CheckMate = false;
             StaleMate = false;
-            if (HandleMovement(row, col))
+            if (!inPlay && HandleMovement(row, col))
             {
                 if (_game.ml.IsPromotion(ToSquare))
                 {
                     Promotion = true;
-                }               
-
-                if (!_game.InPlay(Player.Color))
-                {
-                    if (_game.State == State.CheckMate)
-                    {
-                        CheckMate = true;
-                    }
-                    else
-                    {
-                        StaleMate = true;
-                    }
                 }
+                CheckInPlay(Player.Color);
+
                 Player = _game.NextPlayer();
+            }
+            if (inPlay)
+            {
+                UpdateMovement = true;
+                var color = Player.Color == ChessColor.Black ? ChessColor.White : ChessColor.Black;
+                CheckInPlay(color);
             }
         }
 
@@ -85,6 +81,21 @@ namespace ChessModel
                 }
             }
             return false;
+        }
+
+        public void CheckInPlay(ChessColor color)
+        {
+            if (!_game.InPlay(color))
+            {
+                if (_game.State == State.CheckMate)
+                {
+                    CheckMate = true;
+                }
+                else
+                {
+                    StaleMate = true;
+                }
+            }
         }
     }
 }
