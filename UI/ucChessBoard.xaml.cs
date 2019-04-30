@@ -123,54 +123,6 @@ namespace UI
         }
 
         /*
-         * Updates the UI without having to clear and create a new Observable Collection
-         * Instead, just updates the squares needed. This could be ooptimized later where
-         * no longer need to search through the entire ChessBoard atleast twice to update.
-         * However, I am not sure how at the moment
-         */
-        private void UpdateMovement()
-        {
-            var FromSquare = Game.gl.FromSquare;
-            var ToSquare = Game.gl.ToSquare;
-
-            var from =
-                from SquareViewModel square in ChessBoard
-                where square.Cord == FromSquare.Cord
-                select square;
-            var to =
-                from SquareViewModel square in ChessBoard
-                where square.Cord == ToSquare.Cord
-                select square;
-
-            from.ToList()[0].Update(FromSquare);
-            to.ToList()[0].Update(ToSquare);
-            if (Game.ml.isEnPassant)
-            {
-                from =
-                   from SquareViewModel square in ChessBoard
-                   where square.Cord == MoveLogic.lastMove[2].Cord
-                   select square;
-                from.ToList()[0].Update(MoveLogic.lastMove[2]);
-            }
-            else if (Game.ml.isCastle)
-            {
-                from =
-                   from SquareViewModel square in ChessBoard
-                   where square.Cord == MoveLogic.lastMove[3].Cord
-                   select square;
-                to =
-                   from SquareViewModel square in ChessBoard
-                   where square.Cord == MoveLogic.lastMove[4].Cord
-                   select square;
-                from.ToList()[0].Update(MoveLogic.lastMove[3]);
-                to.ToList()[0].Update(MoveLogic.lastMove[4]);
-            }
-
-            Game.gl.FromSquare = null;
-            Game.gl.ToSquare = null;
-        }
-
-        /*
          * Prompts the user what is to be done once the game has ended
          */
         private void EndGameWindow(string message)
@@ -191,6 +143,75 @@ namespace UI
                     Window.GetWindow(this).Close();
                     break;
             }
+        }
+
+        /*
+         * Updates the UI without having to clear and create a new Observable Collection
+         * Instead, just updates the squares needed. May be a way to implement INotifyPropertyChanged
+         * in each class that needs to update the ViewModel so this doesn't have to be done.
+         * However, I am not sure how at the moment
+         */
+        private void UpdateMovement()
+        {
+            var FromSquare = Game.gl.FromSquare;
+            var ToSquare = Game.gl.ToSquare;
+            var FromIndex = ConvertCordToIndex(FromSquare.Cord);
+            var ToIndex = ConvertCordToIndex(ToSquare.Cord);
+
+            ChessBoard[FromIndex].Update(FromSquare);
+            ChessBoard[ToIndex].Update(ToSquare);
+
+            if (Game.ml.isEnPassant)
+            {
+                FromIndex = ConvertCordToIndex(MoveLogic.lastMove[2].Cord);
+                ChessBoard[FromIndex].Update(MoveLogic.lastMove[2]);
+            }
+            else if (Game.ml.isCastle)
+            {
+                FromIndex = ConvertCordToIndex(MoveLogic.lastMove[3].Cord);
+                ToIndex = ConvertCordToIndex(MoveLogic.lastMove[4].Cord);
+                ChessBoard[FromIndex].Update(MoveLogic.lastMove[3]);
+                ChessBoard[ToIndex].Update(MoveLogic.lastMove[4]);
+            }
+
+            Game.gl.FromSquare = null;
+            Game.gl.ToSquare = null;
+        }
+
+        /*
+         * Converts a grid coordinate (row and column) to the corresponting index
+         * in a List
+         */
+        private int ConvertCordToIndex(String cord)
+        {
+            char row = cord[0];
+            int col = (int)Char.GetNumericValue(cord[1]);
+            int index= 0;
+            switch (row)
+            {
+                case '6':
+                    index = 8;
+                    break;
+                case '5':
+                    index = 16;
+                    break;
+                case '4':
+                    index = 24;
+                    break;
+                case '3':
+                    index = 32;
+                    break;
+                case '2':
+                    index = 40;
+                    break;
+                case '1':
+                    index = 48;
+                    break;
+                case '0':
+                    index = 56;
+                    break;
+            }
+            return index += col;
         }
     }
 }
