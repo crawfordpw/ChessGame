@@ -124,7 +124,9 @@ namespace UI
 
         /*
          * Updates the UI without having to clear and create a new Observable Collection
-         * Instead, just updates the squares needed
+         * Instead, just updates the squares needed. This could be ooptimized later where
+         * no longer need to search through the entire ChessBoard atleast twice to update.
+         * However, I am not sure how at the moment
          */
         private void UpdateMovement()
         {
@@ -163,8 +165,7 @@ namespace UI
                 from.ToList()[0].Update(MoveLogic.lastMove[3]);
                 to.ToList()[0].Update(MoveLogic.lastMove[4]);
             }
-            //ChessBoard.Clear();
-            //ConvertToList(Game, ChessBoard);
+
             Game.gl.FromSquare = null;
             Game.gl.ToSquare = null;
         }

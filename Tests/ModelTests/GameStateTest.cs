@@ -81,8 +81,8 @@ namespace Tests.ModelTests
             gb.RemovePiece(gb.squares[1, 4]);
             gb.RemovePiece(gb.squares[1, 6]);
             gb.RemovePiece(gb.squares[0, 6]);
-            //Assert.AreEqual(true, gs.Check(gb, ChessColor.White, true));
-            //Assert.AreEqual(false, gs.CheckMate(gb, ChessColor.White));
+            Assert.AreEqual(true, gs.Check(gb, ChessColor.White, true));
+            Assert.AreEqual(false, gs.CheckMate(gb, ChessColor.White));
         }
 
         [TestMethod]

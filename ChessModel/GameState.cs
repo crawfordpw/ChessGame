@@ -17,8 +17,7 @@ namespace ChessModel
         private IEnumerable<Square> blackKing;
         private IEnumerable<Square> whitePieces;
         private IEnumerable<Square> blackPieces;
-        private IEnumerable<Square> lastFromMoveIE;
-        private IEnumerable<Square> lastToMoveIE;
+
         private Square lastFromMove;
         private Square lastToMove;
         private bool _castle;
@@ -53,8 +52,9 @@ namespace ChessModel
        public bool Check(GameBoard gb, ChessColor color, bool isCastle = false, bool both = false)
         {
             // creates 4 lists for all the pieces. 
-            // this can be optimized later. instead of iterating through all 64 squares 4 times at most and creating 4 lists
-            // everytime Check is called, update correct list everytime a move happens.
+            // this could be optimized later. instead of iterating through all 64 squares 4 times and creating 4 lists
+            // everytime Check is called, update correct list everytime a move happens. Could be tricky with InPlay method
+            // however since dealing with references and enumerables. 
             whiteKing =
                 from Square square in gb.squares
                 where square.Piece != null && square.Piece.Type == ChessPiece.King && square.Piece.Color == ChessColor.White
@@ -226,14 +226,13 @@ namespace ChessModel
         private void StoreLastMove(GameBoard gb)
         {
 
-            lastFromMoveIE = from Square square in gb.squares
+            lastFromMove = (from Square square in gb.squares
                              where square.ColID == MoveLogic.lastMove[0].ColID && square.RowID == MoveLogic.lastMove[0].RowID
-                             select square;
-            lastToMoveIE = from Square square in gb.squares
+                             select square).First();
+            lastToMove = (from Square square in gb.squares
                            where square.ColID == MoveLogic.lastMove[1].ColID && square.RowID == MoveLogic.lastMove[1].RowID
-                           select square;
-            lastFromMove = lastFromMoveIE.ToList()[0];
-            lastToMove = lastToMoveIE.ToList()[0];
+                            select square).First();
+  
             _castle = ml.isCastle;
             _enPassant = ml.isEnPassant;
             _capture = ml.isCapture;
