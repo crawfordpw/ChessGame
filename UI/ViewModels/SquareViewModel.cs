@@ -8,7 +8,7 @@ namespace UI
         public Square Square { get; set; }
         public IPiece Piece { get; set; }
 
-        public string Cord { get; set; }
+        public string Coord { get; set; }
         public ChessColor SquareColor { get; set; }
         private ChessPiece _squarePiece;
         private ChessColor _pieceColor;
@@ -40,7 +40,7 @@ namespace UI
         {
             this.Square = sq;
             this.Piece = sq.Piece;
-            this.Cord = sq.Cord;
+            this.Coord = sq.Coord;
             this.SquareColor = sq.Color;
             this.SquarePiece = sq.Piece == null ? ChessPiece.None : sq.Piece.Type;
             this.PieceColor = sq.Piece == null ? ChessColor.Black : sq.Piece.Color;

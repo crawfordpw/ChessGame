@@ -6,7 +6,7 @@
         public int RowID { get; set; }
         public ChessColor Color { get; set; }
         public IPiece Piece { get; set; }
-        public string Cord { get; set; }
+        public string Coord { get; set; }
 
         public Square() : this(0, 0)
         {
@@ -17,7 +17,7 @@
         {
             RowID = row;
             ColID = col;
-            Cord = $"{row}{col}";
+            Coord = $"{row}{col}";
         }
 
         /*

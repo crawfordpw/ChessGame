@@ -119,7 +119,6 @@ namespace UI
             {
                 button.IsChecked = false;               
             }
-
         }
 
         /*
@@ -155,21 +154,21 @@ namespace UI
         {
             var FromSquare = Game.gl.FromSquare;
             var ToSquare = Game.gl.ToSquare;
-            var FromIndex = ConvertCordToIndex(FromSquare.Cord);
-            var ToIndex = ConvertCordToIndex(ToSquare.Cord);
+            var FromIndex = ConvertCordToIndex(FromSquare.Coord);
+            var ToIndex = ConvertCordToIndex(ToSquare.Coord);
 
             ChessBoard[FromIndex].Update(FromSquare);
             ChessBoard[ToIndex].Update(ToSquare);
 
             if (Game.ml.isEnPassant)
             {
-                FromIndex = ConvertCordToIndex(MoveLogic.lastMove[2].Cord);
+                FromIndex = ConvertCordToIndex(MoveLogic.lastMove[2].Coord);
                 ChessBoard[FromIndex].Update(MoveLogic.lastMove[2]);
             }
             else if (Game.ml.isCastle)
             {
-                FromIndex = ConvertCordToIndex(MoveLogic.lastMove[3].Cord);
-                ToIndex = ConvertCordToIndex(MoveLogic.lastMove[4].Cord);
+                FromIndex = ConvertCordToIndex(MoveLogic.lastMove[3].Coord);
+                ToIndex = ConvertCordToIndex(MoveLogic.lastMove[4].Coord);
                 ChessBoard[FromIndex].Update(MoveLogic.lastMove[3]);
                 ChessBoard[ToIndex].Update(MoveLogic.lastMove[4]);
             }
@@ -182,10 +181,10 @@ namespace UI
          * Converts a grid coordinate (row and column) to the corresponting index
          * in a List
          */
-        private int ConvertCordToIndex(String cord)
+        private int ConvertCordToIndex(String coord)
         {
-            char row = cord[0];
-            int col = (int)Char.GetNumericValue(cord[1]);
+            char row = coord[0];
+            int col = (int)Char.GetNumericValue(coord[1]);
             int index= 0;
             switch (row)
             {

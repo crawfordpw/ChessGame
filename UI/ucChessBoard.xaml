@@ -16,7 +16,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ToggleButton Style="{StaticResource ChessBoardStyle}" Click="ChessBoardHandleGame" Tag="{Binding Path=Cord}"/>
+                    <ToggleButton Style="{StaticResource ChessBoardStyle}" Click="ChessBoardHandleGame" Tag="{Binding Path=Coord}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemContainerStyle>
