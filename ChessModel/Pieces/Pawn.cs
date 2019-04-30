@@ -26,7 +26,15 @@
             ColID = col;
         }
 
-        public bool IsValidMove(GameBoard gameboard, Square fromSquare, Square toSquare)
+        /*
+         * The Pawn has 4 different moves it can make. A Pawn can only move forward, never backward.
+         * It may move 1 space forward as long as that space is not occupied by any other piece. It can
+         * move 2 spaces forward as long as it has never moved before. It can move diagonally forward 1
+         * space as long as that space is an enemy. It asks the MoveValidator if it can En Passant.
+         * Under these conditions it is a Valid Move and if the square it's moving from has a piece and it is not
+         * moving to itself. Also need to check if the space it's moving to is not occupied by it's own colored pieces.
+         */
+        public bool IsValidMove(GameBoard gb, Square fromSquare, Square toSquare)
         {
             int fromRow = fromSquare.RowID;
             int fromCol = fromSquare.ColID;
@@ -39,13 +47,13 @@
                 return false;
 
 
-            bool enPassant = MoveValidator.IsEnPassant(gameboard, fromSquare, toSquare);
+            bool enPassant = MoveValidator.IsEnPassant(gb, fromSquare, toSquare);
             int sign = fromSquare.Piece.Color == ChessColor.White ? 1 : -1;
 
             if (MoveCount == 0)
             {
                 if ((toRow == fromRow + (2 * sign) && fromCol == toCol && !isOccupied)
-                    && (!MoveValidator.IsOccupied(gameboard.squares[fromRow + (1 * sign), fromCol])))
+                    && (!MoveValidator.IsOccupied(gb.squares[fromRow + (1 * sign), fromCol])))
                 {
                     return true;
                 }

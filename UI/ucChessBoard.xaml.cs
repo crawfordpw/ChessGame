@@ -20,7 +20,7 @@ using ChessModel.Pieces;
 namespace UI
 {
     /// <summary>
-    /// Interaction logic for Board.xaml
+    /// Interaction logic for UCChessBoard.xaml
     /// </summary>
     public partial class UCChessBoard : UserControl
     {
@@ -34,6 +34,9 @@ namespace UI
             NewGame();                         
         }
 
+        /*
+         * Creates a new game and updates the UI view
+         */
         private void NewGame()
         {
             Game = new Game();
@@ -43,6 +46,9 @@ namespace UI
             ConvertToList(Game, ChessBoard);
         }
         
+        /*
+         * Adds all the chessboard squares to an Observable Collection for the ItemsSource to use in the xaml
+         */
         private void ConvertToList(Game game, ObservableCollection<SquareViewModel> ChessBoard)
         {
             for (int row = 7; row > -1; row--)
@@ -55,22 +61,31 @@ namespace UI
             Board.ItemsSource = ChessBoard;
         }
 
+        /*
+         * When a square in the UI is clicked, this method is called to Handle what is to be done
+         */
         public void ChessBoardHandleGame(object sender, RoutedEventArgs e)
         {
+            // converts the button coordinates to a row and column integer for the GameLogic ViewModel
             var button = (ToggleButton)sender;
             var tag = button.Tag.ToString();
             int row = (int)Char.GetNumericValue(tag[0]);
             int col = (int)Char.GetNumericValue(tag[1]);
 
+            // Calls the View Model to handle the game and then updates the UI view
             GameLogicViewModel.LastButton.IsChecked = false;
             GameLogicViewModel.HandleGame(button, row, col);
             var ToSquare = Game.gl.ToSquare;
             GameLogicViewModel.Update();
 
+            // When a promotion happens, promote the pawn and need the re-check if there is a
+            // checkmate or stalemate. (since now there is a new piece on the board)
             if (GameLogicViewModel.Promotion)
             {
                 // switch color since NextPLayer would've already been called
                 var color = Game.CurrentPlayer.Color == ChessColor.Black ? ChessColor.White : ChessColor.Black;
+
+                // prompts user for the pawn to promote to
                 var PromotionWindow = new PromotionWindow(color)
                 {
                     Owner = Window.GetWindow(this)
@@ -106,6 +121,11 @@ namespace UI
             }
 
         }
+
+        /*
+         * Updates the UI without having to clear and create a new Observable Collection
+         * Instead, just updates the squares needed
+         */
         private void UpdateMovement()
         {
             var FromSquare = Game.gl.FromSquare;
@@ -149,6 +169,9 @@ namespace UI
             Game.gl.ToSquare = null;
         }
 
+        /*
+         * Prompts the user what is to be done once the game has ended
+         */
         private void EndGameWindow(string message)
         {
             var EndGameWindow = new EndGameWindow(message)

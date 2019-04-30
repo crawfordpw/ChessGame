@@ -26,7 +26,13 @@
             ColID = col;
         }
 
-        public bool IsValidMove(GameBoard gameboard, Square fromSquare, Square toSquare)
+        /*
+         * The King can move in any direction by 1 space, unless it is Castling. 
+         * The King asks the Move Validator if it is allowed to Castle. 
+         * It is only a valid move if it can Castle, or if the square it's moving from has a piece and it is not
+         * moving to itself. Also need to check if the space it's moving to is not occupied by it's own colored pieces.
+         */
+        public bool IsValidMove(GameBoard gb, Square fromSquare, Square toSquare)
         {
             int fromRow = fromSquare.RowID;
             int fromCol = fromSquare.ColID;
@@ -38,7 +44,7 @@
             if (fromSquare.Piece == null || fromSquare.Piece == toSquare.Piece)
                 return false;
 
-            bool isCastle = MoveValidator.IsCastle(gameboard, fromSquare, toSquare);
+            bool isCastle = MoveValidator.IsCastle(gb, fromSquare, toSquare);
             if (isCastle)
                 return true;
 

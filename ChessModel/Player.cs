@@ -1,5 +1,10 @@
 ﻿namespace ChessModel
 {
+    /*
+     * An abstract class for a Player. A player can either be Human or AI (not yet implemented).
+     * Since a Human would move differently than an AI (or rather an AI would require addional
+     * methods/classes, each would implement the Move method differently.
+     */
     public abstract class Player
     {
         public ChessColor Color { get; set; }

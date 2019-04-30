@@ -26,10 +26,14 @@
             ColID = col;
         }
 
-        public bool IsValidMove(GameBoard gameboard, Square fromSquare, Square toSquare)
+        /*
+         * Since a Queen can move like either a Rook or a Bishop, reuses their ValidMove
+         * code in the MoveValidator
+         */
+        public bool IsValidMove(GameBoard gb, Square fromSquare, Square toSquare)
         {
-            bool rookValid = MoveValidator.RookMove(gameboard, fromSquare, toSquare);
-            bool bishopValid = MoveValidator.BishopMove(gameboard, fromSquare, toSquare);
+            bool rookValid = MoveValidator.RookMove(gb, fromSquare, toSquare);
+            bool bishopValid = MoveValidator.BishopMove(gb, fromSquare, toSquare);
 
             if (rookValid || bishopValid)
                 return true;

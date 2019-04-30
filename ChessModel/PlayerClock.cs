@@ -2,6 +2,10 @@
 
 namespace ChessModel
 {
+    /*
+     * A Clock that keeps track of a Player's Time. Can Start, Stop, and Reset it as well
+     * as get the Time Remaining even if it's still counting down.
+     */
     public class PlayerClock
     {
         public DateTime TurnStartTime { get; private set; }

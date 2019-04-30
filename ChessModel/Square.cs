@@ -20,6 +20,9 @@
             Cord = $"{row}{col}";
         }
 
+        /*
+         * Makes a piece have the same coordinates as itself
+         */
         public void MakeSameCord()
         {
             Piece.ColID = ColID;

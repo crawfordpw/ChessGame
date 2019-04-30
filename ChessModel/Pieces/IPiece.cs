@@ -1,7 +1,10 @@
-﻿using ChessModel.Pieces;
-
-namespace ChessModel
+﻿namespace ChessModel
 {
+    /*
+     * An interface for creating each chess piece. Add at location is mainly a method used for
+     * debugging purposes. Place piece in the Gameboard class is a more robust method. IsValidMove
+     * defines how a piece should move.
+     */
     public interface IPiece
     {
         ChessPiece Type { get; set; }
@@ -11,6 +14,6 @@ namespace ChessModel
         int MoveCount { get; set; }
 
         void AddAtLocation(int row, int col);
-        bool IsValidMove(GameBoard gameboard, Square fromSquare, Square toSquare);
+        bool IsValidMove(GameBoard gb, Square fromSquare, Square toSquare);
     }
 }

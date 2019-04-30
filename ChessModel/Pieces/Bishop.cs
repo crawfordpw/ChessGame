@@ -26,9 +26,12 @@
             ColID = col;
         }
 
-        public bool IsValidMove(GameBoard gameboard, Square fromSquare, Square toSquare)
+        /*
+         * This method is in the MoveValidator class so the Queen class can reuse this code as well
+         */
+        public bool IsValidMove(GameBoard gb, Square fromSquare, Square toSquare)
         {
-            return MoveValidator.BishopMove(gameboard, fromSquare, toSquare);
+            return MoveValidator.BishopMove(gb, fromSquare, toSquare);
         }
     }
 }

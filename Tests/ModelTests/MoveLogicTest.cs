@@ -14,16 +14,16 @@ namespace Tests.ModelTests
             gb.InitializeBoard();
             MoveLogic ml = new MoveLogic(gb);           
 
-            ml.MovePiece(ml.gameBoard.squares[1, 0], ml.gameBoard.squares[2, 0]);
+            ml.MovePiece(ml.gb.squares[1, 0], ml.gb.squares[2, 0]);
             Assert.AreEqual(ChessPiece.Pawn, gb.squares[2, 0].Piece.Type);
 
             gb.MovePiece(gb.squares[6, 0], gb.squares[3, 1]);
-            ml.MovePiece(ml.gameBoard.squares[2, 0], ml.gameBoard.squares[3, 1]);
-            Assert.AreEqual(ChessPiece.Pawn, ml.gameBoard.squares[3, 1].Piece.Type);
-            Assert.AreEqual(ChessColor.White, ml.gameBoard.squares[3, 1].Piece.Color);
+            ml.MovePiece(ml.gb.squares[2, 0], ml.gb.squares[3, 1]);
+            Assert.AreEqual(ChessPiece.Pawn, ml.gb.squares[3, 1].Piece.Type);
+            Assert.AreEqual(ChessColor.White, ml.gb.squares[3, 1].Piece.Color);
 
-            ml.MovePiece(ml.gameBoard.squares[1, 1], ml.gameBoard.squares[4, 1]);
-            Assert.IsNull(ml.gameBoard.squares[4, 1].Piece);
+            ml.MovePiece(ml.gb.squares[1, 1], ml.gb.squares[4, 1]);
+            Assert.IsNull(ml.gb.squares[4, 1].Piece);
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ namespace Tests.ModelTests
             GameBoard gb = new GameBoard(8, 8);
             MoveLogic ml = new MoveLogic(gb);
 
-            ml.Capture(ml.gameBoard.squares[0, 0], ml.gameBoard.squares[7, 0]);
+            ml.Capture(ml.gb.squares[0, 0], ml.gb.squares[7, 0]);
 
             Assert.AreEqual(ChessColor.White, gb.squares[7, 0].Piece.Color);
         }

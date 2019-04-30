@@ -9,24 +9,24 @@ namespace Tests.ModelTests
         [TestMethod]
         public void IsOccupiedTest()
         {
-            GameBoard gameboard = new GameBoard(8, 8);
+            GameBoard gb = new GameBoard(8, 8);
 
-            bool actual = MoveValidator.IsOccupied(gameboard.squares[1, 0]);
+            bool actual = MoveValidator.IsOccupied(gb.squares[1, 0]);
             Assert.AreEqual(true, actual);
 
-            actual = MoveValidator.IsOccupied(gameboard.squares[2, 0]);
+            actual = MoveValidator.IsOccupied(gb.squares[2, 0]);
             Assert.AreEqual(false, actual);
         }
 
         [TestMethod]
         public void IsEnemyTest()
         {
-            GameBoard gameboard = new GameBoard(8, 8);
+            GameBoard gb = new GameBoard(8, 8);
 
-            bool actual = MoveValidator.IsEnemy(gameboard.squares[6, 0], gameboard.squares[1, 0]);
+            bool actual = MoveValidator.IsEnemy(gb.squares[6, 0], gb.squares[1, 0]);
             Assert.AreEqual(true, actual);
 
-            actual = MoveValidator.IsEnemy(gameboard.squares[1, 1], gameboard.squares[1, 0]);
+            actual = MoveValidator.IsEnemy(gb.squares[1, 1], gb.squares[1, 0]);
             Assert.AreEqual(false, actual);
         }
     }

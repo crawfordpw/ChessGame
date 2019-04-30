@@ -26,7 +26,12 @@
             ColID = col;
         }
 
-        public bool IsValidMove(GameBoard gameboard, Square fromSquare, Square toSquare)
+        /*
+         * The knight moves in horizontally or vertically 2 spaces, then the other direction
+         * 1 space. It is only a valid move if the square it's moving from has a piece and it is not moving to
+         * itself. Also need to check if the space it's moving to is not occupied by it's own colored pieces.
+         */
+        public bool IsValidMove(GameBoard gb, Square fromSquare, Square toSquare)
         {
             int fromRow = fromSquare.RowID;
             int fromCol = fromSquare.ColID;

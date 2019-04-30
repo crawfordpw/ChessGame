@@ -1,5 +1,9 @@
 ﻿namespace ChessModel
 {
+    /*
+     * A Human Player only needs to provide a square to move from and another square
+     * to move to. The neccessary logic for moving is handled in the MoveLogic class
+     */
     public class Human : Player
     {
         public Human() : base()

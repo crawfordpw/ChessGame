@@ -11,41 +11,41 @@ namespace Tests.ModelTests
         [TestMethod]
         public void CheckTest()
         {
-            GameBoard gameboard = new GameBoard(8, 8);
-            MoveLogic ml = new MoveLogic(gameboard);
+            GameBoard gb = new GameBoard(8, 8);
+            MoveLogic ml = new MoveLogic(gb);
             GameState gs = new GameState(ml);
 
-            Assert.AreEqual(false, gs.Check(gameboard, ChessColor.White, false,  true));
+            Assert.AreEqual(false, gs.Check(gb, ChessColor.White, false,  true));
 
-            gameboard.MovePiece(gameboard.squares[0, 1], gameboard.squares[5, 3]);
-            Assert.AreEqual(true, gs.Check(gameboard, ChessColor.White, false, true));
+            gb.MovePiece(gb.squares[0, 1], gb.squares[5, 3]);
+            Assert.AreEqual(true, gs.Check(gb, ChessColor.White, false, true));
 
-            gameboard.MovePiece(gameboard.squares[5, 3], gameboard.squares[0, 1]);
-            gameboard.MovePiece(gameboard.squares[7, 1], gameboard.squares[2, 3]);
-            Assert.AreEqual(true, gs.Check(gameboard, ChessColor.White, false, true));
+            gb.MovePiece(gb.squares[5, 3], gb.squares[0, 1]);
+            gb.MovePiece(gb.squares[7, 1], gb.squares[2, 3]);
+            Assert.AreEqual(true, gs.Check(gb, ChessColor.White, false, true));
 
-            gameboard.MovePiece(gameboard.squares[0, 4], gameboard.squares[3, 4]);
-            gameboard.MovePiece(gameboard.squares[7, 4], gameboard.squares[4, 4]);
-            Assert.AreEqual(true, gs.Check(gameboard, ChessColor.White, false, true));
+            gb.MovePiece(gb.squares[0, 4], gb.squares[3, 4]);
+            gb.MovePiece(gb.squares[7, 4], gb.squares[4, 4]);
+            Assert.AreEqual(true, gs.Check(gb, ChessColor.White, false, true));
 
-            gameboard.MovePiece(gameboard.squares[4, 4], gameboard.squares[7, 4]);
-            gameboard.MovePiece(gameboard.squares[0, 0], gameboard.squares[4, 4]);
-            gameboard.MovePiece(gameboard.squares[7, 0], gameboard.squares[5, 4]);
-            Assert.AreEqual(false, gs.Check(gameboard, ChessColor.White, false, true));
+            gb.MovePiece(gb.squares[4, 4], gb.squares[7, 4]);
+            gb.MovePiece(gb.squares[0, 0], gb.squares[4, 4]);
+            gb.MovePiece(gb.squares[7, 0], gb.squares[5, 4]);
+            Assert.AreEqual(false, gs.Check(gb, ChessColor.White, false, true));
 
-            gameboard.MovePiece(gameboard.squares[4, 4], gameboard.squares[4, 3]);
-            Assert.AreEqual(true, gs.Check(gameboard, ChessColor.White, false, true));
+            gb.MovePiece(gb.squares[4, 4], gb.squares[4, 3]);
+            Assert.AreEqual(true, gs.Check(gb, ChessColor.White, false, true));
         }
 
         [TestMethod]
         public void CheckMateDefaultTest()
         {
-            GameBoard gameboard = new GameBoard(8, 8);
-            MoveLogic ml = new MoveLogic(gameboard);
+            GameBoard gb = new GameBoard(8, 8);
+            MoveLogic ml = new MoveLogic(gb);
             GameState gs = new GameState(ml);
 
-            Assert.AreEqual(false, gs.CheckMate(gameboard, ChessColor.White));
-            Assert.AreEqual(false, gs.CheckMate(gameboard, ChessColor.Black));
+            Assert.AreEqual(false, gs.CheckMate(gb, ChessColor.White));
+            Assert.AreEqual(false, gs.CheckMate(gb, ChessColor.Black));
         }
 
         [TestMethod]
@@ -156,10 +156,10 @@ namespace Tests.ModelTests
             game.NewGame();
 
             game.gb.MovePiece(game.gb.squares[1, 4], game.gb.squares[4, 4]);
-            game.Player2.Move(game.ml, game.ml.gameBoard.squares[6, 5], game.ml.gameBoard.squares[4, 5]);
+            game.Player2.Move(game.ml, game.ml.gb.squares[6, 5], game.ml.gb.squares[4, 5]);
             var stalemate = game.ml.gs.StaleMate(game.gb, ChessColor.White);
 
-            game.Player1.Move(game.ml, game.ml.gameBoard.squares[4, 4], game.ml.gameBoard.squares[5, 5]);
+            game.Player1.Move(game.ml, game.ml.gb.squares[4, 4], game.ml.gb.squares[5, 5]);
             Assert.AreEqual(game.gb.squares[5, 5].Piece.Type, ChessPiece.Pawn);
             Assert.AreEqual(game.gb.squares[5, 5].Piece.Color, ChessColor.White);
         }
