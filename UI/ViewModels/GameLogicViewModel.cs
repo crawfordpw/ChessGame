@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Controls.Primitives;
 using ChessModel;
 
 namespace UI
@@ -17,13 +12,20 @@ namespace UI
         public bool CheckMate { get; set; }
         public bool StaleMate { get; set; }
 
+        public Square FromSquare { get; set; }
+        public Square ToSquare { get; set; }
+
+        public ToggleButton LastButton { get; set; }
+
         public GameLogicViewModel(Game game)
         {
             _game = game;
+            LastButton = new ToggleButton();
         }
 
-        public void HandleGame(int row, int col, bool inPlay = false)
+        public void HandleGame(ToggleButton button, int row, int col, bool inPlay = false)
         {
+            LastButton = button;
             _game.gl.HandleGame(row, col, inPlay);
         }
 
@@ -38,6 +40,8 @@ namespace UI
             Promotion = _game.gl.Promotion;
             CheckMate = _game.gl.CheckMate;
             StaleMate = _game.gl.StaleMate;
+            FromSquare = _game.gl.FromSquare;
+            ToSquare = _game.gl.ToSquare;
         }
     }
 }

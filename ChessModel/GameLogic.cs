@@ -64,7 +64,22 @@ namespace ChessModel
             }
             else
             {
-                ToSquare = _game.gb.squares[row, col];
+                if (_game.gb.squares[row, col].Piece != null)
+                {
+                    if (_game.gb.squares[row, col].Piece.Color == Player.Color)
+                    {
+                        FromSquare = _game.gb.squares[row, col];
+                        ToSquare = null;
+                    }
+                    else
+                    {
+                        ToSquare = _game.gb.squares[row, col];
+                    }
+                }
+                else
+                {
+                    ToSquare = _game.gb.squares[row, col];
+                }
             }
 
             if (FromSquare != null && ToSquare != null)

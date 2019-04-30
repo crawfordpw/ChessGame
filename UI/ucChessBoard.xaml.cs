@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -56,12 +57,13 @@ namespace UI
 
         public void ChessBoardHandleGame(object sender, RoutedEventArgs e)
         {
-            var button = (Button)sender;
+            var button = (ToggleButton)sender;
             var tag = button.Tag.ToString();
             int row = (int)Char.GetNumericValue(tag[0]);
             int col = (int)Char.GetNumericValue(tag[1]);
 
-            GameLogicViewModel.HandleGame(row, col);
+            GameLogicViewModel.LastButton.IsChecked = false;
+            GameLogicViewModel.HandleGame(button, row, col);
             var ToSquare = Game.gl.ToSquare;
             GameLogicViewModel.Update();
 
@@ -77,7 +79,7 @@ namespace UI
                 PromotionWindow.ShowDialog();
                 var selection = PromotionWindow.Selection;
                 GameLogicViewModel.Promote(ToSquare, selection);
-                GameLogicViewModel.HandleGame(row, col, true);
+                GameLogicViewModel.HandleGame(button, row, col, true);
                 GameLogicViewModel.Update();
             }
             if (GameLogicViewModel.UpdateMovement)
@@ -92,6 +94,15 @@ namespace UI
             else if (GameLogicViewModel.StaleMate)
             {
                 EndGameWindow("Stalemate!");
+            }
+
+            if(GameLogicViewModel.FromSquare == null)
+            {
+                button.IsChecked = false;
+            }
+            if (GameLogicViewModel.ToSquare != null)
+            {
+                button.IsChecked = false;               
             }
 
         }
