@@ -1,21 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ChessModel;
-using ChessModel.Pieces;
 
 namespace UI
 {
@@ -42,6 +31,7 @@ namespace UI
         {
             Game = new Game();
             Game.NewGame();
+           // Game.gb.MovePiece(Game.gb.squares[0, 3], Game.gb.squares[3, 3]);
             ValidMoves = new List<int>();
             GameLogicViewModel = new GameLogicViewModel(Game);
             ChessBoard = new ObservableCollection<SquareViewModel>();
@@ -87,6 +77,7 @@ namespace UI
 
             if (GameLogicViewModel.FromSquare != null && GameLogicViewModel.ToSquare == null)
             {
+                HideLastValidMoves();
                 ShowValidMoves(Game.gl.FromSquare);
             }
 
@@ -191,7 +182,8 @@ namespace UI
 
         private void ShowValidMoves(Square FromSquare)
         {
-            var color = Game.CurrentPlayer.Color == ChessColor.Black ? ChessColor.White : ChessColor.Black;
+            //var color = Game.CurrentPlayer.Color == ChessColor.Black ? ChessColor.White : ChessColor.Black;
+            var color = Game.CurrentPlayer.Color;
             ValidMoves.Clear();
             GetAllValidMoves.AllValidMoves.Clear();
             GetAllValidMoves.GetMoves(Game.ml, FromSquare, color, false);

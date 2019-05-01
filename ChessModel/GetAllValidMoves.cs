@@ -9,11 +9,10 @@ namespace ChessModel
      * e.g For a King's valid moves, it would only check 1 space around the King and not the whole board.
      * Each piece would have it's own method.
      * 
-     * Iterates through the entire board and tries to move
-     * a given piece to each square. If it is able to move, see if the king is not in Check. If it's not,
-     * then there is a move that a player can make. FirstValid is used for checking checkmate or stalemate. 
-     * In which case it would stop looking for moves at the first one. Otherwise, it will push the move into a 
-     * a list of all valid moves. Need to Undo the move since the player hasn't actually made it
+     * Iterates through the entire board and tries to move a given piece to each square. If it is able to move, 
+     * see if the king is not in Check. If it's not, then there is a move that a player can make. FirstValid is used 
+     * for checking checkmate or stalemate. In which case it would stop looking for moves at the first one. Otherwise, 
+     * it will push the move into a a list of all valid moves. Need to Undo the move since the player hasn't actually made it
      */
     public static class GetAllValidMoves
     {

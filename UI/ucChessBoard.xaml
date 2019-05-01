@@ -19,7 +19,7 @@
                     <Grid>
                         <ToggleButton Style="{StaticResource ChessBoardStyle}" Click="ChessBoardHandleGame" Tag="{Binding Path=Coord}"/>
 
-                        <Viewbox Height="10" Width="10" Visibility="{Binding Path=ValidMove}">
+                        <Viewbox Height="10" Width="10" Visibility="{Binding Path=ValidMove}" IsHitTestVisible="False">
                             <Ellipse Fill="LawnGreen" 
                                      Height="10" 
                                      Width="10" 
