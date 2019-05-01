@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace ChessModel
 {
@@ -19,7 +17,7 @@ namespace ChessModel
      */
     public static class GetAllValidMoves
     {
-        public static List<Square> AllValidMoves = new List<Square>();
+        public static List<string> AllValidMoves = new List<string>();
 
         public static bool GetMoves(MoveLogic ml, Square fromSquare, ChessColor color, bool FirstValid)
         {
@@ -38,7 +36,7 @@ namespace ChessModel
                         {
                             if (!FirstValid)
                             {
-                                AllValidMoves.Add(ml.gb.squares[row, col]);
+                                AllValidMoves.Add(ml.gb.squares[row, col].Coord);
                                 ml.Undo();
                                 ml.gs.SetLastMove();
                             }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows;
 using ChessModel;
 
 namespace UI
@@ -7,9 +8,10 @@ namespace UI
     {
         public Square Square { get; set; }
         public IPiece Piece { get; set; }
-
         public string Coord { get; set; }
         public ChessColor SquareColor { get; set; }
+
+        private Visibility _validMove { get; set; }
         private ChessPiece _squarePiece;
         private ChessColor _pieceColor;
 
@@ -31,6 +33,14 @@ namespace UI
             }
         }
 
+        public Visibility ValidMove {
+            get { return _validMove; }
+            set {
+                _validMove = value;
+                OnPropertyChanged("ValidMove");
+            }
+        }
+
         public SquareViewModel() : this(new Square())
         {
 
@@ -44,12 +54,14 @@ namespace UI
             this.SquareColor = sq.Color;
             this.SquarePiece = sq.Piece == null ? ChessPiece.None : sq.Piece.Type;
             this.PieceColor = sq.Piece == null ? ChessColor.Black : sq.Piece.Color;
+            this.ValidMove = Visibility.Hidden;
         }
 
-        public void Update(Square sq)
+        public void Update(Square sq, Visibility valid)
         {
             PieceColor = sq.Piece == null ? ChessColor.Black : Square.Piece.Color;
             SquarePiece = sq.Piece == null ? ChessPiece.None : Square.Piece.Type;
+            ValidMove = valid;
         }
 
         // Create the OnPropertyChanged method to raise the event

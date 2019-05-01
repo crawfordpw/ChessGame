@@ -16,11 +16,26 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ToggleButton Style="{StaticResource ChessBoardStyle}" Click="ChessBoardHandleGame" Tag="{Binding Path=Coord}"/>
+                    <Grid>
+                        <ToggleButton Style="{StaticResource ChessBoardStyle}" Click="ChessBoardHandleGame" Tag="{Binding Path=Coord}"/>
+
+                        <Viewbox Height="10" Width="10" Visibility="{Binding Path=ValidMove}">
+                            <Ellipse Fill="LawnGreen" 
+                                     Height="10" 
+                                     Width="10" 
+                                     Opacity=".6" 
+                                     Stroke="Black"
+                                     StrokeThickness="1.5"
+                                     VerticalAlignment="Center" 
+                                     HorizontalAlignment="Center"
+                                     />
+                        </Viewbox>
+                    </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemContainerStyle>
                 <Style>
+
                 </Style>
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>

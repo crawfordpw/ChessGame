@@ -27,6 +27,7 @@ namespace UI
         ObservableCollection<SquareViewModel> ChessBoard { get; set; }
         private Game Game { get; set; }
         private GameLogicViewModel GameLogicViewModel { get; set; }
+        private List<int> ValidMoves { get; set; }
 
         public UCChessBoard()
         {
@@ -41,6 +42,7 @@ namespace UI
         {
             Game = new Game();
             Game.NewGame();
+            ValidMoves = new List<int>();
             GameLogicViewModel = new GameLogicViewModel(Game);
             ChessBoard = new ObservableCollection<SquareViewModel>();
             ConvertToList(Game, ChessBoard);
@@ -77,6 +79,16 @@ namespace UI
             GameLogicViewModel.HandleGame(button, row, col);
             var ToSquare = Game.gl.ToSquare;
             GameLogicViewModel.Update();
+
+            if (GameLogicViewModel.FromSquare == null || GameLogicViewModel.ToSquare != null)
+            {
+                HideLastValidMoves();
+            }
+
+            if (GameLogicViewModel.FromSquare != null && GameLogicViewModel.ToSquare == null)
+            {
+                ShowValidMoves(Game.gl.FromSquare);
+            }
 
             // When a promotion happens, promote the pawn and need the re-check if there is a
             // checkmate or stalemate. (since now there is a new piece on the board)
@@ -157,24 +169,46 @@ namespace UI
             var FromIndex = ConvertCordToIndex(FromSquare.Coord);
             var ToIndex = ConvertCordToIndex(ToSquare.Coord);
 
-            ChessBoard[FromIndex].Update(FromSquare);
-            ChessBoard[ToIndex].Update(ToSquare);
+            ChessBoard[FromIndex].Update(FromSquare, Visibility.Hidden);
+            ChessBoard[ToIndex].Update(ToSquare, Visibility.Hidden);
 
             if (Game.ml.isEnPassant)
             {
                 FromIndex = ConvertCordToIndex(MoveLogic.lastMove[2].Coord);
-                ChessBoard[FromIndex].Update(MoveLogic.lastMove[2]);
+                ChessBoard[FromIndex].Update(MoveLogic.lastMove[2], Visibility.Hidden);
             }
             else if (Game.ml.isCastle)
             {
                 FromIndex = ConvertCordToIndex(MoveLogic.lastMove[3].Coord);
                 ToIndex = ConvertCordToIndex(MoveLogic.lastMove[4].Coord);
-                ChessBoard[FromIndex].Update(MoveLogic.lastMove[3]);
-                ChessBoard[ToIndex].Update(MoveLogic.lastMove[4]);
+                ChessBoard[FromIndex].Update(MoveLogic.lastMove[3], Visibility.Hidden);
+                ChessBoard[ToIndex].Update(MoveLogic.lastMove[4], Visibility.Hidden);
             }
 
             Game.gl.FromSquare = null;
             Game.gl.ToSquare = null;
+        }
+
+        private void ShowValidMoves(Square FromSquare)
+        {
+            var color = Game.CurrentPlayer.Color == ChessColor.Black ? ChessColor.White : ChessColor.Black;
+            ValidMoves.Clear();
+            GetAllValidMoves.AllValidMoves.Clear();
+            GetAllValidMoves.GetMoves(Game.ml, FromSquare, color, false);
+
+            for(int i = 0; i < GetAllValidMoves.AllValidMoves.Count; i++)
+            {
+                ValidMoves.Add(ConvertCordToIndex(GetAllValidMoves.AllValidMoves[i]));
+                ChessBoard[ValidMoves[i]].ValidMove = Visibility.Visible;
+            }
+        }
+
+        private void HideLastValidMoves()
+        {
+            for (int i = 0; i < ValidMoves.Count; i++)
+            {
+                ChessBoard[ValidMoves[i]].ValidMove = Visibility.Hidden;
+            }
         }
 
         /*
