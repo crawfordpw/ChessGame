@@ -25,9 +25,9 @@ namespace ChessModel
 
         public MoveLogic(GameBoard gb)
         {
-            gs = new GameState(this);
             this.gb = gb;
-            for(int i = 0; i < lastMove.Length; i++)
+            gs = new GameState(this);
+            for (int i = 0; i < lastMove.Length; i++)
             {
                 lastMove[i] = gb.squares[4, 4];
             }

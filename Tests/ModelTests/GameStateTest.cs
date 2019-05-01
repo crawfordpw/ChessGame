@@ -15,26 +15,27 @@ namespace Tests.ModelTests
             MoveLogic ml = new MoveLogic(gb);
             GameState gs = new GameState(ml);
 
-            Assert.AreEqual(false, gs.Check(gb, ChessColor.White, false,  true));
+            Assert.AreEqual(false, gs.Check(gb, ChessColor.White));
 
             gb.MovePiece(gb.squares[0, 1], gb.squares[5, 3]);
-            Assert.AreEqual(true, gs.Check(gb, ChessColor.White, false, true));
+            Assert.AreEqual(true, gs.Check(gb, ChessColor.Black));
 
             gb.MovePiece(gb.squares[5, 3], gb.squares[0, 1]);
             gb.MovePiece(gb.squares[7, 1], gb.squares[2, 3]);
-            Assert.AreEqual(true, gs.Check(gb, ChessColor.White, false, true));
+            Assert.AreEqual(true, gs.Check(gb, ChessColor.White));
 
             gb.MovePiece(gb.squares[0, 4], gb.squares[3, 4]);
             gb.MovePiece(gb.squares[7, 4], gb.squares[4, 4]);
-            Assert.AreEqual(true, gs.Check(gb, ChessColor.White, false, true));
+            Assert.AreEqual(true, gs.Check(gb, ChessColor.White));
+            Assert.AreEqual(true, gs.Check(gb, ChessColor.Black));
 
             gb.MovePiece(gb.squares[4, 4], gb.squares[7, 4]);
             gb.MovePiece(gb.squares[0, 0], gb.squares[4, 4]);
             gb.MovePiece(gb.squares[7, 0], gb.squares[5, 4]);
-            Assert.AreEqual(false, gs.Check(gb, ChessColor.White, false, true));
+            Assert.AreEqual(false, gs.Check(gb, ChessColor.White));
 
             gb.MovePiece(gb.squares[4, 4], gb.squares[4, 3]);
-            Assert.AreEqual(true, gs.Check(gb, ChessColor.White, false, true));
+            Assert.AreEqual(true, gs.Check(gb, ChessColor.White));
         }
 
         [TestMethod]

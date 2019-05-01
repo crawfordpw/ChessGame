@@ -13,10 +13,12 @@ namespace ChessModel
         public State State { get; set; }
 
         private readonly MoveLogic ml;
-        private IEnumerable<Square> whiteKing;
-        private IEnumerable<Square> blackKing;
-        private IEnumerable<Square> whitePieces;
-        private IEnumerable<Square> blackPieces;
+        //private IEnumerable<Square> whiteKing;
+        //private IEnumerable<Square> blackKing;
+        //private IEnumerable<Square> whitePieces;
+        //private IEnumerable<Square> blackPieces;
+        private IPiece _whiteKing;
+        private IPiece _blackKing;
 
         private Square lastFromMove;
         private Square lastToMove;
@@ -46,41 +48,22 @@ namespace ChessModel
 
         /*
          * Used to determine if a given player (color) is in Check. isCastle is a flag for checking Castle
-         * logic. It is illegal for a King to Castle to being in Check, or through a Check. The both
-         * variable is a debug flag for checking both players.
+         * logic. It is illegal for a King to Castle to being in Check, or through a Check. 
          */
-       public bool Check(GameBoard gb, ChessColor color, bool isCastle = false, bool both = false)
-        {
-            // creates 4 lists for all the pieces. 
-            // this could be optimized later. instead of iterating through all 64 squares 4 times and creating 4 lists
-            // everytime Check is called, update correct list everytime a move happens. Could be tricky with InPlay method
-            // however since dealing with references and enumerables. 
-            whiteKing =
-                from Square square in gb.squares
-                where square.Piece != null && square.Piece.Type == ChessPiece.King && square.Piece.Color == ChessColor.White
-                select square;
-            blackKing =
-                from Square square in gb.squares
-                where square.Piece != null && square.Piece.Type == ChessPiece.King && square.Piece.Color == ChessColor.Black
-                select square;
-            whitePieces =
-                from Square square in gb.squares
-                where square.Piece != null  && square.Piece.Color == ChessColor.White
-                select square;
-            blackPieces =
-                from Square square in gb.squares
-                where square.Piece != null  && square.Piece.Color == ChessColor.Black
-                select square;
+       public bool Check(GameBoard gb, ChessColor color, bool isCastle = false)
+        {           
+            var piecesColor = color == ChessColor.White ? ChessColor.Black : ChessColor.White;
+            GetKings();
 
-            // if player color is white, check all moves from back pieces to white king. Vice versa for player color black
-            if (color == ChessColor.White || both)
+            // if player color is white, check all moves from black pieces to white king. Vice versa for player color black
+            if (color == ChessColor.White)
             {
-                if (CheckHelper(gb, whiteKing, blackPieces, isCastle))
+                if (CheckHelper(gb, _whiteKing, piecesColor, isCastle))
                     return true;
             }
-            if (color == ChessColor.Black || both)
-            {
-                if (CheckHelper(gb, blackKing, whitePieces, isCastle))
+            if (color == ChessColor.Black)
+            {                
+                if (CheckHelper(gb, _blackKing, piecesColor, isCastle))
                     return true;
             }
 
@@ -91,35 +74,37 @@ namespace ChessModel
          * A helper function for Check. Goes through a list of all pieces and check if it's a valid move to the King.
          * If it is, return true the King is in check
          */
-        private bool CheckHelper(GameBoard gb, IEnumerable<Square> king, IEnumerable<Square> pieces, bool isCastle)
+        private bool CheckHelper(GameBoard gb, IPiece king, ChessColor color, bool isCastle)
         {
-            List<Square> toSquare = king.ToList();
 
-            foreach (var item in pieces)
+            foreach (var item in gb.pieces)
             {
-                if (item.Piece.IsValidMove(gb, item, toSquare[0]))
+                if (item.Color == color && gb.squares[item.RowID, item.ColID].Piece != null)
                 {
-                    return true;
-                }
-
-                // Castle Check logic
-                else if (isCastle)
-                {
-                    // if Castle to the left
-                    if (toSquare[0].ColID == 2 && toSquare[0].RowID == MoveLogic.lastMove[3].RowID)
+                    if (item.IsValidMove(gb, gb.squares[item.RowID, item.ColID], gb.squares[king.RowID, king.ColID]))
                     {
-                        if (item.Piece.IsValidMove(gb, item, gb.squares[toSquare[0].RowID, 3]))
-                        {
-                            return true;
-                        }
+                        return true;
                     }
 
-                    // if Castle to the right
-                    else if (toSquare[0].ColID == 6 && toSquare[0].RowID == MoveLogic.lastMove[3].RowID)
+                    // Castle Check logic
+                    else if (isCastle)
                     {
-                        if (item.Piece.IsValidMove(gb, item, gb.squares[toSquare[0].RowID, 5]))
+                        // if Castle to the left
+                        if (king.ColID == 2 && king.RowID == MoveLogic.lastMove[3].RowID)
                         {
-                            return true;
+                            if (item.IsValidMove(gb, gb.squares[item.RowID, item.ColID], gb.squares[king.RowID, 3]))
+                            {
+                                return true;
+                            }
+                        }
+
+                        // if Castle to the right
+                        else if (king.ColID == 6 && king.RowID == MoveLogic.lastMove[3].RowID)
+                        {
+                            if (item.IsValidMove(gb, gb.squares[item.RowID, item.ColID], gb.squares[king.RowID, 5]))
+                            {
+                                return true;
+                            }
                         }
                     }
                 }
@@ -134,19 +119,20 @@ namespace ChessModel
         {
             // store the last move since we will actually be moving the pieces, and the last move will changed/lost
             StoreLastMove(gb);
+            GetKings();
 
             if(Check(gb, color))
             {
-                var findColor = whiteKing.ToList();
-                IEnumerable<Square> pieces = findColor[0].Piece.Color == color ? whitePieces : blackPieces;
-
                 // Gets all the possible valid moves for a piece
-                foreach (var item in pieces)
+                foreach (var item in gb.pieces)
                 {
-                    if (GetAllPossibleMoves(gb, item, color))
+                    if (item.Color == color)
                     {
-                        SetLastMove();
-                        return false;
+                        if (GetAllPossibleMoves(gb, gb.squares[item.RowID, item.ColID], color))
+                        {
+                            SetLastMove();
+                            return false;
+                        }
                     }
                 }
 
@@ -166,18 +152,19 @@ namespace ChessModel
         {
             // store the last move since we will actually be moving the pieces, and the last move will changed/lost
             StoreLastMove(gb);
+            GetKings();
 
             if (!Check(gb, color))
             {
-                var findColor = whiteKing.ToList();
-                IEnumerable<Square> pieces = findColor[0].Piece.Color == color ? whitePieces : blackPieces;
-
-                foreach (var item in pieces)
+                foreach (var item in gb.pieces)
                 {
-                    if (GetAllPossibleMoves(gb, item, color))
+                    if (item.Color == color)
                     {
-                        SetLastMove();
-                        return false;
+                        if (GetAllPossibleMoves(gb, gb.squares[item.RowID, item.ColID], color))
+                        {
+                            SetLastMove();
+                            return false;
+                        }
                     }
                 }
 
@@ -248,6 +235,21 @@ namespace ChessModel
             ml.isCastle = _castle;
             ml.isEnPassant = _enPassant;
             ml.isCapture = _capture;
+        }
+
+        private void GetKings()
+        {
+            for (int i = 0; i < this.ml.gb.pieces.Count; i++)
+            {
+                if (ml.gb.pieces[i].Type == ChessPiece.King && ml.gb.pieces[i].Color == ChessColor.White)
+                {
+                    _whiteKing = ml.gb.pieces[i];
+                }
+                if (ml.gb.pieces[i].Type == ChessPiece.King && ml.gb.pieces[i].Color == ChessColor.Black)
+                {
+                    _blackKing = ml.gb.pieces[i];
+                }
+            }
         }
     }
 }
