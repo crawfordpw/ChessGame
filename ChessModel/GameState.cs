@@ -237,6 +237,12 @@ namespace ChessModel
             ml.isCapture = _capture;
         }
 
+        /*
+         * Updates the Kings variable by looping through the list of pieces. Normally this would not be necessary,
+         * and it would only need to be assigned once. However, in the event that the board is cleared, or a king is
+         * somehow removed or replaced from the list of pieces, this added redundancy protects from pointing to 
+         * the "wrong" king.
+         */
         private void GetKings()
         {
             for (int i = 0; i < this.ml.gb.pieces.Count; i++)
