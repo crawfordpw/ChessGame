@@ -15,8 +15,9 @@
         public bool Promotion { get; set; }
         public bool CheckMate { get; set; }
         public bool StaleMate { get; set; }
-        private Game _game;
         public Player Player { get; set; }
+
+        private readonly Game _game;
 
         public GameLogic(Game game)
         {
@@ -65,6 +66,7 @@
 
         /*
          * Determines whether a given row or column is a From square or a To square
+         * Returns true if a player has moved, false otherwise
          */
         private bool HandleMovement(int row, int col)
         {

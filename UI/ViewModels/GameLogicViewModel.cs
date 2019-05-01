@@ -5,7 +5,7 @@ namespace UI
 {
     public class GameLogicViewModel
     {
-        private Game _game;
+        private readonly Game _game;
 
         public bool UpdateMovement { get; set; }
         public bool Promotion { get; set; }

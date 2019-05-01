@@ -13,10 +13,6 @@ namespace ChessModel
         public State State { get; set; }
 
         private readonly MoveLogic ml;
-        //private IEnumerable<Square> whiteKing;
-        //private IEnumerable<Square> blackKing;
-        //private IEnumerable<Square> whitePieces;
-        //private IEnumerable<Square> blackPieces;
         private IPiece _whiteKing;
         private IPiece _blackKing;
 
@@ -36,10 +32,9 @@ namespace ChessModel
          */
         public bool InPlay(GameBoard gb, ChessColor color)
         {
-            bool checkmate = CheckMate(gb, color);
-            bool stalemate = StaleMate(gb, color);
-
-            if(checkmate || stalemate)
+            if(CheckMate(gb, color))
+                return false;
+            else if (StaleMate(gb, color))
                 return false;
 
             State = State.InPlay;
@@ -128,7 +123,7 @@ namespace ChessModel
                 {
                     if (item.Color == color)
                     {
-                        if (GetAllPossibleMoves(gb, gb.squares[item.RowID, item.ColID], color))
+                        if (GetAllValidMoves.GetMoves(ml, gb.squares[item.RowID, item.ColID], color, true))
                         {
                             SetLastMove();
                             return false;
@@ -160,7 +155,7 @@ namespace ChessModel
                 {
                     if (item.Color == color)
                     {
-                        if (GetAllPossibleMoves(gb, gb.squares[item.RowID, item.ColID], color))
+                        if (GetAllValidMoves.GetMoves(ml, gb.squares[item.RowID, item.ColID], color, true))
                         {
                             SetLastMove();
                             return false;
@@ -178,39 +173,10 @@ namespace ChessModel
         }
 
         /*
-         * Helper method for checkmate and stalemate. Iterates throught the entire board and tries to move
-         * a given piece to each square. If it is able to move, see if the king is not in Check. If it's not,
-         * then there is a move that a player can make to not be in checkmate or stalemate. Need to Undo the
-         * move since the player hasn't actually made it
-         */
-        private bool GetAllPossibleMoves(GameBoard gb, Square fromSquare, ChessColor color)
-        {
-            for (int row = 0; row < GameBoard.XDim; row++)
-            {
-                for (int col = 0; col < GameBoard.YDim; col++)
-                {
-                    if (ml.MovePiece(fromSquare, gb.squares[row, col], true))
-                    {                      
-                        if (!Check(gb, color))
-                        {
-                            ml.Undo();
-                            return true;
-                        }
-                        else
-                        {
-                            ml.Undo();
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
-        /*
          * Stores variables needed to return to a state before the program starts making possible moves that a
          * player hasn't made
          */
-        private void StoreLastMove(GameBoard gb)
+        public void StoreLastMove(GameBoard gb)
         {
 
             lastFromMove = (from Square square in gb.squares
@@ -228,7 +194,7 @@ namespace ChessModel
         /*
          * Returns variables to the state after the program making possible moves that a player hasn't made
          */
-        private void SetLastMove()
+        public void SetLastMove()
         {
             MoveLogic.lastMove[0] = lastFromMove;
             MoveLogic.lastMove[1] = lastToMove;
