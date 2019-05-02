@@ -108,7 +108,7 @@ namespace UI
             if (GameLogicViewModel.CheckMate)
             {
                 string color = Game.CurrentPlayer.Color == ChessColor.Black ? "White" : "Black";
-                EndGameWindow($"Checkmate! {color} Wins!");
+                EndGameWindow($"Checkmate\n{color} Wins!");
             }
             else if (GameLogicViewModel.StaleMate)
             {

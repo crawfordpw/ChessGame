@@ -8,32 +8,50 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner" 
         Title="EndGameWindow" Height="200" Width="300" 
-        AllowsTransparency="True" WindowStyle="None"
+        WindowStyle="None"
         >
     
     <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height=".7*"/>
+            <RowDefinition Height="3.5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
+        <StackPanel Grid.Row="0" Background="#292b29">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Button Name="CloseButton" Click="CloseWindowClick" Grid.Column="1" Style="{StaticResource CloseButton}">X</Button>
+            </Grid>
+    </StackPanel>
 
-            <TextBlock Margin="20, 40, 20, 20"                        
+        <StackPanel Grid.Row="1" Background="#51914f">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Margin="20, 40, 20, 20"                        
                        FontSize="20"
+                       FontFamily="Verdana"
                        FontWeight="Bold"
-                       TextWrapping="Wrap"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       TextWrapping="Wrap"                       
                        Text="{Binding Message, RelativeSource={RelativeSource 
                                    Mode=FindAncestor, AncestorType=Window}}"
+                       Grid.Row="0"
                        />
+            </Grid>
         </StackPanel>
-        
-        <StackPanel  Grid.Row="1" Background="LightGray">
-            <StackPanel.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Margin" Value="10,10,10,10" />
-                </Style>
-            </StackPanel.Resources>
+
+        <StackPanel Grid.Row="2" Background="WhiteSmoke">
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

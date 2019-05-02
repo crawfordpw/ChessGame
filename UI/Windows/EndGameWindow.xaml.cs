@@ -12,7 +12,7 @@ namespace UI
         public string Message { get; set; }
         public Player Player { get; set; }
 
-        public EndGameWindow() : this("Checkmate! White Wins!")
+        public EndGameWindow() : this("Checkmate\nWhite Wins!")
         {
 
         }
@@ -38,6 +38,11 @@ namespace UI
         public void CloseGameClick(object sender, RoutedEventArgs e)
         {
             Selection = "EndGame";
+            this.Close();
+        }
+
+        public void CloseWindowClick(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }
