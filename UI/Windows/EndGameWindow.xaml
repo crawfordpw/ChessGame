@@ -7,26 +7,25 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner" 
-        Title="EndGameWindow" Height="200" Width="300">
-
-    <Grid>
+        Title="EndGameWindow" Height="200" Width="300" 
+        AllowsTransparency="True" WindowStyle="None"
+        >
+    
+    <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="3.5*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
 
             <TextBlock Margin="20, 40, 20, 20"                        
-                       FontSize="12"
+                       FontSize="20"
                        FontWeight="Bold"
                        TextWrapping="Wrap"
                        Text="{Binding Message, RelativeSource={RelativeSource 
                                    Mode=FindAncestor, AncestorType=Window}}"
                        />
-
-
-
         </StackPanel>
         
         <StackPanel  Grid.Row="1" Background="LightGray">
@@ -41,8 +40,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Name="NewGameButton" Click="NewGameClick" Grid.Column="0">New Game</Button>
-                <Button Name="EndGameButton" Click="CloseGameClick" Grid.Column="1">End Game</Button>
+                <Button Name="NewGameButton" Click="NewGameClick" Grid.Column="0" Style="{StaticResource EndWindowButton}">New Game</Button>
+                <Button Name="EndGameButton" Click="CloseGameClick" Grid.Column="1" Style="{StaticResource EndWindowButton}">End Game</Button>
             </Grid>
         </StackPanel>
     </Grid>
