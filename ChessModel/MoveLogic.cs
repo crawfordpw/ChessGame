@@ -81,7 +81,9 @@ namespace ChessModel
                 }
                 if (isEnPassant && !debug)
                 {
-                    gb.pieces.Remove(lastMove[1].Piece);
+                    var color = toSquare.Piece.Color;
+                    IPiece findPiece = gb.pieces.Find(e => e.ColID == toSquare.Piece.ColID && e.RowID == toSquare.Piece.RowID && e.Color != color);
+                    gb.pieces.Remove(findPiece);
                 }
 
                 return true;
@@ -107,7 +109,7 @@ namespace ChessModel
         private void EnPassant(Square fromSquare, Square toSquare)
         {
             isEnPassant = true;
-            gb.RemovePieceTemp(lastMove[2]);
+            gb.RemovePieceTemp(lastMove[1]);
             gb.MovePiece(fromSquare, toSquare);
         }
 
