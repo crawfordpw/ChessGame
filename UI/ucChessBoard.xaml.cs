@@ -77,6 +77,7 @@ namespace UI
 
             if (GameLogicViewModel.FromSquare != null && GameLogicViewModel.ToSquare == null)
             {
+                button.IsChecked = true;
                 HideLastValidMoves();
                 ShowValidMoves(Game.gl.FromSquare);
             }
