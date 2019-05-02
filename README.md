@@ -14,7 +14,6 @@ These features have been implemented thus far:
 	- Pawn Promotion
 
 TODO:
-- Optimize checkmate, stalemate, and getting all the valid moves of a piece by only checking squares a piece can move to instead of checking the entire board
 - Endgame and pawn promotion windows to look nicer
 - Display of player clock to the UI and logic for ending the game if time has reached zero
 - Ability to Undo a move
