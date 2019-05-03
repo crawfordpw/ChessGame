@@ -15,8 +15,6 @@ namespace UI
 
         public Square FromSquare { get; set; }
         public Square ToSquare { get; set; }
-        public Button LastFrom { get; set; }
-        public Button LastTo { get; set; }
 
         public ToggleButton LastButton { get; set; }
 

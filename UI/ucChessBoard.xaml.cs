@@ -124,11 +124,11 @@ namespace UI
                 var Index = ConvertCordToIndex(tag);
                 ChessBoard[Index].IsChecked = false;
             }
-            if (GameLogicViewModel.ToSquare != null)
-            {
-                var Index = ConvertCordToIndex(tag);
-                ChessBoard[Index].IsChecked = false;
-            }
+            //if (GameLogicViewModel.ToSquare != null)
+            //{
+            //    var Index = ConvertCordToIndex(tag);
+            //    ChessBoard[Index].IsChecked = false;
+            //}
 
             if (LastFrom != -1)
             {
