@@ -21,8 +21,6 @@ namespace UI
         public EndGameWindow(string message)
         {
             DataContext = this;
-            Game Game = new Game();
-            Player = Game.Player1;
 
             InitializeComponent();
             message = $"{message}";

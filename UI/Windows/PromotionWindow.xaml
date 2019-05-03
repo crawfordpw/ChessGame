@@ -11,22 +11,46 @@
         MaxWidth="800"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner" 
-        Title="Pawn Promotion" Height="200" Width="400">
+        Title="Pawn Promotion" Height="250" Width="400"
+        WindowStyle="None">
 
-    <Grid Background="NavajoWhite">
-        <StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".8*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" Background="#292b29">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="11*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Name="CloseButton" Click="Select_Click" Grid.Column="1" Style="{StaticResource CloseButton}">X</Button>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Background="#51914f">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Label FontWeight="Bold" Grid.ColumnSpan="4" FontSize="16" Margin="0,10,0,10" Grid.Row="0">
-                    Select a piece for pawn promotion:
+                <Label 
+                    FontWeight="Bold" 
+                    FontFamily="Verdana"
+                    FontSize="16" 
+                    Foreground="White"
+                    Grid.ColumnSpan="4" 
+                    Margin="0,10,0,10" 
+                    Grid.Row="0">
+                    Select a piece for promotion:
                 </Label>
 
-                <StackPanel Grid.Row="1">
+                <StackPanel Grid.Row="1" Margin="0, 20, 0, 0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -38,7 +62,6 @@
                         <RadioButton Grid.Column="0" IsChecked="True" Name="Queen" Style="{StaticResource RadioStyle}"
                                      Checked="RadioButton_Checked">
                         </RadioButton>
-
 
                         <RadioButton Grid.Column="1" Name="Knight" Style="{StaticResource RadioStyle}" 
                                      Checked="RadioButton_Checked">
@@ -53,16 +76,18 @@
                         </RadioButton>
                     </Grid>
                 </StackPanel>
-
-                <Button x:Name="Select" 
-                    Click="Select_Click" 
-                    Content="SELECT PIECE" 
-                    Grid.Row="2" 
-                    
-                    Margin="20,20,20,10"
-                    />
-
             </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Background="WhiteSmoke">
+            <Button x:Name="Select" 
+                        Click="Select_Click" 
+                        Content="SELECT PIECE" 
+                        Margin="20, 9, 20, 10"
+                        Width="200"
+                        Height="28"
+                        Style="{StaticResource EndWindowButton}"
+                        />
         </StackPanel>
     </Grid>
 </Window>

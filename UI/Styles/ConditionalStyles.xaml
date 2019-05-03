@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:UI"
                     xmlns:ChessModel ="clr-namespace:ChessModel;assembly=ChessModel">
 
-    <Style x:Key="RadioStyle" TargetType="{x:Type RadioButton}">
+    <Style x:Key="RadioStyle" BasedOn="{StaticResource {x:Type ToggleButton}}"  TargetType="{x:Type RadioButton}">
         <Style.Triggers>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
@@ -14,8 +14,30 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Queen.png" Width="50" Height="50"/>
+                                <Image Source="/imgs/w_Queen.png" Width="60" Height="60"/>
                             </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Grid x:Name="grid">
+                                    <Border x:Name="border" BorderBrush="#707070" BorderThickness="0" Background="LightGray">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          TextElement.FontWeight="Normal">
+                                        </ContentPresenter>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" TargetName="border" Value="#a8cea7"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter Property="Background" TargetName="border" Value="transparent"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </MultiDataTrigger.Setters>
@@ -29,8 +51,30 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Knight.png" Width="50" Height="50"/>
+                                <Image Source="/imgs/w_Knight.png" Width="60" Height="60"/>
                             </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Grid x:Name="grid">
+                                    <Border x:Name="border" BorderBrush="#707070" BorderThickness="0" Background="LightGray">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          TextElement.FontWeight="Normal">
+                                        </ContentPresenter>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" TargetName="border" Value="#a8cea7"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter Property="Background" TargetName="border" Value="transparent"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </MultiDataTrigger.Setters>
@@ -44,8 +88,30 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Rook.png" Width="50" Height="50"/>
+                                <Image Source="/imgs/w_Rook.png" Width="60" Height="60"/>
                             </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Grid x:Name="grid">
+                                    <Border x:Name="border" BorderBrush="#707070" BorderThickness="0" Background="LightGray">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          TextElement.FontWeight="Normal">
+                                        </ContentPresenter>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" TargetName="border" Value="#a8cea7"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter Property="Background" TargetName="border" Value="transparent"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </MultiDataTrigger.Setters>
@@ -59,8 +125,30 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/w_Bishop.png" Width="50" Height="50"/>
+                                <Image Source="/imgs/w_Bishop.png" Width="60" Height="60"/>
                             </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Grid x:Name="grid">
+                                    <Border x:Name="border" BorderBrush="#707070" BorderThickness="0" Background="LightGray">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          TextElement.FontWeight="Normal">
+                                        </ContentPresenter>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" TargetName="border" Value="#a8cea7"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter Property="Background" TargetName="border" Value="transparent"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </MultiDataTrigger.Setters>
@@ -74,8 +162,30 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Queen.png" Width="50" Height="50"/>
+                                <Image Source="/imgs/b_Queen.png" Width="60" Height="60"/>
                             </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Grid x:Name="grid">
+                                    <Border x:Name="border" BorderBrush="#707070" BorderThickness="0" Background="LightGray">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          TextElement.FontWeight="Normal">
+                                        </ContentPresenter>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" TargetName="border" Value="#a8cea7"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter Property="Background" TargetName="border" Value="transparent"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </MultiDataTrigger.Setters>
@@ -89,8 +199,30 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Knight.png" Width="50" Height="50"/>
+                                <Image Source="/imgs/b_Knight.png" Width="60" Height="60"/>
                             </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Grid x:Name="grid">
+                                    <Border x:Name="border" BorderBrush="#707070" BorderThickness="0" Background="LightGray">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          TextElement.FontWeight="Normal">
+                                        </ContentPresenter>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" TargetName="border" Value="#a8cea7"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter Property="Background" TargetName="border" Value="transparent"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </MultiDataTrigger.Setters>
@@ -104,8 +236,30 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Rook.png" Width="50" Height="50"/>
+                                <Image Source="/imgs/b_Rook.png" Width="60" Height="60"/>
                             </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Grid x:Name="grid">
+                                    <Border x:Name="border" BorderBrush="#707070" BorderThickness="0" Background="LightGray">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          TextElement.FontWeight="Normal">
+                                        </ContentPresenter>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" TargetName="border" Value="#a8cea7"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter Property="Background" TargetName="border" Value="transparent"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </MultiDataTrigger.Setters>
@@ -119,8 +273,30 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Image Source="/imgs/b_Bishop.png" Width="50" Height="50"/>
+                                <Image Source="/imgs/b_Bishop.png" Width="60" Height="60"/>
                             </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Grid x:Name="grid">
+                                    <Border x:Name="border" BorderBrush="#707070" BorderThickness="0" Background="LightGray">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          TextElement.FontWeight="Normal">
+                                        </ContentPresenter>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" TargetName="border" Value="#a8cea7"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter Property="Background" TargetName="border" Value="transparent"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </MultiDataTrigger.Setters>

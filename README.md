@@ -14,7 +14,6 @@ These features have been implemented thus far:
 	- Pawn Promotion
 
 TODO:
-- Endgame and pawn promotion windows to look nicer
 - Display of player clock to the UI and logic for ending the game if time has reached zero
 - Ability to Undo a move
 - Starting window for a user to select various options. eg. time limit, player color, number of players etc. 

@@ -38,7 +38,6 @@
     </Style>
 
     <Style x:Key="CloseButton" TargetType="{x:Type Button}">
-
         <Setter Property="Width" Value="30"/>
         <Setter Property="Height" Value="28"/>
         <Setter Property="FontFamily" Value="Verdana"/>
