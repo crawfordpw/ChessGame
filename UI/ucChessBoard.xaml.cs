@@ -32,8 +32,10 @@ namespace UI
          */
         private void NewGame()
         {
+            PlayerClock player1 = new PlayerClock(new TimeSpan(0, 5, 0));
+            PlayerClock player2 = new PlayerClock(new TimeSpan(0, 10, 0));
             Game = new Game();
-            Game.NewGame();
+            Game.NewGame(player1, player2);
 
             LastFrom = -1;
             ValidMoves = new List<int>();
@@ -133,11 +135,6 @@ namespace UI
                 var Index = ConvertCordToIndex(tag);
                 ChessBoard[Index].IsChecked = false;
             }
-            //if (GameLogicViewModel.ToSquare != null)
-            //{
-            //    var Index = ConvertCordToIndex(tag);
-            //    ChessBoard[Index].IsChecked = false;
-            //}
 
             if (LastFrom != -1)
             {
@@ -277,9 +274,7 @@ namespace UI
 
         private void TimerTick(object sender, EventArgs e)
         {
-            GameLogicViewModel.UpdateClock();
-            //Player1Clock = GameLogicViewModel.Player1Clock;
-            //Player2Clock = GameLogicViewModel.Player2Clock;
+            GameLogicViewModel.UpdateClock(@"hh\:mm\:ss");
         }
     }
 }

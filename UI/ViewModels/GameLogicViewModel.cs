@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Controls.Primitives;
 using ChessModel;
 
@@ -65,10 +64,10 @@ namespace UI
             ToSquare = _game.gl.ToSquare;
         }
 
-        public void UpdateClock()
+        public void UpdateClock(string format)
         {
-            Player1Clock = _game.Player1.Clock.TimeRemaining.ToString(@"hh\:mm\:ss");
-            Player2Clock = _game.Player2.Clock.TimeRemaining.ToString(@"hh\:mm\:ss");
+            Player1Clock = _game.Player1.Clock.TimeRemaining.ToString(format);
+            Player2Clock = _game.Player2.Clock.TimeRemaining.ToString(format);
         }
 
         // Create the OnPropertyChanged method to raise the event

@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 
 namespace ChessModel
 {
@@ -19,12 +19,12 @@ namespace ChessModel
          * Creates a new game with two players.
          * TODO: Allow for creating a game with custom clocks
          */
-        public void NewGame()
+        public void NewGame(PlayerClock player1Clock, PlayerClock player2Clock)
         {
             gb = new GameBoard();
             ml = new MoveLogic(gb);           
-            Player1 = new Human(ChessColor.White);
-            Player2 = new Human(ChessColor.Black);
+            Player1 = new Human(ChessColor.White, player1Clock);
+            Player2 = new Human(ChessColor.Black, player2Clock);
             CurrentPlayer = Player1;
             gl = new GameLogic(this);
         }
