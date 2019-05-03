@@ -11,9 +11,10 @@ namespace UI
         public string Coord { get; set; }
         public ChessColor SquareColor { get; set; }
 
-        private Visibility _validMove { get; set; }
+        private Visibility _validMove;
         private ChessPiece _squarePiece;
         private ChessColor _pieceColor;
+        private bool _isChecked;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -38,6 +39,14 @@ namespace UI
             set {
                 _validMove = value;
                 OnPropertyChanged("ValidMove");
+            }
+        }
+
+        public bool IsChecked {
+            get { return _isChecked; }
+            set {
+                _isChecked = value;
+                OnPropertyChanged("IsChecked");
             }
         }
 

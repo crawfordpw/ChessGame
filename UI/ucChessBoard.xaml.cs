@@ -17,6 +17,8 @@ namespace UI
         private Game Game { get; set; }
         private GameLogicViewModel GameLogicViewModel { get; set; }
         private List<int> ValidMoves { get; set; }
+        private int LastFrom { get; set; }
+        private int LastTo { get; set; }
 
         public UCChessBoard()
         {
@@ -31,7 +33,8 @@ namespace UI
         {
             Game = new Game();
             Game.NewGame();
-           // Game.gb.MovePiece(Game.gb.squares[0, 3], Game.gb.squares[3, 3]);
+
+            LastFrom = -1;
             ValidMoves = new List<int>();
             GameLogicViewModel = new GameLogicViewModel(Game);
             ChessBoard = new ObservableCollection<SquareViewModel>();
@@ -77,7 +80,8 @@ namespace UI
 
             if (GameLogicViewModel.FromSquare != null && GameLogicViewModel.ToSquare == null)
             {
-                button.IsChecked = true;
+                var Index = ConvertCordToIndex(tag);
+                ChessBoard[Index].IsChecked = true;
                 HideLastValidMoves();
                 ShowValidMoves(Game.gl.FromSquare);
             }
@@ -117,11 +121,19 @@ namespace UI
 
             if(GameLogicViewModel.FromSquare == null)
             {
-                button.IsChecked = false;
+                var Index = ConvertCordToIndex(tag);
+                ChessBoard[Index].IsChecked = false;
             }
             if (GameLogicViewModel.ToSquare != null)
             {
-                button.IsChecked = false;               
+                var Index = ConvertCordToIndex(tag);
+                ChessBoard[Index].IsChecked = false;
+            }
+
+            if (LastFrom != -1)
+            {
+                ChessBoard[LastFrom].IsChecked = true;
+                ChessBoard[LastTo].IsChecked = true;
             }
         }
 
@@ -156,10 +168,18 @@ namespace UI
          */
         private void UpdateMovement()
         {
+            if (LastFrom != -1)
+            {
+                ChessBoard[LastFrom].IsChecked = false;
+                ChessBoard[LastTo].IsChecked = false;
+            }
+
             var FromSquare = Game.gl.FromSquare;
             var ToSquare = Game.gl.ToSquare;
             var FromIndex = ConvertCordToIndex(FromSquare.Coord);
             var ToIndex = ConvertCordToIndex(ToSquare.Coord);
+            LastFrom = FromIndex;
+            LastTo = ToIndex;
 
             ChessBoard[FromIndex].Update(FromSquare, Visibility.Hidden);
             ChessBoard[ToIndex].Update(ToSquare, Visibility.Hidden);
@@ -218,7 +238,7 @@ namespace UI
         {
             char row = coord[0];
             int col = (int)Char.GetNumericValue(coord[1]);
-            int index= 0;
+            int index = 0;
             switch (row)
             {
                 case '6':

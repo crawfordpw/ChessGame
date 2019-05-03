@@ -48,7 +48,10 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <ToggleButton Style="{StaticResource ChessBoardStyle}" Click="ChessBoardHandleGame" Tag="{Binding Path=Coord}"/>
+                        <ToggleButton Style="{StaticResource ChessBoardStyle}" 
+                                      Click="ChessBoardHandleGame" 
+                                      Tag="{Binding Path=Coord}"
+                                      IsChecked="{Binding IsChecked}"/>
 
                         <Viewbox Height="10" Width="10" Visibility="{Binding Path=ValidMove}" IsHitTestVisible="False">
                             <Ellipse Fill="LawnGreen" 
