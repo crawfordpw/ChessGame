@@ -181,6 +181,9 @@ namespace UI
             Game.gl.ToSquare = null;
         }
 
+        /*
+         * Gets all valid move for the selected piece and updates the ViewModel
+         */
         private void ShowValidMoves(Square FromSquare)
         {
             //var color = Game.CurrentPlayer.Color == ChessColor.Black ? ChessColor.White : ChessColor.Black;
@@ -196,6 +199,9 @@ namespace UI
             }
         }
 
+        /*
+         * Hides all valid moves from last selected piece and updates the ViewModel
+         */
         private void HideLastValidMoves()
         {
             for (int i = 0; i < ValidMoves.Count; i++)
