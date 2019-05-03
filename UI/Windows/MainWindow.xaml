@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" 
         ResizeMode="CanResize"
-        MinHeight="500" MinWidth="500"
-        Title="ChessGame" Height="500" Width="500"
+        MinHeight="560" MinWidth="500"
+        Title="ChessGame" Height="560" Width="500"
         >
 
     <Grid>

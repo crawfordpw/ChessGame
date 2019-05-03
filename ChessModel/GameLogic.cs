@@ -25,6 +25,7 @@
             FromSquare = null;
             ToSquare = null;
             Player = game.CurrentPlayer;
+            Player.Clock.Start();
         }
 
         /*
@@ -54,7 +55,9 @@
                 CheckInPlay(Player.Color);
 
                 // Player turn has ended and a valid move has been made
+                Player.Clock.Stop();
                 Player = _game.NextPlayer();
+                Player.Clock.Start();
             }
             if (inPlay)
             {

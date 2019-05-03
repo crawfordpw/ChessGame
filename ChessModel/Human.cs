@@ -20,6 +20,7 @@
 
         public override bool Move(MoveLogic ml, Square fromSquare, Square toSquare)
         {
+            MoveCount += 1;
             return ml.MovePiece(fromSquare, toSquare);
         }
     }

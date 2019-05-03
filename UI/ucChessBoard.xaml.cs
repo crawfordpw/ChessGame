@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Threading;
 using ChessModel;
 
 namespace UI
@@ -15,7 +16,7 @@ namespace UI
     {
         ObservableCollection<SquareViewModel> ChessBoard { get; set; }
         private Game Game { get; set; }
-        private GameLogicViewModel GameLogicViewModel { get; set; }
+        public GameLogicViewModel GameLogicViewModel { get; set; }
         private List<int> ValidMoves { get; set; }
         private int LastFrom { get; set; }
         private int LastTo { get; set; }
@@ -39,6 +40,14 @@ namespace UI
             GameLogicViewModel = new GameLogicViewModel(Game);
             ChessBoard = new ObservableCollection<SquareViewModel>();
             ConvertToList(Game, ChessBoard);
+
+            DispatcherTimer timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(1000)
+            };
+            timer.Tick += TimerTick;
+            timer.Start();
+            
         }
         
         /*
@@ -264,6 +273,13 @@ namespace UI
                     break;
             }
             return index += col;
+        }
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            GameLogicViewModel.UpdateClock();
+            //Player1Clock = GameLogicViewModel.Player1Clock;
+            //Player2Clock = GameLogicViewModel.Player2Clock;
         }
     }
 }

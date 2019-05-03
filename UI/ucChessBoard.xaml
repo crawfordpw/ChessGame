@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="500">
+             d:DesignHeight="560" d:DesignWidth="500">
 
     <Grid Background="#292b29">
         <Grid.ColumnDefinitions>
@@ -24,6 +24,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height=".05*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -35,11 +36,19 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height=".05*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Rectangle Grid.Row="1" Grid.RowSpan="10" Grid.Column="1" Grid.ColumnSpan="10" Fill="White"/>
+        <Rectangle Grid.Row="2" Grid.RowSpan="10" Grid.Column="1" Grid.ColumnSpan="10" Fill="White"/>
+        
+        <Label Name="Player2" Style="{StaticResource PlayerClock}"
+               Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="3" 
+               Content="{Binding GameLogicViewModel.Player2Clock, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        <Label Name="Player1" Style="{StaticResource PlayerClock}"
+               Grid.Row="13" Grid.Column="8" Grid.ColumnSpan="3" 
+               Content="{Binding GameLogicViewModel.Player1Clock, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 
-        <ItemsControl Name="Board" Grid.Row="2" Grid.RowSpan="8" Grid.Column="2" Grid.ColumnSpan="8">
+        <ItemsControl Name="Board" Grid.Row="3" Grid.RowSpan="8" Grid.Column="2" Grid.ColumnSpan="8">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="8" Rows="8" />
@@ -68,39 +77,39 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource Lettering}" Content="8"/>
-        <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource Lettering}" Content="7"/>
-        <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource Lettering}" Content="6"/>
-        <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource Lettering}" Content="5"/>
-        <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource Lettering}" Content="4"/>
-        <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource Lettering}" Content="3"/>
-        <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource Lettering}" Content="2"/>
-        <Label Grid.Row="8" Grid.Column="0" Style="{StaticResource Lettering}" Content="1"/>
-        <Label Grid.Row="1" Grid.Column="11" Style="{StaticResource Lettering}" Content="8"/>
-        <Label Grid.Row="2" Grid.Column="11" Style="{StaticResource Lettering}" Content="7"/>
-        <Label Grid.Row="3" Grid.Column="11" Style="{StaticResource Lettering}" Content="6"/>
-        <Label Grid.Row="4" Grid.Column="11" Style="{StaticResource Lettering}" Content="5"/>
-        <Label Grid.Row="5" Grid.Column="11" Style="{StaticResource Lettering}" Content="4"/>
-        <Label Grid.Row="6" Grid.Column="11" Style="{StaticResource Lettering}" Content="3"/>
-        <Label Grid.Row="7" Grid.Column="11" Style="{StaticResource Lettering}" Content="2"/>
-        <Label Grid.Row="8" Grid.Column="11" Style="{StaticResource Lettering}" Content="1"/>
+        <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource Lettering}" Content="8"/>
+        <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource Lettering}" Content="7"/>
+        <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource Lettering}" Content="6"/>
+        <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource Lettering}" Content="5"/>
+        <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource Lettering}" Content="4"/>
+        <Label Grid.Row="8" Grid.Column="0" Style="{StaticResource Lettering}" Content="3"/>
+        <Label Grid.Row="9" Grid.Column="0" Style="{StaticResource Lettering}" Content="2"/>
+        <Label Grid.Row="10" Grid.Column="0" Style="{StaticResource Lettering}" Content="1"/>
+        <Label Grid.Row="3" Grid.Column="11" Style="{StaticResource Lettering}" Content="8"/>
+        <Label Grid.Row="4" Grid.Column="11" Style="{StaticResource Lettering}" Content="7"/>
+        <Label Grid.Row="5" Grid.Column="11" Style="{StaticResource Lettering}" Content="6"/>
+        <Label Grid.Row="6" Grid.Column="11" Style="{StaticResource Lettering}" Content="5"/>
+        <Label Grid.Row="7" Grid.Column="11" Style="{StaticResource Lettering}" Content="4"/>
+        <Label Grid.Row="8" Grid.Column="11" Style="{StaticResource Lettering}" Content="3"/>
+        <Label Grid.Row="9" Grid.Column="11" Style="{StaticResource Lettering}" Content="2"/>
+        <Label Grid.Row="10" Grid.Column="11" Style="{StaticResource Lettering}" Content="1"/>
 
-        <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource Lettering}" Content="A"/>
-        <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource Lettering}" Content="B"/>
-        <Label Grid.Row="0" Grid.Column="4" Style="{StaticResource Lettering}" Content="C"/>
-        <Label Grid.Row="0" Grid.Column="5" Style="{StaticResource Lettering}" Content="D"/>
-        <Label Grid.Row="0" Grid.Column="6" Style="{StaticResource Lettering}" Content="E"/>
-        <Label Grid.Row="0" Grid.Column="7" Style="{StaticResource Lettering}" Content="F"/>
-        <Label Grid.Row="0" Grid.Column="8" Style="{StaticResource Lettering}" Content="G"/>
-        <Label Grid.Row="0" Grid.Column="9" Style="{StaticResource Lettering}" Content="H"/>
-        <Label Grid.Row="11" Grid.Column="2" Style="{StaticResource Lettering}" Content="A"/>
-        <Label Grid.Row="11" Grid.Column="3" Style="{StaticResource Lettering}" Content="B"/>
-        <Label Grid.Row="11" Grid.Column="4" Style="{StaticResource Lettering}" Content="C"/>
-        <Label Grid.Row="11" Grid.Column="5" Style="{StaticResource Lettering}" Content="D"/>
-        <Label Grid.Row="11" Grid.Column="6" Style="{StaticResource Lettering}" Content="E"/>
-        <Label Grid.Row="11" Grid.Column="7" Style="{StaticResource Lettering}" Content="F"/>
-        <Label Grid.Row="11" Grid.Column="8" Style="{StaticResource Lettering}" Content="G"/>
-        <Label Grid.Row="11" Grid.Column="9" Style="{StaticResource Lettering}" Content="H"/>
+        <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource Lettering}" Content="A"/>
+        <Label Grid.Row="1" Grid.Column="3" Style="{StaticResource Lettering}" Content="B"/>
+        <Label Grid.Row="1" Grid.Column="4" Style="{StaticResource Lettering}" Content="C"/>
+        <Label Grid.Row="1" Grid.Column="5" Style="{StaticResource Lettering}" Content="D"/>
+        <Label Grid.Row="1" Grid.Column="6" Style="{StaticResource Lettering}" Content="E"/>
+        <Label Grid.Row="1" Grid.Column="7" Style="{StaticResource Lettering}" Content="F"/>
+        <Label Grid.Row="1" Grid.Column="8" Style="{StaticResource Lettering}" Content="G"/>
+        <Label Grid.Row="1" Grid.Column="9" Style="{StaticResource Lettering}" Content="H"/>
+        <Label Grid.Row="12" Grid.Column="2" Style="{StaticResource Lettering}" Content="A"/>
+        <Label Grid.Row="12" Grid.Column="3" Style="{StaticResource Lettering}" Content="B"/>
+        <Label Grid.Row="12" Grid.Column="4" Style="{StaticResource Lettering}" Content="C"/>
+        <Label Grid.Row="12" Grid.Column="5" Style="{StaticResource Lettering}" Content="D"/>
+        <Label Grid.Row="12" Grid.Column="6" Style="{StaticResource Lettering}" Content="E"/>
+        <Label Grid.Row="12" Grid.Column="7" Style="{StaticResource Lettering}" Content="F"/>
+        <Label Grid.Row="12" Grid.Column="8" Style="{StaticResource Lettering}" Content="G"/>
+        <Label Grid.Row="12" Grid.Column="9" Style="{StaticResource Lettering}" Content="H"/>
     </Grid>
 </UserControl>
     

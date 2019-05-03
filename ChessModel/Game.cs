@@ -22,11 +22,11 @@ namespace ChessModel
         public void NewGame()
         {
             gb = new GameBoard();
-            ml = new MoveLogic(gb);
-            gl = new GameLogic(this);
+            ml = new MoveLogic(gb);           
             Player1 = new Human(ChessColor.White);
             Player2 = new Human(ChessColor.Black);
             CurrentPlayer = Player1;
+            gl = new GameLogic(this);
         }
 
         /*
@@ -40,7 +40,6 @@ namespace ChessModel
 
         /*
          * Calls logic to start/end a Player's turn
-         * TODO: Start/Stop PlayerClock
          */
         public Player NextPlayer()
         {
