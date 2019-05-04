@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -12,14 +13,25 @@ namespace UI
     /// <summary>
     /// Interaction logic for UCChessBoard.xaml
     /// </summary>
-    public partial class UCChessBoard : UserControl
+    public partial class UCChessBoard : UserControl, INotifyPropertyChanged
     {
         ObservableCollection<SquareViewModel> ChessBoard { get; set; }
         private Game Game { get; set; }
-        public GameLogicViewModel GameLogicViewModel { get; set; }
+        private GameLogicViewModel _gameLogicViewModel;
         private List<int> ValidMoves { get; set; }
         private int LastFrom { get; set; }
         private int LastTo { get; set; }
+        public DispatcherTimer timer;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public GameLogicViewModel GameLogicViewModel {
+            get { return _gameLogicViewModel; }
+            set {
+                _gameLogicViewModel = value;
+                OnPropertyChanged("GameLogicViewModel");
+            }
+        }
 
         public UCChessBoard()
         {
@@ -32,24 +44,25 @@ namespace UI
          */
         private void NewGame()
         {
-            PlayerClock player1 = new PlayerClock(new TimeSpan(0, 5, 0));
+            PlayerClock player1 = new PlayerClock(new TimeSpan(0, 10, 0));
             PlayerClock player2 = new PlayerClock(new TimeSpan(0, 10, 0));
             Game = new Game();
             Game.NewGame(player1, player2);
 
             LastFrom = -1;
             ValidMoves = new List<int>();
-            GameLogicViewModel = new GameLogicViewModel(Game);
+            this.GameLogicViewModel = new GameLogicViewModel(Game, @"hh\:mm\:ss");
+
             ChessBoard = new ObservableCollection<SquareViewModel>();
             ConvertToList(Game, ChessBoard);
 
-            DispatcherTimer timer = new DispatcherTimer
+            timer = new DispatcherTimer
             {
                 Interval = TimeSpan.FromMilliseconds(1000)
             };
             timer.Tick += TimerTick;
             timer.Start();
-            
+
         }
         
         /*
@@ -275,6 +288,27 @@ namespace UI
         private void TimerTick(object sender, EventArgs e)
         {
             GameLogicViewModel.UpdateClock(@"hh\:mm\:ss");
+
+            var player1 = Game.Player1.Clock.TimeRemaining;
+            var player2 = Game.Player2.Clock.TimeRemaining;
+            if (player1.Hours == 0 && player1.Minutes == 0 && player1.Seconds == 0)
+            {
+                Game.Player1.Clock.Stop();
+                timer.Stop();
+                EndGameWindow("Time Out\nBlack Wins!");
+            }
+            else if (player2.Hours == 0 && player2.Minutes == 0 && player2.Seconds == 0)
+            {
+                Game.Player2.Clock.Stop();
+                timer.Stop();
+                EndGameWindow("Time Out\nWhite Wins!");
+            }
+        }
+
+        // Create the OnPropertyChanged method to raise the event
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

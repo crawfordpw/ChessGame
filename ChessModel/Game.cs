@@ -17,7 +17,6 @@ namespace ChessModel
 
         /*
          * Creates a new game with two players.
-         * TODO: Allow for creating a game with custom clocks
          */
         public void NewGame(PlayerClock player1Clock, PlayerClock player2Clock)
         {

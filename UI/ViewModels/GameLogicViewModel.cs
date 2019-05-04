@@ -37,9 +37,11 @@ namespace UI
             }
         }
 
-        public GameLogicViewModel(Game game)
+        public GameLogicViewModel(Game game, string format)
         {
             _game = game;
+            Player1Clock = game.Player1.Clock.TimeRemaining.ToString(format);
+            Player2Clock = game.Player2.Clock.TimeRemaining.ToString(format);
             LastButton = new ToggleButton();
         }
 
@@ -73,11 +75,7 @@ namespace UI
         // Create the OnPropertyChanged method to raise the event
         protected void OnPropertyChanged(string name)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

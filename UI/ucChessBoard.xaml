@@ -43,10 +43,10 @@
         
         <Label Name="Player2" Style="{StaticResource PlayerClock}"
                Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="3" 
-               Content="{Binding GameLogicViewModel.Player2Clock, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+               Content="{Binding Path=GameLogicViewModel.Player2Clock, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         <Label Name="Player1" Style="{StaticResource PlayerClock}"
                Grid.Row="13" Grid.Column="8" Grid.ColumnSpan="3" 
-               Content="{Binding GameLogicViewModel.Player1Clock, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+               Content="{Binding Path=GameLogicViewModel.Player1Clock, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 
         <ItemsControl Name="Board" Grid.Row="3" Grid.RowSpan="8" Grid.Column="2" Grid.ColumnSpan="8">
             <ItemsControl.ItemsPanel>
