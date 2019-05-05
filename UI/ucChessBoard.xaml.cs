@@ -16,7 +16,7 @@ namespace UI
     public partial class UCChessBoard : UserControl, INotifyPropertyChanged
     {
         ObservableCollection<SquareViewModel> ChessBoard { get; set; }
-        private Game Game { get; set; }
+        public Game Game { get; set; }
         private GameLogicViewModel _gameLogicViewModel;
         private List<int> ValidMoves { get; set; }
         private int LastFrom { get; set; }

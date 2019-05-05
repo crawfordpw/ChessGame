@@ -16,6 +16,7 @@ namespace UI
         public ToggleButton LastButton { get; set; }
 
         private readonly Game _game;
+        private Player _currentPlayer;
         private string _player1Clock;
         private string _player2Clock;
 
@@ -37,9 +38,18 @@ namespace UI
             }
         }
 
+        public Player CurrentPlayer {
+            get { return _currentPlayer; }
+            set {
+                _currentPlayer = value;
+                OnPropertyChanged("CurrentPlayer");
+            }
+        }
+
         public GameLogicViewModel(Game game, string format)
         {
             _game = game;
+            CurrentPlayer = game.CurrentPlayer;
             Player1Clock = game.Player1.Clock.TimeRemaining.ToString(format);
             Player2Clock = game.Player2.Clock.TimeRemaining.ToString(format);
             LastButton = new ToggleButton();
@@ -64,6 +74,7 @@ namespace UI
             StaleMate = _game.gl.StaleMate;
             FromSquare = _game.gl.FromSquare;
             ToSquare = _game.gl.ToSquare;
+            CurrentPlayer = _game.CurrentPlayer;
         }
 
         public void UpdateClock(string format)

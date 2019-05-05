@@ -6,6 +6,7 @@ These features have been implemented thus far:
 - Show all possible valid moves of a selected piece on the UI
 - Select a piece for a pawn to promote to when it is able to promote via a window dialog box
 - A window popup to end the application or start a new game when checkmate or a stalemate is detected
+- Player clocks that show time remaining, and logic to end game when time runs out
 - Ability to play a full game of chess with a second player. This involves:
 	- A move validator that checks if a piece can make a move or not
 	- A game state that detects if moves can still be played, if there is a checkmate, or if there is a stalemate
@@ -14,7 +15,6 @@ These features have been implemented thus far:
 	- Pawn Promotion
 
 TODO:
-- Display of player clock to the UI and logic for ending the game if time has reached zero
 - Ability to Undo a move
 - Starting window for a user to select various options. eg. time limit, player color, number of players etc. 
 - Save and Load a game
